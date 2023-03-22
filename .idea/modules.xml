@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pet-hospital-system-master/pet-hospital-system.iml" filepath="$PROJECT_DIR$/pet-hospital-system-master/pet-hospital-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pet-hospital-system-master.iml" filepath="$PROJECT_DIR$/.idea/pet-hospital-system-master.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Assistant</title>
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="../css/role.css" />
+    <style>
+        header.codrops-header{
+            background: linear-gradient(rgba(103,194,212,.2), transparent);
+            background: -webkit-linear-gradient(rgba(103,194,212,.2), transparent);
+
+        }
+        .module-btn p {
+            width: 30%;
+        }
+
+        .codrops-header a {
+            border-bottom: 1px dashed;
+            padding-bottom: 0.3em;
+        }
+
+        .codrops-header,
+        section {
+            text-align: left;
+        }
+
+        div.codrops-header {
+            padding-top: 1em;
+            font-size: 1em;
+            color: #553445;
+        }
+
+        @media screen and (min-width: 1024px) {
+            .codrops-header {
+                padding: 5em 15em;
+            }
+        }
+        ul.work-list p{
+            font-size: 1.5em;
+        }
+        ul.work-list a {
+            font-size: 1.5em;
+            float: right;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+            padding: 0.5em;
+            border: 1px solid #553445;
+            border-radius: 1em 0 1em 0;
+
+        }
+        ul.work-list a:hover {
+            padding: 0.5em;
+            color: #fff;
+            background: rgba(103,194,212,.2);
+            border: 1px dashed #67c2d4;
+        }
+        ul.work-list p{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="contianer">
+    <header class="codrops-header">
+        <h1>助理</h1>
+        <p>Assistant Doctor</p>
+        <p>助理的职责是，积极参加科室内的抢救工作要求，在抢救病人过程中，做到处理得当，抢救及时，及时完成病程记录。对疑难危重病情，及时向上级助理报告病情，提出抢救或转运意见并采取相应的抢救措施，以保证病人安全。 </p>
+        <a style="margin-right: 1em;" href="../index">返回主页</a>
+<!--
+        <a href="../rolePlay">重选角色</a>
+-->
+    </header>
+    <hr />
+    <div class="codrops-header">
+        <h2>I 工作流程</h2>
+        <ul class="work-list">
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="../js/modernizr.custom.js"></script>
+<script type="text/javascript" src="../js/canvas-particle.js"></script>
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/rolePlay/work.js"></script>
+<script type="text/javascript">
+    work.init();
+    window.onload = function() {
+        var config = {
+            vx: 4,
+            vy: 4,
+            height: 3,
+            width: 3,
+            count: 150,
+            color: "121, 162, 185",
+            stroke: "100,200,180",
+            dist: 6000,
+            e_dist: 20000,
+            max_conn: 10
+        }
+        CanvasParticle(config);
+    }
+</script>
+</body>
+</html>
