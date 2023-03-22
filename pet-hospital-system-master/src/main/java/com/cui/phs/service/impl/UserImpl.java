@@ -7,6 +7,7 @@ import com.cui.phs.service.facade.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 /**
@@ -20,8 +21,8 @@ public class UserImpl implements UserService {
 
     @Override
     public ResultEntity getVerifyResult(String userName, String password){
-        if(null != userName&&userName.length() > 0 && this.containsUser(userName)){
-            if(null!=password&&password.length()>0&&verifyPassword(userName, password)){
+        if(isNotBlank(userName) && checkUserNameExist(userName)){
+            if(isNotBlank(password) && verifyPassword(userName, password)){
                 return ResultEntity.success("登陆成功");
             }
             else{
@@ -35,21 +36,26 @@ public class UserImpl implements UserService {
     }
 
     @Override
-    public ResultEntity saveUser(String name, String password){
+    public ResultEntity saveUser(String userName, String password){
+        if(isNotBlank(userName) && !checkUserNameExist(userName)){
+            if(isNotBlank(password)){
+
+            }else{
+                return ResultEntity.error("密码不合规，请重新输入");
+            }
+        }
         return ResultEntity.success();
     }
 
+    private boolean checkUserNameExist(String userName){
+        List<String> userNames = userMapper.getAllUserName();
+        if(userNames.contains(userName)){ return true; }
+        return false;
+    }
 
-    private boolean containsUser(String userName){
-        List<UserEntity> users = userMapper.getAllUser();
-        boolean flag = false;
-        for(UserEntity user:users){
-            if(user.getName().equals(userName)){
-                flag = true;
-                break;
-            }
-        }
-        return flag;
+    private boolean isNotBlank(String s){
+        if(null != s && s.length() > 0){ return true; }
+        return false;
     }
 
     private boolean verifyPassword(String userName, String password){

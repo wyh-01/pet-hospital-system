@@ -15,4 +15,9 @@
         from phs_user
     </select>
 
+    <select id = "getAllUserName">
+        select name
+        from phs_user
+    </select>
+
 </mapper>

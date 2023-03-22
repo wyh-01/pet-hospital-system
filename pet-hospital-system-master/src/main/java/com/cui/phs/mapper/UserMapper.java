@@ -11,4 +11,6 @@ public interface UserMapper {
 
     List<UserEntity> getAllUser();
 
+    List<String> getAllUserName();
+
 }
