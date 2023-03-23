@@ -37,12 +37,18 @@ public class UserImpl implements UserService {
 
     @Override
     public ResultEntity saveUser(String userName, String password){
-        if(isNotBlank(userName) && !checkUserNameExist(userName)){
-            if(isNotBlank(password)){
-
+        if(isNotBlank(userName)){
+            if(!checkUserNameExist(userName)) {
+                if (isNotBlank(password)) {
+                    userMapper.insertUser(new UserEntity(userName, password, 2));
+                } else {
+                    return ResultEntity.error("密码不合规，请重新输入");
+                }
             }else{
-                return ResultEntity.error("密码不合规，请重新输入");
+                return ResultEntity.error("该用户名已存在，请重新输入");
             }
+        }else{
+            return ResultEntity.error("用户名不能为空，请重新输入");
         }
         return ResultEntity.success();
     }
@@ -62,7 +68,7 @@ public class UserImpl implements UserService {
         List<UserEntity> users = userMapper.getAllUser();
         boolean flag = false;
         for(UserEntity user:users){
-            if(user.getName().equals(userName)){
+            if(user.getUserName().equals(userName)){
                 if(user.getPassword().equals(password)){
                     flag = true;
                     break;

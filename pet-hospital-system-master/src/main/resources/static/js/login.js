@@ -20,3 +20,7 @@ function login() {
         }
     });
 }
+
+function sign() {
+    window.location.href = '/sign';
+}

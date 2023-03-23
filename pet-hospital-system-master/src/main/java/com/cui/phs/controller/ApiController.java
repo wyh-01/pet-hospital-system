@@ -35,13 +35,12 @@ public class ApiController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultEntity login(String userName, String password){
-        ResultEntity resultEntity = userService.getVerifyResult(userName,password);
-        return resultEntity;
+        return userService.getVerifyResult(userName,password);
     }
 
     @RequestMapping(value = "/sign", method =  RequestMethod.POST)
     public ResultEntity sign(String userName, String password){
-        return ResultEntity.success();
+        return userService.saveUser(userName, password);
     }
 
     @RequestMapping(value = "/disease/all", method = RequestMethod.POST)

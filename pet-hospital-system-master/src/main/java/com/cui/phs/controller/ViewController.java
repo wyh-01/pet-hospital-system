@@ -15,6 +15,11 @@ public class ViewController {
         return "login";
     }
 
+    @RequestMapping("/sign")
+    public String sign(){
+        return "sign";
+    }
+
     @RequestMapping("/index")
     public String index(){
         return "index";

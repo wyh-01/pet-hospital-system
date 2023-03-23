@@ -6,9 +6,16 @@ package com.cui.phs.entity;
 public class UserEntity {
 
     private int id;
-    private String name;
+    private String userName;
     private String password;
     private int role;
+
+    public UserEntity(){}
+    public UserEntity(String userName, String password, int role){
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -18,12 +25,12 @@ public class UserEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String name) {
+        this.userName = name;
     }
 
     public String getPassword() {
