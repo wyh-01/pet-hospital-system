@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phs.mapper.DiseaseMapper">
+    <resultMap id="RM_DiseaseVo" type="com.phs.entity.DiseaseEntity">
+        <result column="id" property="id"/>
+        <result column="kind_id" property="kind_id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="image" property="image"/>
+    </resultMap>
+
+    <select id = "getDiseaseByKindId" resultMap="RM_DiseaseVo">
+        select *
+        from phs_disease
+        where kind_id=#{kind_id}
+    </select>
+
+    <select id = "getDiseaseById" resultMap="RM_DiseaseVo">
+        select *
+        from phs_disease
+        where id=#{id}
+    </select>
+
+</mapper>
