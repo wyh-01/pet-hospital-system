@@ -15,9 +15,9 @@ public class ViewController {
         return "login";
     }
 
-    @RequestMapping("/sign")
-    public String sign(){
-        return "sign";
+    @RequestMapping("/signup")
+    public String signUp(){
+        return "signup";
     }
 
     @RequestMapping("/index")

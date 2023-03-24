@@ -5,22 +5,17 @@ function login() {
         dataType: "json",//预期服务器返回的数据类型
         url: "/api/login" ,//url
         data: $('#loginForm').serialize(),
-        success: function (result) {
-            if(result.resultCode ==0){
+        statusCode : {
+            200: function(){
                 window.location.href='/index';
+            },
+            401: function(result){
+                alert(result.responseText);
             }
-            else if (result.resultMessage&&result.resultMessage.length>0) {
-                alert(result.resultMessage);
-            }
-            else
-                alert("登录失败");
-        },
-        error : function() {
-            alert("登录失败");
         }
     });
 }
 
-function sign() {
-    window.location.href = '/sign';
+function signup() {
+    window.location.href = '/signup';
 }

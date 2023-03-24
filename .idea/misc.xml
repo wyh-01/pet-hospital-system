@@ -4,8 +4,12 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pet-hospital-system-master/pom.xml" />
+        <option value="$PROJECT_DIR$/pet-hospital-system/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://mybatis.org/dtd/mybatis-3-mapper.dtd" location="$PROJECT_DIR$" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" default="true" project-jdk-name="15" project-jdk-type="JavaSDK" />
   <component name="ProjectType">

@@ -8,6 +8,7 @@ import com.phs.service.facade.UserService;
 import com.phs.service.facade.WorkService;
 import com.phs.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,12 +36,12 @@ public class ApiController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultEntity login(String userName, String password){
+    public ResponseEntity login(String userName, String password){
         return userService.getVerifyResult(userName,password);
     }
 
-    @RequestMapping(value = "/sign", method =  RequestMethod.POST)
-    public ResultEntity sign(String userName, String password){
+    @RequestMapping(value = "/signup", method =  RequestMethod.POST)
+    public ResponseEntity signup(String userName, String password){
         return userService.saveUser(userName, password);
     }
 
