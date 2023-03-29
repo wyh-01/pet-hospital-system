@@ -25,6 +25,11 @@ public class ViewController {
         return "index";
     }
 
+    @RequestMapping("/uploadFile")
+    public String uploadFile(){
+        return "file";
+    }
+
     @RequestMapping("/rolePlay")
     public String rolePlay(){
         return "rolePlay/roleChoose";
