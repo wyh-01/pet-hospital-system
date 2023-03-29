@@ -23,7 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `phs_user`;
 CREATE TABLE `phs_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
