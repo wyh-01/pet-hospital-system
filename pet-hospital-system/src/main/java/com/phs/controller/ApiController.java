@@ -2,10 +2,7 @@ package com.phs.controller;
 
 
 import com.phs.entity.*;
-import com.phs.service.facade.DiseaseService;
-import com.phs.service.facade.QuizService;
-import com.phs.service.facade.UserService;
-import com.phs.service.facade.WorkService;
+import com.phs.service.facade.*;
 import com.phs.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +31,9 @@ public class ApiController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CaseManageService caseManageService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity login(String userName, String password){
@@ -65,6 +65,10 @@ public class ApiController {
         return workService.getWorksByJobId(jobId);
     }
 
+    @RequestMapping(value = "caseManage/caseAdd", method = RequestMethod.POST)
+    public ResponseEntity caseAdd(CaseEntity caseEntity){
+        return caseManageService.caseAdd(caseEntity);
+    }
 
 
 

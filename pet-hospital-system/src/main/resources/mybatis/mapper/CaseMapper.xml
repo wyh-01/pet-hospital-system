@@ -16,4 +16,20 @@
         from phs_case
         where disease_id=#{disease_id}
     </select>
+    <select id = "addCase"  parameterType="CaseEntity">
+        INSERT INTO phs_case(
+            disease_id,
+            name,
+            description,
+            image_list,
+            video
+        )
+        VALUES (
+                #{disease_id},
+                #{name},
+                #{description},
+                #{image_list},
+                #{video}
+                )
+    </select>
 </mapper>
