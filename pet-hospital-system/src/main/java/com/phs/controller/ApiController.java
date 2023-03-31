@@ -55,6 +55,20 @@ public class ApiController {
         return diseaseService.getDisease(diseaseId);
     }
 
+    @RequestMapping(value = "/disease/add", method = RequestMethod.POST)
+    public ResponseEntity addDisease(DiseaseEntity diseaseEntity){
+        return diseaseService.addDisease(diseaseEntity);
+    }
+    @RequestMapping(value = "/disease/delete", method = RequestMethod.POST)
+    public ResponseEntity deleteDisease(int id){
+        return diseaseService.deleteDisease(id);
+    }
+
+    @RequestMapping(value = "/disease/update", method = RequestMethod.POST)
+    public ResponseEntity updateDisease(DiseaseEntity diseaseEntity){
+        return diseaseService.updateDisease(diseaseEntity);
+    }
+
     @RequestMapping(value = "/quiz/detail", method = RequestMethod.POST)
     public List<QuizEntity> getQuiz(Integer diseaseId){
         return quizService.getRandomQuiz(diseaseId);

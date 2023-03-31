@@ -5,7 +5,7 @@
 <mapper namespace="com.phs.mapper.DiseaseMapper">
     <resultMap id="RM_DiseaseVo" type="com.phs.entity.DiseaseEntity">
         <result column="id" property="id"/>
-        <result column="kind_id" property="kind_id"/>
+        <result column="kind_id" property="kindId"/>
         <result column="name" property="name"/>
         <result column="description" property="description"/>
         <result column="image" property="image"/>
@@ -14,7 +14,7 @@
     <select id = "getDiseaseByKindId" resultMap="RM_DiseaseVo">
         select *
         from phs_disease
-        where kind_id=#{kind_id}
+        where kind_id=#{kindId}
     </select>
 
     <select id = "getDiseaseById" resultMap="RM_DiseaseVo">
@@ -22,5 +22,35 @@
         from phs_disease
         where id=#{id}
     </select>
+
+    <insert id = "insertDisease" parameterType="DiseaseEntity">
+        insert into phs_disease(
+            kind_id,
+            name,
+            description,
+            image
+        )values (
+                    #{kindId},
+                    #{name},
+                    #{description},
+                    #{image}
+                )
+    </insert>
+
+    <delete id = "deleteDisease" parameterType = "int">
+        delete from phs_disease
+        where id=#{id}
+    </delete>
+
+    <update id = "updateDisease" parameterType = "DiseaseEntity">
+        update phs_disease
+        <set>
+             kind_id = #{kindId},
+             name = #{name},
+             description = #{description},
+             image = #{image}
+        </set>
+        where id=#{id}
+    </update>
 
 </mapper>
