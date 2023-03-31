@@ -79,17 +79,17 @@ public class ApiController {
         return workService.getWorksByJobId(jobId);
     }
 
-    @RequestMapping(value = "caseManage/caseAdd", method = RequestMethod.POST)
+    @RequestMapping(value = "/caseManage/caseAdd", method = RequestMethod.POST)
     public ResponseEntity caseAdd(CaseEntity caseEntity){
         return caseManageService.caseAdd(caseEntity);
     }
 
-    @RequestMapping(value = "caseManage/caseDelete", method = RequestMethod.POST)
+    @RequestMapping(value = "/caseManage/caseDelete", method = RequestMethod.POST)
     public ResponseEntity caseDelete(Integer case_id){
         return caseManageService.caseDelete(case_id);
     }
 
-    @RequestMapping(value = "caseManage/caseUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/caseManage/caseUpdate", method = RequestMethod.POST)
     public ResponseEntity caseUpdate(CaseEntity caseEntity){
         return caseManageService.caseUpdate(caseEntity);
     }

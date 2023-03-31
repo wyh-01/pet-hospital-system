@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `phs_case`;
 CREATE TABLE `phs_case`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `disease_id` int(11) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(100)  CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL UNIQUE,
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `image_list` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `video` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `image_list` varchar(5000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `video` varchar(5000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
