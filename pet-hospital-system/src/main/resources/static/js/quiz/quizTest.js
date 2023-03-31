@@ -41,11 +41,12 @@ quizTest.initQuizList = function (res) {
     for(var i=0;i<res.length;i++){
         quizList = quizList + quizTest.initQuiz(i,res[i]);
     }
+
     $("#quizList").html(quizList);
 };
 
 quizTest.bindModal = function () {
-    var score = (Math.ceil(Math.random()*10))*10;
+    var score = 0;
     $("#modalText").html(score+"分");
     $('#modalBtn').click(function() {
         location.reload();
