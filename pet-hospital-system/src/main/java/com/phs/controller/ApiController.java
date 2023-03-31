@@ -70,6 +70,15 @@ public class ApiController {
         return caseManageService.caseAdd(caseEntity);
     }
 
+    @RequestMapping(value = "caseManage/caseDelete", method = RequestMethod.POST)
+    public ResponseEntity caseDelete(Integer case_id){
+        return caseManageService.caseDelete(case_id);
+    }
+
+    @RequestMapping(value = "caseManage/caseUpdate", method = RequestMethod.POST)
+    public ResponseEntity caseUpdate(CaseEntity caseEntity){
+        return caseManageService.caseUpdate(caseEntity);
+    }
 
 
 

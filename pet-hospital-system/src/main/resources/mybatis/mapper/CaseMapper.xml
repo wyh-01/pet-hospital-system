@@ -32,4 +32,20 @@
                 #{video}
                 )
     </select>
+    <select id = "deleteCase"  resultMap="RM_CaseVo">
+        DELETE FROM phs_case
+        WHERE id=#{case_id}
+    </select>
+
+    <select id = "updateCase"  parameterType="CaseEntity">
+        UPDATE phs_case
+        SET(
+            disease_id=#{disease_id},
+            name=#{name},
+            description=#{description},
+            image_list=#{image_list},
+            video=#{video}
+               )
+        WHERE id=#{id}
+    </select>
 </mapper>

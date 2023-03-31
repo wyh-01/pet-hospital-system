@@ -7,8 +7,8 @@ public interface CaseManageService
 {
 
     ResponseEntity caseAdd(CaseEntity caseEntity);
-//
-//    ResponseEntity caseDeleteByName(String case_name);
-//
-//    ResponseEntity caseChange(CaseEntity caseEntity);
+
+    ResponseEntity caseDelete(int case_id);
+
+    ResponseEntity caseUpdate(CaseEntity caseEntity);
 }

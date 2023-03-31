@@ -27,13 +27,32 @@ public class CaseManageImpl implements CaseManageService {
         }
         else
             caseMapper.addCase(caseEntity);
-            return  new ResponseEntity("成功", HttpStatus.OK);
+        return  new ResponseEntity("成功", HttpStatus.OK);
 //      前端需要在caseEntity里返回图片和视频存储在云端的url
 //      Image_list用&&分割不同img的url
     }
 
-//
-//    ResponseEntity CaseDeleteByName(String case_name);
-//
-//    ResponseEntity CaseUpdate(CaseEntity caseEntity);
+    @Override
+    public ResponseEntity caseDelete(int case_id){
+        if(case_id==0)
+            return new ResponseEntity("缺少case_id", HttpStatus.NO_CONTENT);
+        else
+            caseMapper.deleteCase(case_id);
+        return  new ResponseEntity("成功", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity caseUpdate(CaseEntity caseEntity){
+        if(caseEntity.getId()==0)
+            return new ResponseEntity("缺少case_id", HttpStatus.NO_CONTENT);
+        if(caseEntity.getName()==null){
+            return new ResponseEntity("缺少名字", HttpStatus.NO_CONTENT);
+        }
+        if(caseEntity.getDisease_id()==0){
+            return new ResponseEntity("缺少病种分类", HttpStatus.NO_CONTENT);
+        }
+        else caseMapper.updateCase(caseEntity);
+        return  new ResponseEntity("成功", HttpStatus.OK);
+    }
+
 }
