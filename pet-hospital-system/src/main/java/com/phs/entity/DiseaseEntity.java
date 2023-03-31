@@ -6,7 +6,7 @@ import java.util.List;
 public class DiseaseEntity implements Serializable {
 
     private int id;
-    private int kind_id;
+    private int kindId;
     private String name;
     private String description;
     private String image;
@@ -19,12 +19,12 @@ public class DiseaseEntity implements Serializable {
         this.id = id;
     }
 
-    public int getKind_id() {
-        return kind_id;
+    public int getKindId() {
+        return kindId;
     }
 
-    public void setKind_id(int kind_id) {
-        this.kind_id = kind_id;
+    public void setKindId(int kindId) {
+        this.kindId = kindId;
     }
 
     public String getName() {

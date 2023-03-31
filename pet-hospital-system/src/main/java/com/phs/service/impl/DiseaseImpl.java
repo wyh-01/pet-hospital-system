@@ -7,6 +7,8 @@ import com.phs.mapper.CaseMapper;
 import com.phs.mapper.DiseaseMapper;
 import com.phs.service.facade.DiseaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -51,5 +53,22 @@ public class DiseaseImpl implements DiseaseService {
         return frontEntity;
     }
 
+    @Override
+    public ResponseEntity addDisease(DiseaseEntity diseaseEntity){
+        diseaseMapper.insertDisease(diseaseEntity);
+        return new ResponseEntity<>("病种添加成功", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity deleteDisease(int id){
+        diseaseMapper.deleteDisease(id);
+        return new ResponseEntity<>("病种删除成功", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity updateDisease(DiseaseEntity diseaseEntity){
+        diseaseMapper.updateDisease(diseaseEntity);
+        return new ResponseEntity<>("病种更新成功", HttpStatus.OK);
+    }
 
 }

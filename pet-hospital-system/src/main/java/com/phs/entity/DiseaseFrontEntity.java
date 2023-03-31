@@ -9,7 +9,7 @@ public class DiseaseFrontEntity extends DiseaseEntity {
 
     public DiseaseFrontEntity(DiseaseEntity diseaseEntity){
         this.setId(diseaseEntity.getId());
-        this.setKind_id(diseaseEntity.getKind_id());
+        this.setKindId(diseaseEntity.getKindId());
         this.setName(diseaseEntity.getName());
         this.setDescription(diseaseEntity.getDescription());
         this.setImage(diseaseEntity.getImage());
