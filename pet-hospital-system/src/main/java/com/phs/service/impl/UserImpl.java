@@ -24,7 +24,7 @@ public class UserImpl implements UserService {
     public ResponseEntity getVerifyResult(String userName, String password){
         if(isNotBlank(userName) && checkUserNameExist(userName)){
             if(isNotBlank(password) && verifyPassword(userName, password)){
-                return new ResponseEntity("登陆成功", HttpStatus.OK);
+                return new ResponseEntity("登录成功", HttpStatus.OK);
             }
             else{
                 return new ResponseEntity("密码错误，请重新输入", HttpStatus.UNAUTHORIZED);
