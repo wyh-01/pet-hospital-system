@@ -3,11 +3,11 @@
  */
 
 'use strict';
-
 var quizTest = {};
-
+var quizList = "";
+var quizans="";
 quizTest.initQuiz = function(index,quizEntity){
-
+    quizans=quizans+quizEntity.id+quizEntity.answer+" ";
     var title = "<label>" + index + ". " + quizEntity.question + "</label>";
 
     var one = "<label class='radio-inline'>" +
@@ -37,27 +37,41 @@ quizTest.initQuiz = function(index,quizEntity){
 };
 
 quizTest.initQuizList = function (res) {
-    var quizList = "";
     for(var i=0;i<res.length;i++){
         quizList = quizList + quizTest.initQuiz(i,res[i]);
     }
-
     $("#quizList").html(quizList);
 };
-
+var so=0;
 quizTest.bindModal = function () {
-    var score = 0;
-    $("#modalText").html(score+"分");
+    var item=null
+
+    var score = so;
+    //$("#modalText").html(score+"分");
     $('#modalBtn').click(function() {
         location.reload();
     });
 }
+quizTest.set = function () {
 
+    $("input[type=radio]:checked").each(function() {
+       var item = $(this).val();
+       var ans=this.name+item;
+       if(quizans.indexOf(ans)!==-1)
+       {
+           so+=10
+       }
+
+    }
+    )
+    $("#modalText").html(so+"分");
+
+}
 quizTest.init = function () {
-    quizTest.bindModal();
     var diseaseId = $.getUrlLastParam();
     var req = {
         diseaseId:diseaseId
     };
     comm.utils.postForm("/quiz/detail",req,quizTest.initQuizList);
+    quizTest.bindModal();
 };

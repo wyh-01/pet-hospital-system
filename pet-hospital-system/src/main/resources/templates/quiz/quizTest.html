@@ -56,7 +56,7 @@
                     <div id="quizList">
                     </div>
                     <div>
-                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="width:100px;">
+                        <button onclick="javascript:return quizTest.set()" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="width:100px;">
                             提交答案
                         </button>
                     </div>
@@ -102,12 +102,12 @@
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript" src="../js/quiz/quizTest.js"></script>
 <script type="text/javascript">
+
     quizTest.init();
     window.onload = function() {
         var config = {
             vx: 4,
             vy: 4,
-            height: 3,
             width: 3,
             count: 150,
             color: "121, 162, 185",
@@ -118,6 +118,9 @@
         }
         CanvasParticle(config);
     };
+
+
+
     (function() {
         [].slice.call(document.querySelectorAll('.tabs')).forEach(function(el) {
             new CBPFWTabs(el);
