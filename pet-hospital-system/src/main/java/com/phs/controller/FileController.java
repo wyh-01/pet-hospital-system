@@ -1,10 +1,14 @@
 package com.phs.controller;
 import com.phs.service.facade.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class FileController {
@@ -19,8 +23,9 @@ public class FileController {
      */
     @RequestMapping("/upload")
     @ResponseBody
-    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity handleFileUpload(@RequestParam("file") MultipartFile file) {
         if (!file.isEmpty()) {
+            String returnUrl;
             try {
                 /*
                  * 这段代码执行完毕之后，图片上传到了工程的跟路径； 大家自己扩散下思维，如果我们想把图片上传到
@@ -31,23 +36,45 @@ public class FileController {
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(
                                 file.getOriginalFilename())));
-                fileUploadService.upload(file);
+                returnUrl = fileUploadService.upload(file);
                 System.out.println(file.getName());
-                out.write(file.getBytes());
-                out.flush();
-                out.close();
+                //out.write(file.getBytes());
+                //out.flush();
+                //out.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                return "上传失败," + e.getMessage();
+                return new ResponseEntity("上传失败," + e.getMessage(), HttpStatus.BAD_REQUEST);
             } catch (IOException e) {
                 e.printStackTrace();
-                return "上传失败," + e.getMessage();
+                return new ResponseEntity("上传失败," + e.getMessage(), HttpStatus.BAD_REQUEST);
             }
-
-            return "上传成功";
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("message", "上传成功");
+            map.put("url", returnUrl);
+            return new ResponseEntity<>(map, HttpStatus.OK);
 
         } else {
-            return "上传失败，因为文件是空的.";
+            return new ResponseEntity("上传失败，因为文件是空的.", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping("/uploadMulti")
+    @ResponseBody
+    public ResponseEntity uploadMulti(@RequestParam("files") MultipartFile[] files) {
+        if(!isEmpty(files)) {
+            for (MultipartFile file : files) {
+                fileUploadService.upload(file);
+            }
+            return new ResponseEntity("上传成功", HttpStatus.OK);
+        }else{
+            return new ResponseEntity("上传失败，因为文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    private boolean isEmpty(MultipartFile files[]){
+        if(files.length == 1 && files[0].isEmpty()){
+            return true;
+        }
+        return  false;
     }
 }

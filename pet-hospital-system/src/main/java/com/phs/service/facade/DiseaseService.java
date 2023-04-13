@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.phs.entity.DiseaseEntity;
 import com.phs.entity.DiseaseFrontEntity;
+import org.springframework.http.ResponseEntity;
 
 public interface DiseaseService {
 
@@ -12,4 +13,9 @@ public interface DiseaseService {
 
     DiseaseFrontEntity getDisease(int diseaseId);
 
+    ResponseEntity addDisease(DiseaseEntity diseaseEntity);
+
+    ResponseEntity deleteDisease(int id);
+
+    ResponseEntity updateDisease(DiseaseEntity diseaseEntity);
 }
