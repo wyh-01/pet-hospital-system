@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pet-Hospital-Learning-System</title>
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <style>
+        .module-btn p {
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+<div class="contianer">
+    <header class="codrops-header">
+        <h1>系统管理</h1>
+        <p>Syatem Management</p>
+    </header>
+    <section>
+        <div class="module-btn">
+            <p><a href="../diseaseManage">病种管理</a> </p>
+            <p><a href="../caseStudy">病例管理</a></p>
+        </div>
+    </section>
+</div>
+<script type="text/javascript" src="../js/modernizr.custom.js"></script>
+<script type="text/javascript" src="../js/canvas-particle.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        var config = {
+            vx: 4,
+            vy: 4,
+            height: 3,
+            width: 3,
+            count: 150,
+            color: "121, 162, 185",
+            stroke: "100,200,180",
+            dist: 6000,
+            e_dist: 20000,
+            max_conn: 10
+        }
+        CanvasParticle(config);
+    }
+</script>
+</body>
+</html>

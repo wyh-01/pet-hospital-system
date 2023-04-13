@@ -21,8 +21,8 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * @Auther: csp1999
- * @Date: 2020/10/31/14:30
+ * @Auther: wyh
+ * @Date: 2023/4/7
  * @Description: 文件上传Service (为节省文章中的代码篇幅，不再做接口实现类处理)
  */
 @Service("fileUploadService")
@@ -40,8 +40,8 @@ public class FileUploadServiceImpl implements FileUploadService {
      * 注：阿里云OSS文件上传官方文档链接：https://help.aliyun.com/document_detail/84781.html?spm=a2c4g.11186623.6.749.11987a7dRYVSzn
      * @param: uploadFile
      * @return: string
-     * @create: 2020/10/31 14:36
-     * @author: csp1999
+     * @create: 2023/4/7
+     * @author: wyh
      */
     @Override
     public String upload(MultipartFile uploadFile) {
@@ -75,7 +75,7 @@ public class FileUploadServiceImpl implements FileUploadService {
         String fileType = originalFilename.substring(originalFilename.lastIndexOf("."));
         // 新文件名称
         String newFileName = UUID.randomUUID().toString() + fileType;
-        // 构建日期路径, 例如：OSS目标文件夹/2020/10/31/文件名
+        // 构建日期路径, 例如：OSS目标文件夹/2023/4/7/文件名
         String filePath = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         // 文件上传的路径地址
         String uploadImgeUrl = filehost + "/" + filePath + "/" + newFileName;
@@ -91,10 +91,10 @@ public class FileUploadServiceImpl implements FileUploadService {
          * 下面两行代码是重点坑：
          * 现在阿里云OSS 默认图片上传ContentType是image/jpeg
          * 也就是说，获取图片链接后，图片是下载链接，而并非在线浏览链接，
-         * 因此，这里在上传的时候要解决ContentType的问题，将其改为image/jpg
+         * 因此，这里在上传的时候要解决ContentType的问题，根据文件后缀设置ContentType
          */
         ObjectMetadata meta = new ObjectMetadata();
-        meta.setContentType("image/jpg");
+        meta.setContentType(getContentType(fileType));
 
         //文件上传至阿里云OSS
         ossClient.putObject(bucketName, uploadImgeUrl, inputStream, meta);
@@ -107,13 +107,50 @@ public class FileUploadServiceImpl implements FileUploadService {
         return returnImgeUrl;
     }
 
+    //为了能在浏览器直接预览而非下载文件，根据文件的后缀返回文件的ContentType
+    public static String getContentType(String FilenameExtension) {
+        if (FilenameExtension.equalsIgnoreCase(".bmp")) {
+            return "image/bmp";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".gif")) {
+            return "image/gif";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".jpeg") ||
+                FilenameExtension.equalsIgnoreCase(".jpg") ||
+                FilenameExtension.equalsIgnoreCase(".png")) {
+            return "image/jpg";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".html")) {
+            return "text/html";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".txt")) {
+            return "text/plain";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".vsd")) {
+            return "application/vnd.visio";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".pptx") ||
+                FilenameExtension.equalsIgnoreCase(".ppt")) {
+            return "application/vnd.ms-powerpoint";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".docx") ||
+                FilenameExtension.equalsIgnoreCase(".doc")) {
+            return "application/msword";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".xml")) {
+            return "text/xml";
+        }
+        return "image/jpg";
+    }
+
+
     /*
      * 文件下载
      * @param: fileName
      * @param: outputStream
      * @return: void
-     * @create: 2020/10/31 16:19
-     * @author: csp1999
+     * @create: 2023/4/7
+     * @author: wyh
      */
     @Override
     public String download(String fileName, HttpServletResponse response) throws UnsupportedEncodingException {
@@ -164,8 +201,8 @@ public class FileUploadServiceImpl implements FileUploadService {
      * 文件删除
      * @param: objectName
      * @return: java.lang.String
-     * @create: 2020/10/31 16:50
-     * @author: csp1999
+     * @create: 2023/4/7
+     * @author: wyh
      */
     @Override
     public String delete(String fileName) {

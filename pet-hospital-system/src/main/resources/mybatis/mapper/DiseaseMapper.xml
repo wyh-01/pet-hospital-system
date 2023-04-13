@@ -11,6 +11,11 @@
         <result column="image" property="image"/>
     </resultMap>
 
+    <resultMap id="DiseaseKindVo" type="com.phs.entity.DiseaseKindEntity">
+        <result column="id" property="id"/>
+        <result column="kind_name" property="kindName"/>
+    </resultMap>
+
     <select id = "getDiseaseByKindId" resultMap="RM_DiseaseVo">
         select *
         from phs_disease
@@ -21,6 +26,11 @@
         select *
         from phs_disease
         where id=#{id}
+    </select>
+
+    <select id = "getAllDiseaseName" resultType="String">
+        select name
+        from phs_disease
     </select>
 
     <insert id = "insertDisease" parameterType="DiseaseEntity">
@@ -52,5 +62,10 @@
         </set>
         where id=#{id}
     </update>
+
+    <select id = "getAllDiseaseKind" resultMap="DiseaseKindVo">
+        select id, kind_name
+        from phs_disease_kind
+    </select>
 
 </mapper>

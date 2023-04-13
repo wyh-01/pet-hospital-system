@@ -8,7 +8,7 @@ var diseaseDetail = {};
 
 diseaseDetail.initTitle = function (res) {
     $("#d-name").html(res.name);
-    var image = "/img/" + res.image;
+    var image = res.image;
     $("#d-image").attr({"src":image});
     $("#d-description").html(res.description);
 };

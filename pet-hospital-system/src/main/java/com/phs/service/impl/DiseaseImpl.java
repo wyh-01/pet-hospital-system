@@ -55,8 +55,19 @@ public class DiseaseImpl implements DiseaseService {
 
     @Override
     public ResponseEntity addDisease(DiseaseEntity diseaseEntity){
-        diseaseMapper.insertDisease(diseaseEntity);
-        return new ResponseEntity<>("病种添加成功", HttpStatus.OK);
+        if(diseaseEntity.getKindId() == 0){
+            return new ResponseEntity("病种类型不能为空，请重新输入", HttpStatus.BAD_REQUEST);
+        }
+        if(isNotBlank(diseaseEntity.getName())){
+            if(!checkDiseaseNameExist(diseaseEntity.getName())){
+                diseaseMapper.insertDisease(diseaseEntity);
+                return new ResponseEntity<>("病种添加成功", HttpStatus.OK);
+            }else{
+                return new ResponseEntity("该病种名已存在，请重新输入", HttpStatus.BAD_REQUEST);
+            }
+        }else{
+            return new ResponseEntity("病种名不能为空，请重新输入", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
@@ -67,8 +78,34 @@ public class DiseaseImpl implements DiseaseService {
 
     @Override
     public ResponseEntity updateDisease(DiseaseEntity diseaseEntity){
-        diseaseMapper.updateDisease(diseaseEntity);
-        return new ResponseEntity<>("病种更新成功", HttpStatus.OK);
+        if(isNotBlank(diseaseEntity.getName())){
+            if(!checkElseDiseaseNameExist(diseaseEntity.getName(), diseaseEntity.getId())){
+                diseaseMapper.updateDisease(diseaseEntity);
+                return new ResponseEntity<>("病种更新成功", HttpStatus.OK);
+            }else{
+                return new ResponseEntity("该病种名已存在，请重新输入", HttpStatus.BAD_REQUEST);
+            }
+        }else{
+            return new ResponseEntity("病种名不能为空，请重新输入", HttpStatus.BAD_REQUEST);
+        }
     }
 
+    private boolean checkDiseaseNameExist(String diseaseName){
+        List<String> diseaseNames = diseaseMapper.getAllDiseaseName();
+        if(diseaseNames.contains(diseaseName)){ return true; }
+        return false;
+    }
+
+    //校验diseaseName是否和除该id对应病种以外的其他病种的病种名相同
+    private boolean checkElseDiseaseNameExist(String diseaseName, int id){
+        List<String> diseaseNames = diseaseMapper.getAllDiseaseName();
+        diseaseNames.remove(diseaseMapper.getDiseaseById(id).getName());
+        if(diseaseNames.contains(diseaseName)){ return true; }
+        return false;
+    }
+
+    private boolean isNotBlank(String s){
+        if(null != s && s.length() > 0){ return true; }
+        return false;
+    }
 }

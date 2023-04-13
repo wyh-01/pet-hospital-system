@@ -5,10 +5,10 @@ import com.phs.entity.*;
 import com.phs.service.facade.*;
 import com.phs.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -35,6 +35,9 @@ public class ApiController {
     @Autowired
     private CaseManageService caseManageService;
 
+    @Autowired
+    private FileUploadService fileUploadService;
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity login(String userName, String password){
         return userService.getVerifyResult(userName,password);
@@ -56,9 +59,24 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/disease/add", method = RequestMethod.POST)
-    public ResponseEntity addDisease(DiseaseEntity diseaseEntity){
+    public ResponseEntity addDisease(DiseaseEntity diseaseEntity, @RequestParam("files") MultipartFile[] files){
+        StringBuffer urls = new StringBuffer("");
+        if(!isEmpty(files)) {
+            int count = 0;
+            for (MultipartFile file : files) {
+                if(count > 0){
+                    urls.append("#");
+                }
+                urls.append(fileUploadService.upload(file));
+                count++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        diseaseEntity.setImage(urls.toString());
         return diseaseService.addDisease(diseaseEntity);
     }
+
     @RequestMapping(value = "/disease/delete", method = RequestMethod.POST)
     public ResponseEntity deleteDisease(int id){
         return diseaseService.deleteDisease(id);
@@ -95,7 +113,12 @@ public class ApiController {
     }
 
 
-
+    private boolean isEmpty(MultipartFile files[]){
+        if(files.length == 1 && files[0].isEmpty()){
+            return true;
+        }
+        return  false;
+    }
 
 
 
