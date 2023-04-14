@@ -38,7 +38,7 @@ quizTest.initQuiz = function(index,quizEntity){
 
 quizTest.initQuizList = function (res) {
     for(var i=0;i<res.length;i++){
-        quizList = quizList + quizTest.initQuiz(i,res[i]);
+        quizList = quizList + quizTest.initQuiz(i+1,res[i]);
     }
     $("#quizList").html(quizList);
 };

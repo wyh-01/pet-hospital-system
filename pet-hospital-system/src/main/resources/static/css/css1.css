@@ -8,18 +8,18 @@
 :root{
     /*:root是指文档的根元素，在其中定义的变量可作为全局变量*/
     /*可以理解为 c语言 在main函数，定义的全局变量*/
-    --color-menu-bg: #fff;
+    --color-menu-bg: #fdb095;
     --font-color-mi: #fdb095;
-    --font-color-mi-hover: #7facd6;
-    --color-bg-mi-hover: #e8b7d4;
+    --font-color-mi-hover: #fdb095;
+    --color-bg-mi-hover: #fdb095;
     --border-radius-mi:2px;
     --transition-menu-time: 0.2s;
-    --color-line-bg: #d3d3d3;
-    --color-zidingyi:#210440;
+    --color-line-bg: #fdb095;
+    --color-zidingyi:#fdb095;
 }
 
 .content{
-    background-color: #e7e7e7;
+    background-color: #fdb095;
     min-height: 100vh;
 }
 
@@ -37,7 +37,7 @@
     box-sizing: border-box;
     /*border-box是指将边框border和内边距padding在现有元素的宽度和高度内设置*/
     /*background-color: var(--color-menu-bg);*/
-    background-color: var(--color-zidingyi);
+    background-color:#65C0BB;
 }
 
 .menu-box input[type='checkbox'] {
@@ -93,7 +93,7 @@ A+B{}这个+是选择相邻兄弟，称作“相邻兄弟选择器”，如果�
 
 .menu-box>label:hover{
     box-shadow: 0px 0px 2px 0px #000000;
-    color: var(--font-color-mi-hover);
+    color: var(--font-color-mi);
 }
 
 .menu-box>input#menu-btn:checked+label>i{
@@ -133,7 +133,7 @@ A+B{}这个+是选择相邻兄弟，称作“相邻兄弟选择器”，如果�
 }
 
 .menu-item>label:hover{
-    color: var(--font-color-mi-hover);
+var(--color-bg-mi-hover);
 }
 
 .menu-item>label>i:first-child{
@@ -191,7 +191,7 @@ A+B{}这个+是选择相邻兄弟，称作“相邻兄弟选择器”，如果�
 
 .menu-content>span:hover{
     background-color: var(--color-bg-mi-hover);
-    color: var(--font-color-mi-hover);
+    color:var(--color-bg-mi-hover);
 }
 
 .set-line {
