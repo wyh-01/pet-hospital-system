@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侧边导航栏</title>
+    <link rel="stylesheet" href="../static/css/css1.css" type="text/css"/>
+    <link rel="stylesheet" href="../static/css/css2.css" type="text/css"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css"/>
+    <style>
+        .col-md-3 {
+            padding-left: 0;
+        }
+
+        .panel {
+            background-color: unset;
+        }
+
+        .panel-body p {
+
+            font-size: 1.5em;
+        }
+
+        .container-fluid {
+            padding-left: unset;
+        }
+    </style>
+    {% block css %}
+
+    {% end-block %}
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="col-md-3 col-md-offset-0"> <!-- Left module with 3 grid columns -->
+        <div class="menu-box">
+            <input type="checkbox" id="menu-btn"/>
+            <label for="menu-btn"><i class="iconfont icon-page_returns"></i></label>
+
+            <div class="menu">
+                <div class="menu-title">
+                    <a href="../index">首页</a>
+
+
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item1"/>
+                    <label for="menu-item1">
+                        <i class="menu-item-icom iconfont icon-a-01-data_center"></i>
+                        <a href="../rolePlay">角色体验</a>
+
+
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item2"/>
+                    <label for="menu-item2">
+                        <i class="menu-item-icom iconfont icon-a-02-course_management"></i>
+                        <a href="../html/overview/index.html">全景导览</a>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+
+
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item3"/>
+                    <label for="menu-item3">
+                        <i class="menu-item-icom iconfont icon-a-04-Information_release"></i>
+                        <a href="../caseStudy">病例学习</a>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+
+
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item4"/>
+                    <label for="menu-item4">
+                        <i class="menu-item-icom iconfont icon-a-02-course_management"></i>
+                        <a href="../quizChoose">学习测评</a>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+
+
+                </div>
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item5"/>
+                    <label for="menu-item5">
+                        <i class="menu-item-icom iconfont icon-a-02-course_management"></i>
+                        <a href="../uploadFile">上传文件</a>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+
+
+                </div>
+
+                <div class="set-line"></div>
+                <div class="menu-item">
+                    <label>
+                        <i class="menu-item-icon iconfont icon-a-08-Setting"></i>
+                        <span>设置</span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9"> <!-- Right module with 9 grid columns -->
+        {% block content %}
+
+        {% end-block %}
+    </div>
+
+</div>
+{% block js %}
+{% end-block %}
+</body>
+</html>
