@@ -4,9 +4,9 @@
 
 'use strict';
 
-var diseaseAll = {};
+var updateDisease = {};
 
-diseaseAll.initSectionCell = function (diseaseEntity) {
+updateDisease.initSectionCell = function (diseaseEntity) {
     var image = "<div id='diseaseImage'>" +
         "<img src=" + diseaseEntity.image +
         " style='width:100px;height:100px'/>" +
@@ -20,37 +20,64 @@ diseaseAll.initSectionCell = function (diseaseEntity) {
         diseaseEntity.id +
         "</div>";
 
-    var cell = "<div>" + image + name + id + "</div>";
+    var button = "<div> <button onclick=\"updateDisease.update(" + diseaseEntity.id + ")\" type=\"button\" class=\"btn btn-primary btn-xs\">编辑</button>" +
+        "<button onclick=\"updateDisease.delete(" + diseaseEntity.id + ")\" type=\"button\" class=\"btn btn-danger btn-xs\">删除</button></div>";
+
+    var cell = "<div>" + image + name + button + id + "</div>";
 
     return cell;
 };
 
-diseaseAll.initSection = function(diseaseList){
+updateDisease.initSection = function (diseaseList) {
     var section = "";
-    for(var i=0;i<diseaseList.length;i++){
-        section = section + diseaseAll.initSectionCell(diseaseList[i]);
+    for (var i = 0; i < diseaseList.length; i++) {
+        section = section + updateDisease.initSectionCell(diseaseList[i]);
     }
     return section;
 };
 
-diseaseAll.bindSection = function () {
-    $(".case-submenu>div").on('click',function () {
+updateDisease.update = function (id){
+    window.location.href = "../updateDisease/" + id;
+}
+
+updateDisease.delete = function (id){
+    var fd = new FormData();
+    fd.append("id", id);
+    $.ajax({
+        contentType : false,
+        type: "POST",//方法类型
+        processData: false,
+        // dataType: "multipart/form-data",//预期服务器返回的数据类型
+        url: "/api/disease/delete" ,//url
+        data:fd,
+        statusCode : {
+            200: function(){
+                window.location.href = "../diseaseChoose";
+            },
+            400: function(){
+                window.location.href = "../diseaseChoose";
+            }
+        }
+    });
+}
+
+updateDisease.bindSection = function () {
+    $(".case-submenu>div").on('click', function () {
         var id = $(this).find("#diseaseId").html();
         console.log(id);
         window.location.href = "../updateDisease/" + id;
     });
 }
 
-diseaseAll.initPage = function (res) {
-    $("#section-shape-1>div").html(diseaseAll.initSection(res.one));
-    $("#section-shape-2>div").html(diseaseAll.initSection(res.two));
-    $("#section-shape-3>div").html(diseaseAll.initSection(res.three));
-    $("#section-shape-4>div").html(diseaseAll.initSection(res.four));
-    diseaseAll.bindSection();
+updateDisease.initPage = function (res) {
+    $("#section-shape-1>div").html(updateDisease.initSection(res.one));
+    $("#section-shape-2>div").html(updateDisease.initSection(res.two));
+    $("#section-shape-3>div").html(updateDisease.initSection(res.three));
+    $("#section-shape-4>div").html(updateDisease.initSection(res.four));
+    // updateDisease.bindSection();
 };
 
-diseaseAll.init = function () {
-    var req = {
-    };
-    comm.utils.postForm("/disease/all",req,diseaseAll.initPage);
+updateDisease.init = function () {
+    var req = {};
+    comm.utils.postForm("/disease/all", req, updateDisease.initPage);
 };

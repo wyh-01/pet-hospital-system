@@ -29,7 +29,7 @@ import java.util.UUID;
 public class FileUploadServiceImpl implements FileUploadService {
     // 允许上传文件(图片)的格式
     private static final String[] IMAGE_TYPE = new String[]{".bmp", ".jpg",
-            ".jpeg", ".gif", ".png"};
+            ".jpeg", ".gif", ".png", ".mp4", "avi", "mpg"};
     @Autowired
     private OSS ossClient;// 注入阿里云oss文件服务器客户端
     @Autowired
@@ -119,6 +119,11 @@ public class FileUploadServiceImpl implements FileUploadService {
                 FilenameExtension.equalsIgnoreCase(".jpg") ||
                 FilenameExtension.equalsIgnoreCase(".png")) {
             return "image/jpg";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".mp4") ||
+                FilenameExtension.equalsIgnoreCase(".avi") ||
+                FilenameExtension.equalsIgnoreCase(".mpg")) {
+            return "video/mp4";
         }
         if (FilenameExtension.equalsIgnoreCase(".html")) {
             return "text/html";

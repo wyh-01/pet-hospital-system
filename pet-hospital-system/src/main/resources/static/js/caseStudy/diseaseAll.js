@@ -20,24 +20,21 @@ diseaseAll.initSectionCell = function (diseaseEntity) {
         diseaseEntity.id +
         "</div>";
 
-    var button = "<div> <button type=\"button\" class=\"btn btn-primary btn-xs\">编辑</button>" +
-        "<button type=\"button\" class=\"btn btn-danger btn-xs\">删除</button></div>";
-
-    var cell = "<div>" + image + name + button + id + "</div>";
+    var cell = "<div>" + image + name + id + "</div>";
 
     return cell;
 };
 
-diseaseAll.initSection = function (diseaseList) {
+diseaseAll.initSection = function(diseaseList){
     var section = "";
-    for (var i = 0; i < diseaseList.length; i++) {
+    for(var i=0;i<diseaseList.length;i++){
         section = section + diseaseAll.initSectionCell(diseaseList[i]);
     }
     return section;
 };
 
 diseaseAll.bindSection = function () {
-    $(".case-submenu>div").on('click', function () {
+    $(".case-submenu>div").on('click',function () {
         var id = $(this).find("#diseaseId").html();
         console.log(id);
         window.location.href = "../caseStudy/diseaseStudy/" + id;
@@ -54,5 +51,5 @@ diseaseAll.initPage = function (res) {
 
 diseaseAll.init = function () {
     var req = {};
-    comm.utils.postForm("/disease/all", req, diseaseAll.initPage);
+    comm.utils.postForm("/disease/all",req,diseaseAll.initPage);
 };

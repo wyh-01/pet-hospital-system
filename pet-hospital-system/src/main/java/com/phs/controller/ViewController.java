@@ -84,6 +84,17 @@ public class ViewController {
         return "systemManage/diseaseManage/updateDisease";
     }
 
+    @RequestMapping("/caseManage")
+    public String caseManage(){
+        return "systemManage/caseManage/caseManage";
+    }
+
+    @RequestMapping("/addCase")
+    public String addCase(ModelMap modelMap){
+        List<DiseaseEntity> diseases = diseaseMapper.getAllDisease();
+        modelMap.put("diseases", diseases);
+        return "systemManage/caseManage/addCase";
+    }
 
 
     @RequestMapping("/rolePlay")
