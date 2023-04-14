@@ -16,4 +16,36 @@
         from phs_case
         where disease_id=#{disease_id}
     </select>
+    <select id = "addCase"  parameterType="CaseEntity">
+        INSERT INTO phs_case(
+            disease_id,
+            name,
+            description,
+            image_list,
+            video
+        )
+        VALUES (
+                #{disease_id},
+                #{name},
+                #{description},
+                #{image_list},
+                #{video}
+                )
+    </select>
+    <select id = "deleteCase"  resultMap="RM_CaseVo">
+        DELETE FROM phs_case
+        WHERE id=#{id}
+    </select>
+
+    <select id = "updateCase"  parameterType="CaseEntity">
+        UPDATE phs_case
+        <set>
+            disease_id=#{disease_id},
+            name=#{name},
+            description=#{description},
+            image_list=#{image_list},
+            video=#{video}
+        </set>
+        WHERE id=#{id}
+    </select>
 </mapper>

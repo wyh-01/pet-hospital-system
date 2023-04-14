@@ -8,8 +8,8 @@ var diseaseAll = {};
 
 diseaseAll.initSectionCell = function (diseaseEntity) {
     var image = "<div id='diseaseImage'>" +
-        "<img src='/img/" + diseaseEntity.image +
-        "' style='width:100px;height:100px'/>" +
+        "<img src=" + diseaseEntity.image +
+        " style='width:100px;height:100px'/>" +
         "</div>";
 
     var name = "<div id='diseaseName'>" +

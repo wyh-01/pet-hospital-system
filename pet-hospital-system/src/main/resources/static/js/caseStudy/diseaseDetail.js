@@ -8,7 +8,7 @@ var diseaseDetail = {};
 
 diseaseDetail.initTitle = function (res) {
     $("#d-name").html(res.name);
-    var image = "/img/" + res.image;
+    var image = res.image;
     $("#d-image").attr({"src":image});
     $("#d-description").html(res.description);
 };
@@ -16,7 +16,7 @@ diseaseDetail.initTitle = function (res) {
 diseaseDetail.initImageList = function (imageList) {
     var images = "";
     for(var i=0;i<imageList.length;i++){
-        images = images + "<img src='" + "/img/" + imageList[i] + "' alt='' width='200px' height='200px'/>";
+        images = images + "<img src=" + imageList[i] + " alt='' width='200px' height='200px'/>";
     }
     return images;
 };
