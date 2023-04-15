@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>CaseStudy</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link rel="stylesheet" type="text/css" href="css/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="css/tabstyles.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" id="templatecss"  type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/tabs.css"/>
+    <link rel="stylesheet" type="text/css" href="css/tabstyles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" id="templatecss" type="text/css" href="css/style.css"/>
     <style>
         .module-btn p {
             width: 30%;
@@ -32,7 +32,7 @@
             font-size: 1em;
         }
 
-        .case-submenu>div {
+        .case-submenu > div {
             float: left;
             width: 18%;
             height: 200px;
@@ -45,13 +45,13 @@
             border-radius: 1em 0 1em 0;
         }
 
-        .case-submenu>div{
+        .case-submenu > div {
             display: flex;
-            justify-content:center;
-            flex-direction:column
+            justify-content: center;
+            flex-direction: column
         }
 
-        .case-submenu>div:hover {
+        .case-submenu > div:hover {
             padding: 0.5em;
             color: #67c2d4;
             background: rgba(103, 194, 212, .2);
@@ -59,9 +59,9 @@
             cursor: pointer;
         }
 
-        .case-submenu>div>div{
+        .case-submenu > div > div {
             display: flex;
-            justify-content:center;
+            justify-content: center;
             font-size: 1.5rem;
             /*padding: 1rem;*/
         }
@@ -77,12 +77,13 @@
     <a href="../index" style="text-align: center ">返回主页</a>
 </header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-    <form id="form-disease-add" action="/api/disease/add" method="POST" class="smart-green" >
+    <form id="form-disease-add" action="/api/disease/add" method="POST" class="smart-green">
         <div class="form-group">
             <label class="col-sm-3 control-label">病种类型： </label>
             <div class="col-sm-8" style="text-align: left">
-                <select id="kind" class="form-control select2-multiple"   >
-                    <option th:name="kindId" th:each="diseaseKind:${diseaseKinds}" th:value="${diseaseKind.id}" th:text="${diseaseKind.kindName}"></option>
+                <select id="kind" class="form-control select2-multiple">
+                    <option th:name="kindId" th:each="diseaseKind:${diseaseKinds}" th:value="${diseaseKind.id}"
+                            th:text="${diseaseKind.kindName}"></option>
                 </select>
             </div>
         </div>
@@ -95,13 +96,16 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">病种描述：</label>
             <div class="col-sm-8">
-                <textarea type="text" id="description" name="description" class="form-control" placeholder="请输入文本"></textarea>
+                <textarea type="text" id="description" name="description" class="form-control"
+                          placeholder="请输入文本"></textarea>
             </div>
         </div>
         <input type="file" id="files" name="files" multiple="multiple"></input>
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
-                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
+                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i
+                        class="fa fa-check"></i>保 存
+                </button>&nbsp;
             </div>
         </div>
     </form>
@@ -115,30 +119,30 @@
         fd.append("name", $("#name").val())
         fd.append("description", $("#description").val())
         console.log(fd);
-        var myselect=document.getElementById("kind");
-        var index=myselect.selectedIndex ;
+        var myselect = document.getElementById("kind");
+        var index = myselect.selectedIndex;
         var diseaseKind = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
         fd.append("kindId", diseaseKind);
         var files = document.getElementById("files").files;
-        for(var i in files){
+        for (var i in files) {
             fd.append("files", files[i]);
         }
         // fd.append("files", files[0]);
         console.log(fd);
         $.ajax({
             //几个参数需要注意一下
-            contentType : false,
+            contentType: false,
             type: "POST",//方法类型
             processData: false,
             // dataType: "multipart/form-data",//预期服务器返回的数据类型
-            url: "/api/disease/add" ,//url
-            data:fd,
-            statusCode : {
-                200: function(result){
+            url: "/api/disease/add",//url
+            data: fd,
+            statusCode: {
+                200: function (result) {
                     alert(result.responseText);
                 },
-                400: function(result){
+                400: function (result) {
                     alert(result.responseText);
                 }
             }
