@@ -8,7 +8,7 @@ public interface CaseManageService
 
     ResponseEntity caseAdd(CaseEntity caseEntity);
 
-    ResponseEntity caseDelete(int case_id);
+    ResponseEntity caseDelete(int id);
 
     ResponseEntity caseUpdate(CaseEntity caseEntity);
 }

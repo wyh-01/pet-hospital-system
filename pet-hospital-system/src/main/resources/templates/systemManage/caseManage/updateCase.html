@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form id="form-case-update"  method="POST" >
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label">病种：</label>
+            <div class="col-sm-8">
+                <select id="disease" class="form-control select2-multiple">
+                    <option th:name="disease" th:each="disease:${diseases}" th:value="${disease.id}" th:text="${disease.name}" th:selected="${disease.flag}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">病例名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="name" name="name" type="text" placeholder="请输入病例名称" th:field="*{case.name}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">病例描述：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="description" name="description" type="text" placeholder="请输入病例描述" th:field="*{case.description}"/>
+            </div>
+        </div>
+        <input type="file" id="imgs" name="imgs" multiple="multiple"></input>
+        <input type="file" id="videos" name="videos" multiple="multiple"></input>
+        <div class="row">
+            <div class="col-sm-offset-5 col-sm-10">
+                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
+            </div>
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    function submitHandler() {
+        // var data = $("#form-disease-add").serializeArray();
+        var fd = new FormData();
+        var id = [[${case.id}]];
+        fd.append("id", id);
+        fd.append("name", $("#name").val())
+        fd.append("description", $("#description").val())
+        console.log(fd);
+        var myselect = document.getElementById("disease");
+        var index = myselect.selectedIndex;
+        var disease = myselect.options[index].value;
+        // data.push({"name": "kindId", "value": diseaseKind});
+        fd.append("disease_id", disease);
+        var imgs = document.getElementById("imgs").files;
+        for (var i in imgs) {
+            fd.append("imgs", imgs[i]);
+        }
+        var videos = document.getElementById("videos").files;
+        for (var j in videos) {
+            fd.append("videos", videos[j]);
+        }
+
+        console.log(fd);
+        $.ajax({
+            //几个参数需要注意一下
+            contentType: false,
+            type: "POST",//方法类型
+            processData: false,
+            // dataType: "multipart/form-data",//预期服务器返回的数据类型
+            url: "/api/caseManage/caseUpdate",//url
+            data: fd,
+            statusCode: {
+                200: function (result) {
+                    alert(result);
+                    window.location.href = "../caseManage/" + disease;
+                },
+                400: function (result) {
+                    alert(result.responseText);
+                    window.location.href = "../caseManage/" + disease;
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

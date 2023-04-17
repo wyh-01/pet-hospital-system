@@ -36,11 +36,13 @@
     </form>
 
 </div>
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
     function submitHandler() {
         // var data = $("#form-disease-add").serializeArray();
         var fd = new FormData();
+        var id = [[${disease.id}]];
+        fd.append("id", id);
         fd.append("name", $("#name").val())
         fd.append("description", $("#description").val())
         console.log(fd);
@@ -61,14 +63,16 @@
             type: "POST",//方法类型
             processData: false,
             // dataType: "multipart/form-data",//预期服务器返回的数据类型
-            url: "/api/disease/add" ,//url
+            url: "/api/disease/update" ,//url
             data:fd,
             statusCode : {
                 200: function(result){
-                    alert(result.responseText);
+                    alert(result);
+                    window.location.href = "../diseaseManage";
                 },
                 400: function(result){
                     alert(result.responseText);
+                    window.location.href = "../diseaseManage";
                 }
             }
         });

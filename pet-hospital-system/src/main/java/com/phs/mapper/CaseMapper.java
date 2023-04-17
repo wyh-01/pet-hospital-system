@@ -7,6 +7,8 @@ public interface CaseMapper {
 
     List<CaseEntity> getCaseByDiseaseId(int diseaseId);
 
+    CaseEntity getCaseByCaseId(int id);
+
     void addCase(CaseEntity caseEntity);
 
     void deleteCase(int case_id);

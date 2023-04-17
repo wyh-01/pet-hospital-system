@@ -146,10 +146,12 @@
             data: fd,
             statusCode: {
                 200: function (result) {
-                    alert(result.responseText);
+                    alert(result);
+                    window.location.href = "../caseManage/" + disease;
                 },
                 400: function (result) {
                     alert(result.responseText);
+                    window.location.href = "../caseManage/" + disease;
                 }
             }
         });
