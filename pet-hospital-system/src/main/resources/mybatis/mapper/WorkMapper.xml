@@ -9,6 +9,7 @@
         <result column="name" property="name"/>
         <result column="description" property="description"/>
         <result column="room" property="room"/>
+        <result column="video_url" property="video_url"/>
     </resultMap>
 
     <select id = "getWorkByJobId" resultMap="RM_WorkVo">

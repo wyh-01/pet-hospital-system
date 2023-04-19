@@ -156,6 +156,7 @@ CREATE TABLE `phs_work`  (
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `room` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `video_url` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `id`(`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
@@ -163,9 +164,9 @@ CREATE TABLE `phs_work`  (
 -- ----------------------------
 -- Records of phs_work
 -- ----------------------------
-INSERT INTO `phs_work` VALUES (1, 1, '查房', '带领实习医师对病员进行检查，诊断及治疗，书写医嘱，并检查医嘱执行情况，每日巡视病人至少2次，对危重症病人应多次巡视并做好记录。', '诊室');
+INSERT INTO `phs_work` VALUES (1, 1, '查房', '带领实习医师对病员进行检查，诊断及治疗，书写医嘱，并检查医嘱执行情况，每日巡视病人至少2次，对危重症病人应多次巡视并做好记录。', '诊室','http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/1f5709f9-86bc-4ae2-afcb-d2b368c81d87.mp4');
 INSERT INTO `phs_work` VALUES (2, 1, '书写病例', '书写病历(第一年写大病历，以后写入院录)应于病人入院24小时内完成。及时检查和修改实习医师的病历记录、病程录及其他各项记录，及时完成出院病案小结并将病案整理编号交上级医师审查。', '诊室');
-INSERT INTO `phs_work` VALUES (3, 2, '抢救病人', '参加科室内的抢救工作要求，在抢救病人过程中，做到处理得当，抢救及时，及时完成病程记录。', '前台');
+INSERT INTO `phs_work` VALUES (3, 2, '注射工作', '参住院前台对所管病员全面负责，在下班前做好交接班工作，对需要特殊观察的重症病人除书面交班外，用口头方式向值班前台交班。', '诊室','http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/1f5709f9-86bc-4ae2-afcb-d2b368c81d87.mp4');
 INSERT INTO `phs_work` VALUES (4, 3, '病员记录', '参住院前台对所管病员全面负责，在下班前做好交接班工作，对需要特殊观察的重症病人除书面交班外，用口头方式向值班前台交班。', '前台');
-
+INSERT INTO `phs_work` VALUES (5, 2, '手术前准备工作', '手术前准备工作包括：术前对宠物进行麻前给药、注射麻醉、吸入麻醉的流程，保定、剃毛、消毒的流程，常见手术器械的介绍，手术器械包的准备、灭菌流程，手术人员的消毒、穿戴手术衣流程等。', '诊室', null);
 SET FOREIGN_KEY_CHECKS = 1;

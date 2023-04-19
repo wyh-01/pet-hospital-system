@@ -15,6 +15,9 @@ work.generateWork = function (res) {
                 "<a href='../html/map/3Dmap.html'>进入科室</a> " +
                 "<p>" + res[i].name + "</p> " +
                 "<p>" + res[i].description + "</p>" +
+                "<video width=\"960\" height=\"600\" controls=\"autoplay\">" +
+                "<source src=\"" + res[i].video_url +
+                "\" type=\"video/mp4\"/> </video>" +
                 "</li> " +
                 "<hr />"
         }
