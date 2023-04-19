@@ -31,7 +31,7 @@ public class CaseManageImpl implements CaseManageService {
             }
             else
                 caseMapper.addCase(caseEntity);
-            return  new ResponseEntity("成功", HttpStatus.OK);
+            return  new ResponseEntity("新增病例成功", HttpStatus.OK);
         }
         return new ResponseEntity("病例名不能为空", HttpStatus.BAD_REQUEST);
 
@@ -40,12 +40,12 @@ public class CaseManageImpl implements CaseManageService {
     }
 
     @Override
-    public ResponseEntity caseDelete(int case_id){
-        if(case_id==0)
+    public ResponseEntity caseDelete(int id){
+        if(id == 0)
             return new ResponseEntity("缺少case_id", HttpStatus.BAD_REQUEST);
         else
-            caseMapper.deleteCase(case_id);
-        return  new ResponseEntity("成功", HttpStatus.OK);
+            caseMapper.deleteCase(id);
+        return  new ResponseEntity("删除病例成功", HttpStatus.OK);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class CaseManageImpl implements CaseManageService {
             return new ResponseEntity("缺少病种分类", HttpStatus.BAD_REQUEST);
         }
         else caseMapper.updateCase(caseEntity);
-        return  new ResponseEntity("成功", HttpStatus.OK);
+        return  new ResponseEntity("编辑病例成功", HttpStatus.OK);
     }
 
 }

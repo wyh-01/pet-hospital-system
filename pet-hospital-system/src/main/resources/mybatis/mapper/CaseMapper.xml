@@ -16,6 +16,12 @@
         from phs_case
         where disease_id=#{disease_id}
     </select>
+
+    <select id = "getCaseByCaseId"  resultMap="RM_CaseVo">
+        select *
+        from phs_case
+        where id=#{id}
+    </select>
     <select id = "addCase"  parameterType="CaseEntity">
         INSERT INTO phs_case(
             disease_id,
@@ -32,7 +38,7 @@
                 #{video}
                 )
     </select>
-    <select id = "deleteCase"  resultMap="RM_CaseVo">
+    <select id = "deleteCase"  parameterType = "int">
         DELETE FROM phs_case
         WHERE id=#{id}
     </select>

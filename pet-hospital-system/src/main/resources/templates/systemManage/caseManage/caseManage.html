@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DiseaseStudy</title>
+    <link rel="stylesheet" type="text/css" href="../../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/component.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/content.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <style>
+        header.codrops-header {
+            background: linear-gradient(rgba(103, 194, 212, .2), transparent);
+            background: -webkit-linear-gradient(rgba(103, 194, 212, .2), transparent);
+        }
+
+        .module-btn p {
+            width: 30%;
+        }
+
+        .codrops-header a {
+            border-bottom: 1px dashed;
+            padding-bottom: 0.3em;
+        }
+
+        .codrops-header,
+        section {
+            text-align: left;
+        }
+
+        div.codrops-header {
+            padding-top: 1em;
+            font-size: 1em;
+            color: #553445;
+            overflow: auto;
+        }
+
+        @media screen and (min-width: 1024px) {
+            .codrops-header {
+                padding: 5em 15em;
+            }
+        }
+
+        ul.work-list p {
+            font-size: 1.5em;
+        }
+
+        ul.work-list a {
+            font-size: 1.5em;
+            float: right;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+            padding: 0.5em;
+            border: 1px solid #553445;
+            border-radius: 1em 0 1em 0;
+        }
+
+        ul.work-list a:hover {
+            padding: 0.5em;
+            color: #fff;
+            background: rgba(103, 194, 212, .2);
+            border: 1px dashed #67c2d4;
+        }
+
+        ul.work-list p {
+            display: inline-block;
+        }
+
+        img {
+            display: inline-block;
+            float: left;
+            width: 29%;
+            margin: 0.5em;
+        }
+    </style>
+</head>
+<body>
+<div class="contianer">
+    <header class="codrops-header">
+        <h1 id="d-name"></h1>
+        <img id="d-image" src="" style="width:80px;height:150px;padding-top:10px;padding-bottom:10px"/>
+        <p id="d-description" style="margin-top: 130px"></p>
+        <a style="margin-right: 1em;" href="../caseManageChoose">返回病例管理</a>
+    </header>
+    <hr />
+    <div class="codrops-header">
+        <h2>I 治疗病例</h2>
+        <ul class="work-list">
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="../../js/classie.js"></script>
+<script type="text/javascript" src="../../js/canvas-particle.js"></script>
+<script type="text/javascript" src="../../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/systemManage/updateCase.js"></script>
+<script type="text/javascript">
+    updateCase.init();
+    window.onload = function() {
+        var config = {
+            vx: 4,
+            vy: 4,
+            height: 3,
+            width: 3,
+            count: 150,
+            color: "121, 162, 185",
+            stroke: "100,200,180",
+            dist: 6000,
+            e_dist: 20000,
+            max_conn: 10
+        }
+        CanvasParticle(config);
+    }
+
+
+</script>
+</body>
+</html>

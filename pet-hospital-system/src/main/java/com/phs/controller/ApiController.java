@@ -65,7 +65,7 @@ public class ApiController {
             int count = 0;
             for (MultipartFile file : files) {
                 if(count > 0){
-                    urls.append("#");
+                    urls.append("&&");
                 }
                 urls.append(fileUploadService.upload(file));
                 count++;
@@ -83,7 +83,21 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/disease/update", method = RequestMethod.POST)
-    public ResponseEntity updateDisease(DiseaseEntity diseaseEntity){
+    public ResponseEntity updateDisease(DiseaseEntity diseaseEntity, @RequestParam("files") MultipartFile[] files){
+        StringBuffer urls = new StringBuffer("");
+        if(!isEmpty(files)) {
+            int count = 0;
+            for (MultipartFile file : files) {
+                if(count > 0){
+                    urls.append("&&");
+                }
+                urls.append(fileUploadService.upload(file));
+                count++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        diseaseEntity.setImage(urls.toString());
         return diseaseService.updateDisease(diseaseEntity);
     }
 
@@ -98,17 +112,73 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/caseManage/caseAdd", method = RequestMethod.POST)
-    public ResponseEntity caseAdd(CaseEntity caseEntity){
+    public ResponseEntity caseAdd(CaseEntity caseEntity, @RequestParam("imgs") MultipartFile[] imgs, @RequestParam("videos") MultipartFile[] videos){
+        StringBuffer imgUrls = new StringBuffer("");
+        StringBuffer videoUrls = new StringBuffer("");
+        if(!isEmpty(imgs)) {
+            int count = 0;
+            for (MultipartFile img : imgs) {
+                if(count > 0){
+                    imgUrls.append("&&");
+                }
+                imgUrls.append(fileUploadService.upload(img));
+                count++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为图片文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        if(!isEmpty(videos)) {
+            int count = 0;
+            for (MultipartFile video : videos) {
+                if(count > 0){
+                    imgUrls.append("&&");
+                }
+                videoUrls.append(fileUploadService.upload(video));
+                count++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为视频文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        caseEntity.setImage_list(imgUrls.toString());
+        caseEntity.setVideo(videoUrls.toString());
         return caseManageService.caseAdd(caseEntity);
     }
 
     @RequestMapping(value = "/caseManage/caseDelete", method = RequestMethod.POST)
-    public ResponseEntity caseDelete(Integer case_id){
-        return caseManageService.caseDelete(case_id);
+    public ResponseEntity caseDelete(int id){
+        return caseManageService.caseDelete(id);
     }
 
     @RequestMapping(value = "/caseManage/caseUpdate", method = RequestMethod.POST)
-    public ResponseEntity caseUpdate(CaseEntity caseEntity){
+    public ResponseEntity caseUpdate(CaseEntity caseEntity, @RequestParam("imgs") MultipartFile[] imgs, @RequestParam("videos") MultipartFile[] videos){
+        StringBuffer imgUrls = new StringBuffer("");
+        StringBuffer videoUrls = new StringBuffer("");
+        if(!isEmpty(imgs)) {
+            int count = 0;
+            for (MultipartFile img : imgs) {
+                if(count > 0){
+                    imgUrls.append("&&");
+                }
+                imgUrls.append(fileUploadService.upload(img));
+                count++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为图片文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        if(!isEmpty(videos)) {
+            int count = 0;
+            for (MultipartFile video : videos) {
+                if(count > 0){
+                    imgUrls.append("&&");
+                }
+                videoUrls.append(fileUploadService.upload(video));
+                count++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为视频文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        caseEntity.setImage_list(imgUrls.toString());
+        caseEntity.setVideo(videoUrls.toString());
         return caseManageService.caseUpdate(caseEntity);
     }
 

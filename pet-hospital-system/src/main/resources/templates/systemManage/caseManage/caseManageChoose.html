@@ -71,12 +71,12 @@
 <body>
 <div class="contianer">
     <header class="codrops-header">
-        <h1>病种管理</h1>
-        <p>Disease Manage</p>
+        <h1>病例管理</h1>
+        <p>Case Manage</p>
         <a href="../manegeSystem">返回系统管理</a>
     </header>
     <div>
-        <button onclick="add()" type="button" class="btn btn-danger btn-xs">新增病种</button>
+        <button onclick="add()" type="button" class="btn btn-danger btn-xs">新增病例</button>
     </div>
     <section>
         <div class="tabs tabs-style-shape">
@@ -145,9 +145,9 @@
 <script type="text/javascript" src="js/cbpFWTabs.js"></script>
 <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
-<script type="text/javascript" src="../js/systemManage/updateDisease.js"></script>
+<script type="text/javascript" src="../js/systemManage/diseaseAll.js"></script>
 <script type="text/javascript">
-    updateDisease.init();
+    diseaseAll.init();
     window.onload = function() {
         var config = {
             vx: 4,
@@ -171,7 +171,7 @@
     })();
 
     add = function (){
-        window.location.href = "../addDisease";
+        window.location.href = "../addCase";
     }
 </script>
 </body>

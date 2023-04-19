@@ -28,6 +28,11 @@
         where id=#{id}
     </select>
 
+    <select id = "getAllDisease" resultMap="RM_DiseaseVo">
+        select *
+        from phs_disease
+    </select>
+
     <select id = "getAllDiseaseName" resultType="String">
         select name
         from phs_disease

@@ -27,9 +27,9 @@ diseaseDetail.initSingleCase = function (caseEntity) {
     var images = "<p>相关图例</p>" + "<p id='image-list'>" + diseaseDetail.initImageList(caseEntity.imageList) + "</p>";
     var dVideo = "";
     if(caseEntity.video){
-        dVideo = "<p>相关视频</p>" +
-            "<embed src='" + caseEntity.video +
-            "' quality='high' width='100%' height='400px' align='middle' allowscriptaccess='always' type='application/x-shockwave-flash'/>";
+        dVideo = "<p>相关视频</p>" + "<video width=\"320\" height=\"240\" controls=\"autoplay\">" +
+            "<source src=\"" + caseEntity.video +
+             "\" type=\"video/mp4\"/> </video>";
     }
     var cell = "<li>" +
         name + description + images + dVideo +

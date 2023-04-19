@@ -21,4 +21,6 @@ public interface DiseaseMapper {
     List<String> getAllDiseaseName();
 
     List<DiseaseKindEntity> getAllDiseaseKind();
+
+    List<DiseaseEntity> getAllDisease();
 }

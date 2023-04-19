@@ -100,7 +100,16 @@
                           placeholder="请输入文本"></textarea>
             </div>
         </div>
-        <input type="file" id="files" name="files" multiple="multiple"></input>
+        <div>
+            <br>
+            <p >
+                <img class="user-header" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片" />
+            </p>
+            </br>
+            <form id="test">
+                <input type="file" name="files" onchange="imgChange(event)" id="files" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
                 <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i
@@ -150,6 +159,23 @@
             }
         });
     }
+
+    function imgChange(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.user-header').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.user-header').click(function () {
+        $("#files").click();
+    });
+
 </script>
 <script type="text/javascript" src="../js/modernizr.custom.js"></script>
 <script type="text/javascript" src="../js/canvas-particle.js"></script>

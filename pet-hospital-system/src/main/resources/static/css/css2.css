@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "iconfont";
+    src: url('../iconfont.ttf') format('truetype');/* 设置自己的字体， 叫 iconfont*/
+}
+
+.iconfont {
+    font-family: "iconfont", serif !important;
+    /*serif 具有末端加粗、扩张或尖细末端，或以实际的衬线结尾的一类字体。*/
+    /* !important 用于解决IE对某些CSS规范有偏差的情况.*/
+    font-size: 16px;
+    font-style: normal;
+    /*font-style 属性可以定义字体的风格，设置字体是使用斜体、倾斜或正常字体样式。*/
+    -webkit-font-smoothing: antialiased;
+    /* 这个属性可以使页面上的字体抗锯齿,使用后字体看起来会更清晰舒服。*/
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-down:before {
+    content: "\e7ad";
+}
+
+.icon-a-01-data_center:before {
+    /*数据中心 shujuzhongxin */
+    content: "\e609";
+}
+
+.icon-a-02-course_management:before {
+    /*课程管理 kechengguanli */
+    content: "\e60a";
+}
+
+.icon-a-04-Information_release:before {
+    /*资讯发布 zixunfabu */
+    content: "\e60b";
+}
+
+.icon-a-08-Setting:before {
+    /*设置*/
+    content: "\e60c";
+}
+
+.icon-page_returns:before {
+    /*页面返回*/
+    content: "\e601";
+}
+
