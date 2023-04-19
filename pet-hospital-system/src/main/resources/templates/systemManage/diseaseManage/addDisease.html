@@ -74,7 +74,7 @@
 <header class="codrops-header">
     <h1>新增病种</h1>
     <p>Add Disease</p>
-    <a href="../index" style="text-align: center ">返回主页</a>
+    <a href="../diseaseManage" style="text-align: center ">返回病种管理</a>
 </header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form id="form-disease-add" action="/api/disease/add" method="POST" class="smart-green">
@@ -141,11 +141,11 @@
             statusCode: {
                 200: function (result) {
                     alert(result);
-                    window.location.href = "../diseaseManage/";
+                    window.location.href = "../diseaseManage";
                 },
                 400: function (result) {
                     alert(result.responseText);
-                    window.location.href = "../diseaseManage/";
+                    window.location.href = "../diseaseManage";
                 }
             }
         });

@@ -72,9 +72,12 @@
 <div class="contianer">
     <header class="codrops-header">
         <h1>病种管理</h1>
-        <p>Case Study</p>
-        <a href="../index">返回主页</a>
+        <p>Disease Manage</p>
+        <a href="../manegeSystem">返回系统管理</a>
     </header>
+    <div>
+        <button onclick="add()" type="button" class="btn btn-danger btn-xs">新增病种</button>
+    </div>
     <section>
         <div class="tabs tabs-style-shape">
             <nav>
@@ -166,6 +169,10 @@
             new CBPFWTabs(el);
         });
     })();
+
+    add = function (){
+        window.location.href = "../addDisease";
+    }
 </script>
 </body>
 </html>

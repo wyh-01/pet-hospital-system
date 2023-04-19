@@ -4,6 +4,11 @@
 
 </head>
 <body class="white-bg">
+<header class="codrops-header">
+    <h1>更新病例</h1>
+    <p>Update Disease</p>
+    <a onclick="goBack()"  style="text-align: center ">返回病例选择页面</a>
+</header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form id="form-case-update"  method="POST" >
 
@@ -81,6 +86,13 @@
                 }
             }
         });
+    }
+
+    goBack = function(){
+        var myselect = document.getElementById("disease");
+        var index = myselect.selectedIndex;
+        var disease = myselect.options[index].value;
+        window.location.href = "../caseManage/" + disease;
     }
 </script>
 </body>

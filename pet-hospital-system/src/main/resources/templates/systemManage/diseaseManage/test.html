@@ -72,37 +72,44 @@
 </head>
 <body class="white-bg">
 <header class="codrops-header">
-    <h1>新增病例</h1>
-    <p>Add Case</p>
-    <a href="../caseManageChoose"  style="text-align: center ">返回病例管理</a>
+    <h1>新增病种</h1>
+    <p>Add Disease</p>
+    <a href="../diseaseManage" style="text-align: center ">返回病种管理</a>
 </header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form id="form-disease-add" action="/api/disease/add" method="POST" class="smart-green">
-
         <div class="form-group">
-            <label class="col-sm-3 control-label">病种类型：</label>
+            <label class="col-sm-3 control-label">病种类型： </label>
             <div class="col-sm-8" style="text-align: left">
-                <select id="disease" class="form-control select2-multiple">
-                    <option th:name="disease" th:each="disease:${diseases}" th:value="${disease.id}"
-                            th:text="${disease.name}"></option>
+                <select id="kind" class="form-control select2-multiple">
+                    <option th:name="kindId" th:each="diseaseKind:${diseaseKinds}" th:value="${diseaseKind.id}"
+                            th:text="${diseaseKind.kindName}"></option>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">病例名称：</label>
+            <label class="col-sm-3 control-label">病种名称：</label>
             <div class="col-sm-8">
                 <textarea type="text" id="name" name="name" class="form-control" placeholder="请输入文本"></textarea>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">病例描述：</label>
+            <label class="col-sm-3 control-label">病种描述：</label>
             <div class="col-sm-8">
                 <textarea type="text" id="description" name="description" class="form-control"
                           placeholder="请输入文本"></textarea>
             </div>
         </div>
-        <input type="file" id="imgs" name="imgs" multiple="multiple"></input>
-        <input type="file" id="videos" name="videos" multiple="multiple"></input>
+        <div>
+            <br>
+            <p >
+                <img class="user-header" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片" />
+            </p>
+            </br>
+            <form id="test">
+                <input type="file" name="files" onchange="imgChange(event)" id="files" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
                 <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i
@@ -121,20 +128,16 @@
         fd.append("name", $("#name").val())
         fd.append("description", $("#description").val())
         console.log(fd);
-        var myselect = document.getElementById("disease");
+        var myselect = document.getElementById("kind");
         var index = myselect.selectedIndex;
-        var disease = myselect.options[index].value;
+        var diseaseKind = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
-        fd.append("disease_id", disease);
-        var imgs = document.getElementById("imgs").files;
-        for (var i in imgs) {
-            fd.append("imgs", imgs[i]);
+        fd.append("kindId", diseaseKind);
+        var files = document.getElementById("files").files;
+        for (var i in files) {
+            fd.append("files", files[i]);
         }
-        var videos = document.getElementById("videos").files;
-        for (var j in videos) {
-            fd.append("videos", videos[j]);
-        }
-
+        // fd.append("files", files[0]);
         console.log(fd);
         $.ajax({
             //几个参数需要注意一下
@@ -142,30 +145,38 @@
             type: "POST",//方法类型
             processData: false,
             // dataType: "multipart/form-data",//预期服务器返回的数据类型
-            url: "/api/caseManage/caseAdd",//url
+            url: "/api/disease/add",//url
             data: fd,
             statusCode: {
                 200: function (result) {
                     alert(result);
-                    window.location.href = "../caseManage/" + disease;
+                    window.location.href = "../diseaseManage";
                 },
                 400: function (result) {
                     alert(result.responseText);
-                    window.location.href = "../caseManage/" + disease;
+                    window.location.href = "../diseaseManage";
                 }
             }
         });
     }
 
-    goBack = function(){
-        var myselect = document.getElementById("disease");
-        var index = myselect.selectedIndex;
-        var disease = myselect.options[index].value;
-        window.location.href = "../caseManage/" + disease;
+    function imgChange(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.user-header').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
     }
 
-</script>
+    $('.user-header').click(function () {
+        $("#files").click();
+    });
 
+</script>
 <script type="text/javascript" src="../js/modernizr.custom.js"></script>
 <script type="text/javascript" src="../js/canvas-particle.js"></script>
 <script type="text/javascript">

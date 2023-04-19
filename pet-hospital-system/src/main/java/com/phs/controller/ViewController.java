@@ -69,6 +69,13 @@ public class ViewController {
         return "systemManage/diseaseManage/addDisease";
     }
 
+    @RequestMapping("/test")
+    public String test(ModelMap modelMap){
+        List<DiseaseKindEntity> diseaseKinds = diseaseMapper.getAllDiseaseKind();
+        modelMap.put("diseaseKinds", diseaseKinds);
+        return "systemManage/diseaseManage/test";
+    }
+
     @RequestMapping("/updateDisease/{id}")
     public String updateDisease(@PathVariable("id") int id, ModelMap modelMap){
         List<DiseaseKindEntity> diseaseKinds = diseaseMapper.getAllDiseaseKind();
