@@ -11,7 +11,7 @@
  Target Server Version : 50740
  File Encoding         : 65001
 
- Date: 15/04/2023 12:01:44
+ Date: 20/04/2023 14:59:54
 */
 
 SET NAMES utf8mb4;
@@ -29,14 +29,14 @@ CREATE TABLE `phs_case`  (
   `image_list` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `video` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_case
 -- ----------------------------
 INSERT INTO `phs_case` VALUES (4, 1, '病例A', '贵宾十五，2岁，雌性。该犬平时主要饲喂犬粮，偶尔吃少量零食。今年未免疫，驱虫。今日食欲下降，精神尚可，最初出现黄色脓性眼分泌物，鼻头干燥。两天前开始频繁的咳嗽，偶有少量白色粘液咳出，粪便软。体温39.5℃，体重3.5kg，心率128次/min、呼吸28次/min。睑结膜潮红，水润度下降，鼻头干燥，有少量黄色鼻液，诱咳反应阳性。目前临床上对于犬瘟热是采用特异性的抗病毒与对症支持疗法相结合的治疗方法。由于未按时免疫的动物以及母源抗体消耗殆尽的幼年动物体内缺少可以抵抗病毒的抗体，或者由于自身免疫力的下降，不足以产生足够的抗体来对抗体内的病毒，所以外源性的抗体补给在治疗过程中显得尤为重要。同时，干扰素，胸腺肽等生物制剂在抗病毒治疗过程中也起到积极的作用。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
-INSERT INTO `phs_case` VALUES (5, 1, '病例B', '德牧MAX，2月龄，雄性。该犬从外地购买，一周前运回、免疫一针，未驱虫。室内饲养，近日出现频繁的腹泻，颜色暗红，精神不振，食欲尚可。体温38.9℃，体重4.7kg，心率142次/min、呼吸32次/min。睑结膜潮红，听诊呼吸音粗粝，心音整齐。为了控制继发的呼吸道或胃肠道炎症，在未进行药敏实验的前提下，治疗的过程中需加入两种或两种以上的抗生素以增加抗菌谱，进而积极有效的控制炎症发展。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
-INSERT INTO `phs_case` VALUES (10, 1, '测试', '测试', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
+INSERT INTO `phs_case` VALUES (5, 1, '病例B', '德牧MAX，2月龄，雄性。该犬从外地购买，一周前运回、免疫一针，未驱虫。室内饲养，近日出现频繁的腹泻，颜色暗红，精神不振，食欲尚可。体温38.9℃，体重4.7kg，心率142次/min、呼吸32次/min。睑结膜潮红，听诊呼吸音粗粝，心音整齐。为了控制继发的呼吸道或胃肠道炎症，在未进行药敏实验的前提下，治疗的过程中需加入两种或两种以上的抗生素以增加抗菌谱，进而积极有效的控制炎症发展。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/703f2a74-92ab-4263-a041-b1916591a13a.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/1f5709f9-86bc-4ae2-afcb-d2b368c81d87.mp4');
+INSERT INTO `phs_case` VALUES (6, 1, 'test', 'test', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/0e8b0ddf-24f6-4ebf-a73c-b0b4293e17ba.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/39b90462-b1f1-4099-a4f7-6c3a3b79198a.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/81837017-b0c9-4c44-b0a7-3d029a2be037.jpg', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/b0093c0b-f878-4f96-bea1-3accd324d454.mp4');
 
 -- ----------------------------
 -- Table structure for phs_disease
@@ -46,10 +46,10 @@ CREATE TABLE `phs_disease`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kind_id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `image` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `image` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_disease
@@ -58,13 +58,14 @@ INSERT INTO `phs_disease` VALUES (1, 1, '犬瘟热', 'http://pet-hospital-system
 INSERT INTO `phs_disease` VALUES (2, 3, '口炎', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '口炎是口腔黏膜的炎症，可波及颊黏膜、舌、齿龈、上腭等处。在小儿时期较多见，尤其是婴幼儿，可单纯发病也可继发于腹泻、营养不良、急性感染、久病体弱等全身性疾病时。引起口炎的主要有细菌、病毒及真菌');
 INSERT INTO `phs_disease` VALUES (3, 2, '蛔虫病', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '似蚓蛔线虫简称蛔虫，是人体内最常见的寄生虫之一。成虫寄生于小肠，可引起蛔虫病。此外，犬弓首线虫（简称犬蛔虫）是犬类常见的肠道寄生虫，其幼虫能在人体内移行，引起内脏幼虫移行症。');
 INSERT INTO `phs_disease` VALUES (4, 4, '脱毛症', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '脱毛症，又称秃毛症、无毛症或稀毛症，是指局部或全身被毛脱落的总称。该病的皮肤病变较轻，以脱毛为主要特征。脱毛症分为先天性和后天性两种。先天性见于遗传；后天性脱毛症多继发于全身性疾病。');
-INSERT INTO `phs_disease` VALUES (5, 1, '犬细小病毒', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '犬细小病毒是1978年澳大利亚的Kelly和加拿大的Thomson等同时从患肠炎的病犬粪便中分离获得的，从发现该病毒至今，世界各地均有流行，是危害犬类的最主要的烈性传染病之一。');
+INSERT INTO `phs_disease` VALUES (5, 1, '犬细小病毒', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/17/bc05d6c2-3c1f-40bc-8975-32d8650b49bc.png', '犬细小病毒是1978年澳大利亚的Kelly和加拿大的Thomson等同时从患肠炎的病犬粪便中分离获得的，从发现该病毒至今，世界各地均有流行，是危害犬类的最主要的烈性传染病之一。');
 INSERT INTO `phs_disease` VALUES (6, 1, '犬传染性肝炎', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '犬传染性肝炎主要发生在1岁以内的幼犬，成年犬很少发生且多为隐性感染，即使发病也多能耐过。病犬和带毒犬是主要传染源。病犬的分泌物、排泄物均含有病毒，康复带毒犬可自尿中长时间排毒。');
 INSERT INTO `phs_disease` VALUES (7, 1, '犬冠状病毒', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '犬冠状病毒为单胜RNA病毒，有6～7种多肽，其中4种是糖肽，不含RNA聚合酶及神经氨酸酶。可使犬发生程度不同的胃肠炎症状，特征有频繁呕吐、腹泻、沉郁、厌食等症状。');
 INSERT INTO `phs_disease` VALUES (8, 3, '肠炎', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', 'update测试');
 INSERT INTO `phs_disease` VALUES (13, 1, '测试4', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '测试');
 INSERT INTO `phs_disease` VALUES (15, 1, '测试', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '测试');
 INSERT INTO `phs_disease` VALUES (16, 1, '测试1', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '测试');
+INSERT INTO `phs_disease` VALUES (20, 1, 'test', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/75d2b893-03c3-4cd3-aff3-a2d28b89a491.jpg&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/96dd3892-8cc0-42da-b1c3-0ac05b7fd6f1.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/a2c948e4-4226-44e3-9796-aa2a97fbaab0.png', 'test');
 
 -- ----------------------------
 -- Table structure for phs_disease_kind
@@ -156,7 +157,7 @@ CREATE TABLE `phs_work`  (
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `room` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `video_url` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `video_url` varchar(400) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `id`(`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
@@ -164,9 +165,9 @@ CREATE TABLE `phs_work`  (
 -- ----------------------------
 -- Records of phs_work
 -- ----------------------------
-INSERT INTO `phs_work` VALUES (1, 1, '查房', '带领实习医师对病员进行检查，诊断及治疗，书写医嘱，并检查医嘱执行情况，每日巡视病人至少2次，对危重症病人应多次巡视并做好记录。', '诊室','http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/1f5709f9-86bc-4ae2-afcb-d2b368c81d87.mp4');
-INSERT INTO `phs_work` VALUES (2, 1, '书写病例', '书写病历(第一年写大病历，以后写入院录)应于病人入院24小时内完成。及时检查和修改实习医师的病历记录、病程录及其他各项记录，及时完成出院病案小结并将病案整理编号交上级医师审查。', '诊室');
-INSERT INTO `phs_work` VALUES (3, 2, '注射工作', '参住院前台对所管病员全面负责，在下班前做好交接班工作，对需要特殊观察的重症病人除书面交班外，用口头方式向值班前台交班。', '诊室','http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/1f5709f9-86bc-4ae2-afcb-d2b368c81d87.mp4');
-INSERT INTO `phs_work` VALUES (4, 3, '病员记录', '参住院前台对所管病员全面负责，在下班前做好交接班工作，对需要特殊观察的重症病人除书面交班外，用口头方式向值班前台交班。', '前台');
-INSERT INTO `phs_work` VALUES (5, 2, '手术前准备工作', '手术前准备工作包括：术前对宠物进行麻前给药、注射麻醉、吸入麻醉的流程，保定、剃毛、消毒的流程，常见手术器械的介绍，手术器械包的准备、灭菌流程，手术人员的消毒、穿戴手术衣流程等。', '诊室', null);
+INSERT INTO `phs_work` VALUES (1, 1, '查房', '带领实习医师对病员进行检查，诊断及治疗，书写医嘱，并检查医嘱执行情况，每日巡视病人至少2次，对危重症病人应多次巡视并做好记录。', '诊室', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
+INSERT INTO `phs_work` VALUES (2, 1, '书写病例', '书写病历(第一年写大病历，以后写入院录)应于病人入院24小时内完成。及时检查和修改实习医师的病历记录、病程录及其他各项记录，及时完成出院病案小结并将病案整理编号交上级医师审查。', '诊室', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
+INSERT INTO `phs_work` VALUES (3, 2, '抢救病人', '参加科室内的抢救工作要求，在抢救病人过程中，做到处理得当，抢救及时，及时完成病程记录。', '前台', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
+INSERT INTO `phs_work` VALUES (4, 3, '病员记录', '参住院前台对所管病员全面负责，在下班前做好交接班工作，对需要特殊观察的重症病人除书面交班外，用口头方式向值班前台交班。', '前台', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
+
 SET FOREIGN_KEY_CHECKS = 1;

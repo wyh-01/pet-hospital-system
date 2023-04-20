@@ -10,6 +10,7 @@ public class DiseaseEntity implements Serializable {
     private String name;
     private String description;
     private String image;
+    private List<String> imageList;
     private boolean flag = false;
 
     public int getId() {
@@ -58,5 +59,13 @@ public class DiseaseEntity implements Serializable {
 
     public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
     }
 }

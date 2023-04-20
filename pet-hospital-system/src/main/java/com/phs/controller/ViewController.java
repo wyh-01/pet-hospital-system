@@ -69,10 +69,21 @@ public class ViewController {
         return "systemManage/diseaseManage/addDisease";
     }
 
-    @RequestMapping("/test")
-    public String test(ModelMap modelMap){
-        List<DiseaseKindEntity> diseaseKinds = diseaseMapper.getAllDiseaseKind();
-        modelMap.put("diseaseKinds", diseaseKinds);
+    @RequestMapping("/test/{id}")
+    public String test(@PathVariable("id") int id, ModelMap modelMap){
+        List<DiseaseEntity> diseases = diseaseMapper.getAllDisease();
+        CaseEntity caseEntity = caseMapper.getCaseByCaseId(id);
+        DiseaseEntity disease = diseaseMapper.getDiseaseById(caseEntity.getDisease_id());
+        for(DiseaseEntity d : diseases){
+            if(d.getId() == disease.getId()){
+                d.setFlag(true);
+                break;
+            }
+        }
+        String[] imgUrls = caseEntity.getImage_list().split("&&");
+        modelMap.put("diseases", diseases);
+        modelMap.put("case", caseEntity);
+        modelMap.put("imgUrls", imgUrls);
         return "systemManage/diseaseManage/test";
     }
 
@@ -87,8 +98,10 @@ public class ViewController {
                 break;
             }
         }
+        String[] imgUrls = diseaseEntity.getImage().split("&&");
         modelMap.put("diseaseKinds", diseaseKinds);
         modelMap.put("disease", diseaseEntity);
+        modelMap.put("imgUrls", imgUrls);
         return "systemManage/diseaseManage/updateDisease";
     }
 
@@ -120,8 +133,10 @@ public class ViewController {
                 break;
             }
         }
+        String[] imgUrls = caseEntity.getImage_list().split("&&");
         modelMap.put("diseases", diseases);
         modelMap.put("case", caseEntity);
+        modelMap.put("imgUrls", imgUrls);
         return "systemManage/caseManage/updateCase";
     }
 

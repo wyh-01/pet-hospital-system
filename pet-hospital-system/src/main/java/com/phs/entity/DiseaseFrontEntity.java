@@ -13,6 +13,7 @@ public class DiseaseFrontEntity extends DiseaseEntity {
         this.setName(diseaseEntity.getName());
         this.setDescription(diseaseEntity.getDescription());
         this.setImage(diseaseEntity.getImage());
+        this.setImageList(diseaseEntity.getImageList());
     }
 
     private List<CaseEntity> caseList;

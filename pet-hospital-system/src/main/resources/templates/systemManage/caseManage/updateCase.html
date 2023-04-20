@@ -32,8 +32,49 @@
                 <input class="form-control" id="description" name="description" type="text" placeholder="请输入病例描述" th:field="*{case.description}"/>
             </div>
         </div>
-        <input type="file" id="imgs" name="imgs" multiple="multiple"></input>
-        <input type="file" id="videos" name="videos" multiple="multiple"></input>
+        <div>
+            <br>
+            <p >
+                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" th:src="${#arrays.length(imgUrls) >= 1?imgUrls[0]:''}"/>
+            </p>
+            </br>
+            <form id="f1">
+                <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+        <div>
+            <br>
+            <p >
+                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" th:src="${#arrays.length(imgUrls) >= 2?imgUrls[1]:''}" />
+            </p>
+            </br>
+            <form id="f2">
+                <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+        <div>
+            <br>
+            <p >
+                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" th:src="${#arrays.length(imgUrls) >= 3?imgUrls[2]:''}" />
+            </p>
+            </br>
+            <form id="f3">
+                <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+        <div>
+            <br>
+            <p >
+                <video class="videos" width="320" height="240" controls="autoplay" >
+                    <source id="video" class="videos" type="video/mp4" th:src="${case.video}" />
+                </video>
+            </p>
+            </br>
+            <form id="f4">
+                <input type="file" name="videos" onchange="imgChange4(event)" id="videos" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
                 <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
@@ -57,14 +98,32 @@
         var disease = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
         fd.append("disease_id", disease);
-        var imgs = document.getElementById("imgs").files;
-        for (var i in imgs) {
-            fd.append("imgs", imgs[i]);
+        var img1 = document.getElementById("img1").files;
+        var img2 = document.getElementById("img2").files;
+        var img3 = document.getElementById("img3").files;
+        if(img1[0]){
+            fd.append("imgs", img1[0]);
+        }else{
+            fd.append("imgUrlArr", document.getElementById("picture1").getAttribute("src"));
+        }
+        if(img2[0]) {
+            fd.append("imgs", img2[0]);
+        }else{
+            fd.append("imgUrlArr", document.getElementById("picture2").getAttribute("src"));
+        }
+        if(img3[0]) {
+            fd.append("imgs", img3[0]);
+        }else{
+            fd.append("imgUrlArr", document.getElementById("picture3").getAttribute("src"));
         }
         var videos = document.getElementById("videos").files;
-        for (var j in videos) {
-            fd.append("videos", videos[j]);
+        if(videos[0]){
+            fd.append("videos", videos[0]);
+        }else{
+            fd.append("videoUrlArr", document.getElementById("video").getAttribute("src"));
         }
+        fd.append("imgUrlArr", "");
+        fd.append("videoUrlArr", "");
 
         console.log(fd);
         $.ajax({
@@ -94,6 +153,71 @@
         var disease = myselect.options[index].value;
         window.location.href = "../caseManage/" + disease;
     }
+
+    function imgChange1(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture1').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.picture1').click(function () {
+        $("#img1").click();
+    });
+
+    function imgChange2(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture2').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.picture2').click(function () {
+        $("#img2").click();
+    });
+
+    function imgChange3(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture3').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.picture3').click(function () {
+        $("#img3").click();
+    });
+
+    function imgChange4(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.videos').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.videos').click(function () {
+        $("#videos").click();
+    });
+
 </script>
 </body>
 </html>

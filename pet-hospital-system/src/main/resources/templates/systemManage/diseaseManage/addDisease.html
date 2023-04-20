@@ -100,7 +100,37 @@
                           placeholder="请输入文本"></textarea>
             </div>
         </div>
-        <input type="file" id="files" name="files" multiple="multiple"></input>
+        <div>
+            <br>
+            <p >
+                <img class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" />
+            </p>
+            </br>
+            <form id="f1">
+                <input type="file" name="files" onchange="imgChange1(event)" id="file1" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+        <div>
+            <br>
+            <p >
+                <img class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" />
+            </p>
+            </br>
+            <form id="f2">
+                <input type="file" name="files" onchange="imgChange2(event)" id="file2" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+        <div>
+            <br>
+            <p >
+                <img class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" />
+            </p>
+            </br>
+            <form id="f3">
+                <input type="file" name="files" onchange="imgChange3(event)" id="file3" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
                 <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i
@@ -124,12 +154,18 @@
         var diseaseKind = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
         fd.append("kindId", diseaseKind);
-        var files = document.getElementById("files").files;
-        for (var i in files) {
-            fd.append("files", files[i]);
+        var file1 = document.getElementById("file1").files;
+        var file2 = document.getElementById("file2").files;
+        var file3 = document.getElementById("file3").files;
+        if(file1[0]){
+            fd.append("files", file1[0]);
         }
-        // fd.append("files", files[0]);
-        console.log(fd);
+        if(file2[0]) {
+            fd.append("files", file2[0]);
+        }
+        if(file3[0]) {
+            fd.append("files", file3[0]);
+        }
         $.ajax({
             //几个参数需要注意一下
             contentType: false,
@@ -150,6 +186,56 @@
             }
         });
     }
+
+    function imgChange1(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture1').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.picture1').click(function () {
+        $("#file1").click();
+    });
+
+    function imgChange2(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture2').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.picture2').click(function () {
+        $("#file2").click();
+    });
+
+    function imgChange3(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture3').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.picture3').click(function () {
+        $("#file3").click();
+    });
+
+
 </script>
 <script type="text/javascript" src="../js/modernizr.custom.js"></script>
 <script type="text/javascript" src="../js/canvas-particle.js"></script>

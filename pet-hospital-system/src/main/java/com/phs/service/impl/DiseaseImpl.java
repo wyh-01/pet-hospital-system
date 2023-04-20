@@ -28,9 +28,29 @@ public class DiseaseImpl implements DiseaseService {
     @Override
     public Map<String,List<DiseaseEntity>> getAllDisease(){
         List<DiseaseEntity> firstKind = diseaseMapper.getDiseaseByKindId(1);
+        for(DiseaseEntity diseaseEntity : firstKind){
+            if(diseaseEntity.getImage().contains("&&")){
+                diseaseEntity.setImage(diseaseEntity.getImage().split("&&")[0]);
+            }
+        }
         List<DiseaseEntity> secondKind = diseaseMapper.getDiseaseByKindId(2);
+        for(DiseaseEntity diseaseEntity : secondKind){
+            if(diseaseEntity.getImage().contains("&&")){
+                diseaseEntity.setImage(diseaseEntity.getImage().split("&&")[0]);
+            }
+        }
         List<DiseaseEntity> thirdKind = diseaseMapper.getDiseaseByKindId(3);
+        for(DiseaseEntity diseaseEntity : thirdKind){
+            if(diseaseEntity.getImage().contains("&&")){
+                diseaseEntity.setImage(diseaseEntity.getImage().split("&&")[0]);
+            }
+        }
         List<DiseaseEntity> forthKind = diseaseMapper.getDiseaseByKindId(4);
+        for(DiseaseEntity diseaseEntity : forthKind){
+            if(diseaseEntity.getImage().contains("&&")){
+                diseaseEntity.setImage(diseaseEntity.getImage().split("&&")[0]);
+            }
+        }
         Map<String,List<DiseaseEntity>> kindMap = new HashMap<>();
         kindMap.put("one",firstKind);
         kindMap.put("two",secondKind);
@@ -42,6 +62,7 @@ public class DiseaseImpl implements DiseaseService {
     @Override
     public DiseaseFrontEntity getDisease(int diseaseId){
         DiseaseEntity diseaseEntity = diseaseMapper.getDiseaseById(diseaseId);
+        diseaseEntity.setImageList(Arrays.asList(diseaseEntity.getImage().split("&&")));
         DiseaseFrontEntity frontEntity = new DiseaseFrontEntity(diseaseEntity);
         List<CaseEntity> caseEntities = caseMapper.getCaseByDiseaseId(diseaseId);
         List<CaseEntity> caseList = new ArrayList<>();

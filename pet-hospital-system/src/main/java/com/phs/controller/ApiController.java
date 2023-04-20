@@ -2,6 +2,8 @@ package com.phs.controller;
 
 
 import com.phs.entity.*;
+import com.phs.mapper.CaseMapper;
+import com.phs.mapper.DiseaseMapper;
 import com.phs.service.facade.*;
 import com.phs.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,12 @@ public class ApiController {
 
     @Autowired
     private FileUploadService fileUploadService;
+
+    @Autowired
+    private DiseaseMapper diseaseMapper;
+
+    @Autowired
+    private CaseMapper caseMapper;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity login(String userName, String password){
@@ -83,21 +91,30 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/disease/update", method = RequestMethod.POST)
-    public ResponseEntity updateDisease(DiseaseEntity diseaseEntity, @RequestParam("files") MultipartFile[] files){
-        StringBuffer urls = new StringBuffer("");
-        if(!isEmpty(files)) {
-            int count = 0;
-            for (MultipartFile file : files) {
-                if(count > 0){
-                    urls.append("&&");
+    public ResponseEntity updateDisease(DiseaseEntity diseaseEntity, @RequestParam("imgs") MultipartFile[] imgs, @RequestParam("imgUrlArr") String[] imgUrlArr){
+        StringBuffer imgUrls = new StringBuffer("");
+        int imgCount = 0;
+        for(String imgUrl : imgUrlArr){
+            if(!"".equals(imgUrl)){
+                if(imgCount > 0){
+                    imgUrls.append("&&");
                 }
-                urls.append(fileUploadService.upload(file));
-                count++;
+                imgUrls.append(imgUrl);
+                imgCount++;
+            }
+        }
+        if(!isEmpty(imgs)) {
+            for (MultipartFile img : imgs) {
+                if(imgCount > 0){
+                    imgUrls.append("&&");
+                }
+                imgUrls.append(fileUploadService.upload(img));
+                imgCount++;
             }
         }else{
             return new ResponseEntity("上传失败，因为文件是空的.", HttpStatus.BAD_REQUEST);
         }
-        diseaseEntity.setImage(urls.toString());
+        diseaseEntity.setImage(imgUrls.toString());
         return diseaseService.updateDisease(diseaseEntity);
     }
 
@@ -150,29 +167,48 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/caseManage/caseUpdate", method = RequestMethod.POST)
-    public ResponseEntity caseUpdate(CaseEntity caseEntity, @RequestParam("imgs") MultipartFile[] imgs, @RequestParam("videos") MultipartFile[] videos){
+    public ResponseEntity caseUpdate(CaseEntity caseEntity, @RequestParam("imgs") MultipartFile[] imgs, @RequestParam("videos") MultipartFile[] videos,
+                                     @RequestParam("imgUrlArr") String[] imgUrlArr, @RequestParam("videoUrlArr") String[] videoUrlArr){
         StringBuffer imgUrls = new StringBuffer("");
         StringBuffer videoUrls = new StringBuffer("");
+        int imgCount = 0;
+        for(String imgUrl : imgUrlArr){
+            if(!"".equals(imgUrl)){
+                if(imgCount > 0){
+                    imgUrls.append("&&");
+                }
+                imgUrls.append(imgUrl);
+                imgCount++;
+            }
+        }
         if(!isEmpty(imgs)) {
-            int count = 0;
             for (MultipartFile img : imgs) {
-                if(count > 0){
+                if(imgCount > 0){
                     imgUrls.append("&&");
                 }
                 imgUrls.append(fileUploadService.upload(img));
-                count++;
+                imgCount++;
             }
         }else{
             return new ResponseEntity("上传失败，因为图片文件是空的.", HttpStatus.BAD_REQUEST);
         }
+        int videoCount = 0;
+        for(String  videoUrl : videoUrlArr) {
+            if (!"".equals(videoUrl)) {
+                if(videoCount > 0){
+                    videoUrls.append("&&");
+                }
+                videoUrls.append(videoUrl);
+                videoCount++;
+            }
+        }
         if(!isEmpty(videos)) {
-            int count = 0;
             for (MultipartFile video : videos) {
-                if(count > 0){
+                if(videoCount > 0){
                     imgUrls.append("&&");
                 }
                 videoUrls.append(fileUploadService.upload(video));
-                count++;
+                videoCount++;
             }
         }else{
             return new ResponseEntity("上传失败，因为视频文件是空的.", HttpStatus.BAD_REQUEST);

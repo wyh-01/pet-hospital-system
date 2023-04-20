@@ -1,143 +1,128 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>CaseStudy</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
-    <link rel="stylesheet" type="text/css" href="css/tabs.css"/>
-    <link rel="stylesheet" type="text/css" href="css/tabstyles.css"/>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" id="templatecss" type="text/css" href="css/style.css"/>
-    <style>
-        .module-btn p {
-            width: 30%;
-        }
-
-        .codrops-header a {
-            border-bottom: 1px dashed;
-            padding-bottom: 0.3em;
-        }
-
-        section {
-            max-width: 100%;
-            min-height: 500px;
-            overflow: auto;
-        }
-
-        section p {
-            font-size: 1em;
-        }
-
-        .case-submenu > div {
-            float: left;
-            width: 18%;
-            height: 200px;
-            font-size: 1.2em;
-            text-align: center;
-            vertical-align: top;
-            padding: 0.5em;
-            margin: 1.5em;
-            border: 1px solid #553445;
-            border-radius: 1em 0 1em 0;
-        }
-
-        .case-submenu > div {
-            display: flex;
-            justify-content: center;
-            flex-direction: column
-        }
-
-        .case-submenu > div:hover {
-            padding: 0.5em;
-            color: #67c2d4;
-            background: rgba(103, 194, 212, .2);
-            border: 1px dashed #67c2d4;
-            cursor: pointer;
-        }
-
-        .case-submenu > div > div {
-            display: flex;
-            justify-content: center;
-            font-size: 1.5rem;
-            /*padding: 1rem;*/
-        }
-
-
-    </style>
 
 </head>
 <body class="white-bg">
 <header class="codrops-header">
-    <h1>新增病种</h1>
-    <p>Add Disease</p>
-    <a href="../diseaseManage" style="text-align: center ">返回病种管理</a>
+    <h1>更新病例</h1>
+    <p>Update Disease</p>
+    <a onclick="goBack()"  style="text-align: center ">返回病例选择页面</a>
 </header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-    <form id="form-disease-add" action="/api/disease/add" method="POST" class="smart-green">
+    <form id="form-case-update"  method="POST" >
+
         <div class="form-group">
-            <label class="col-sm-3 control-label">病种类型： </label>
-            <div class="col-sm-8" style="text-align: left">
-                <select id="kind" class="form-control select2-multiple">
-                    <option th:name="kindId" th:each="diseaseKind:${diseaseKinds}" th:value="${diseaseKind.id}"
-                            th:text="${diseaseKind.kindName}"></option>
+            <label class="col-sm-4 control-label">病种：</label>
+            <div class="col-sm-8">
+                <select id="disease" class="form-control select2-multiple">
+                    <option th:name="disease" th:each="disease:${diseases}" th:value="${disease.id}" th:text="${disease.name}" th:selected="${disease.flag}"></option>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">病种名称：</label>
+            <label class="col-sm-3 control-label">病例名称：</label>
             <div class="col-sm-8">
-                <textarea type="text" id="name" name="name" class="form-control" placeholder="请输入文本"></textarea>
+                <input class="form-control" id="name" name="name" type="text" placeholder="请输入病例名称" th:field="*{case.name}"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">病种描述：</label>
+            <label class="col-sm-3 control-label">病例描述：</label>
             <div class="col-sm-8">
-                <textarea type="text" id="description" name="description" class="form-control"
-                          placeholder="请输入文本"></textarea>
+                <input class="form-control" id="description" name="description" type="text" placeholder="请输入病例描述" th:field="*{case.description}"/>
             </div>
         </div>
         <div>
             <br>
             <p >
-                <img class="user-header" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片" />
+                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" th:src="${#arrays.length(imgUrls) >= 1?imgUrls[0]:''}"/>
             </p>
             </br>
-            <form id="test">
-                <input type="file" name="files" onchange="imgChange(event)" id="files" multiple="multiple" style="display: none"/>
+            <form id="f1">
+                <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
             </form>
         </div>
+        <div>
+            <br>
+            <p >
+                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" th:src="${#arrays.length(imgUrls) >= 2?imgUrls[1]:''}" />
+            </p>
+            </br>
+            <form id="f2">
+                <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+        <div>
+            <br>
+            <p >
+                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" th:src="${#arrays.length(imgUrls) >= 3?imgUrls[2]:''}" />
+            </p>
+            </br>
+            <form id="f3">
+                <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+        <div>
+            <br>
+            <p >
+                <video class="videos" width="320" height="240" controls="autoplay" >
+                    <source id="video" class="videos" type="video/mp4" th:src="${case.video}" />
+                </video>
+            </p>
+            </br>
+            <form id="f4">
+                <input type="file" name="videos" onchange="imgChange4(event)" id="videos" multiple="multiple" style="display: none"/>
+            </form>
+        </div>
+
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
-                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i
-                        class="fa fa-check"></i>保 存
-                </button>&nbsp;
+                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
             </div>
         </div>
     </form>
 
 </div>
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
     function submitHandler() {
         // var data = $("#form-disease-add").serializeArray();
         var fd = new FormData();
+        var id = [[${case.id}]];
+        fd.append("id", id);
         fd.append("name", $("#name").val())
         fd.append("description", $("#description").val())
         console.log(fd);
-        var myselect = document.getElementById("kind");
+        var myselect = document.getElementById("disease");
         var index = myselect.selectedIndex;
-        var diseaseKind = myselect.options[index].value;
+        var disease = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
-        fd.append("kindId", diseaseKind);
-        var files = document.getElementById("files").files;
-        for (var i in files) {
-            fd.append("files", files[i]);
+        fd.append("disease_id", disease);
+        var img1 = document.getElementById("img1").files;
+        var img2 = document.getElementById("img2").files;
+        var img3 = document.getElementById("img3").files;
+        if(img1[0]){
+            fd.append("imgs", img1[0]);
+        }else{
+            fd.append("imgUrlArr", document.getElementById("picture1").getAttribute("src"));
         }
-        // fd.append("files", files[0]);
+        if(img2[0]) {
+            fd.append("imgs", img2[0]);
+        }else{
+            fd.append("imgUrlArr", document.getElementById("picture2").getAttribute("src"));
+        }
+        if(img3[0]) {
+            fd.append("imgs", img3[0]);
+        }else{
+            fd.append("imgUrlArr", document.getElementById("picture3").getAttribute("src"));
+        }
+        var videos = document.getElementById("videos").files;
+        if(videos[0]){
+            fd.append("videos", videos[0]);
+        }else{
+            fd.append("videoUrl", document.getElementById("video").getAttribute("src"));
+        }
+
         console.log(fd);
         $.ajax({
             //几个参数需要注意一下
@@ -145,56 +130,92 @@
             type: "POST",//方法类型
             processData: false,
             // dataType: "multipart/form-data",//预期服务器返回的数据类型
-            url: "/api/disease/add",//url
+            url: "/api/caseManage/caseUpdate",//url
             data: fd,
             statusCode: {
                 200: function (result) {
                     alert(result);
-                    window.location.href = "../diseaseManage";
+                    window.location.href = "../caseManage/" + disease;
                 },
                 400: function (result) {
                     alert(result.responseText);
-                    window.location.href = "../diseaseManage";
+                    window.location.href = "../caseManage/" + disease;
                 }
             }
         });
     }
 
-    function imgChange(e) {
+    goBack = function(){
+        var myselect = document.getElementById("disease");
+        var index = myselect.selectedIndex;
+        var disease = myselect.options[index].value;
+        window.location.href = "../caseManage/" + disease;
+    }
+
+    function imgChange1(e) {
         console.info(e.target.files[0]);//图片文件
         console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
         var reader = new FileReader();
         reader.onload = (function (file) {
             return function (e) {
-                $('.user-header').attr('src',this.result);
+                $('.picture1').attr('src',this.result);
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
     }
 
-    $('.user-header').click(function () {
-        $("#files").click();
+    $('.picture1').click(function () {
+        $("#img1").click();
     });
 
-</script>
-<script type="text/javascript" src="../js/modernizr.custom.js"></script>
-<script type="text/javascript" src="../js/canvas-particle.js"></script>
-<script type="text/javascript">
-    window.onload = function () {
-        var config = {
-            vx: 4,
-            vy: 4,
-            height: 3,
-            width: 3,
-            count: 150,
-            color: "121, 162, 185",
-            stroke: "100,200,180",
-            dist: 6000,
-            e_dist: 20000,
-            max_conn: 10
-        }
-        CanvasParticle(config);
+    function imgChange2(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture2').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
     }
+
+    $('.picture2').click(function () {
+        $("#img2").click();
+    });
+
+    function imgChange3(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.picture3').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.picture3').click(function () {
+        $("#img3").click();
+    });
+
+    function imgChange4(e) {
+        console.info(e.target.files[0]);//图片文件
+        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                $('.videos').attr('src',this.result);
+            };
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    $('.videos').click(function () {
+        $("#videos").click();
+    });
+
 </script>
 </body>
 </html>
