@@ -17,8 +17,8 @@ public class LoginInterceptor implements HandlerInterceptor
     {
         String uri = request.getRequestURI();
 
-        //判断当前请求地址是否登录地址
-        if(uri.contains("login") || uri.contains("sign"))
+        //判断当前请求地址是否登录或注册地址
+        if(uri.contains("login") || uri.contains("signup"))
         {
             //登录请求，直接放行
             return true;
