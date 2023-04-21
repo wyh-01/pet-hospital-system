@@ -23,12 +23,12 @@ diseaseDetail.initImageList = function (imageList) {
 };
 
 diseaseDetail.initSingleCase = function (caseEntity) {
-    var name = "<p>" + caseEntity.name + "</p>";
+    var name = "<div style='font-size: 1.5em;'>" + caseEntity.name + "</div>";
     var description = "<p>" + caseEntity.description + "</p>";
-    var images = "<p>相关图例</p>" + "<p id='image-list'>" + diseaseDetail.initImageList(caseEntity.imageList) + "</p>";
+    var images = "<div style='font-size: 1.5em;'>相关图例</div>" + "<p id='image-list'>" + diseaseDetail.initImageList(caseEntity.imageList) + "</p>";
     var dVideo = "";
     if(caseEntity.video){
-        dVideo = "<p>相关视频</p>" + "<video width=\"320\" height=\"240\" controls=\"autoplay\">" +
+        dVideo = "<div style='font-size: 1.5em;'>相关视频</div>" + "<video width=\"320\" height=\"240\" controls=\"autoplay\">" +
             "<source src=\"" + caseEntity.video +
              "\" type=\"video/mp4\"/> </video>";
     }
