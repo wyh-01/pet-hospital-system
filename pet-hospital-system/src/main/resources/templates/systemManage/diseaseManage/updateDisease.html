@@ -41,6 +41,7 @@
             <form id="f1">
                 <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete1()">删除图片</button>
         </div>
         <div>
             <br>
@@ -51,6 +52,7 @@
             <form id="f2">
                 <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete2()">删除图片</button>
         </div>
         <div>
             <br>
@@ -61,6 +63,7 @@
             <form id="f3">
                 <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete3()">删除图片</button>
         </div>
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
@@ -172,6 +175,21 @@
     $('.picture3').click(function () {
         $("#img3").click();
     });
+
+    function delete1() {
+        document.getElementById("img1").value="";
+        document.getElementById("picture1").setAttribute("src", "");
+    }
+
+    function delete2() {
+        document.getElementById("img2").value="";
+        document.getElementById("picture2").setAttribute("src", "");
+    }
+
+    function delete3() {
+        document.getElementById("img3").value="";
+        document.getElementById("picture3").setAttribute("src", "");
+    }
 
 </script>
 </body>

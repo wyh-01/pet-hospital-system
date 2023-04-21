@@ -103,32 +103,35 @@
         <div>
             <br>
             <p >
-                <img class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" />
+                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" />
             </p>
             </br>
             <form id="f1">
-                <input type="file" name="files" onchange="imgChange1(event)" id="file1" multiple="multiple" style="display: none"/>
+                <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete1()">删除图片</button>
         </div>
         <div>
             <br>
             <p >
-                <img class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" />
+                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" />
             </p>
             </br>
             <form id="f2">
-                <input type="file" name="files" onchange="imgChange2(event)" id="file2" multiple="multiple" style="display: none"/>
+                <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete2()">删除图片</button>
         </div>
         <div>
             <br>
             <p >
-                <img class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" />
+                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" />
             </p>
             </br>
             <form id="f3">
-                <input type="file" name="files" onchange="imgChange3(event)" id="file3" multiple="multiple" style="display: none"/>
+                <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete3()">删除图片</button>
         </div>
 
         <div class="row">
@@ -154,17 +157,17 @@
         var diseaseKind = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
         fd.append("kindId", diseaseKind);
-        var file1 = document.getElementById("file1").files;
-        var file2 = document.getElementById("file2").files;
-        var file3 = document.getElementById("file3").files;
-        if(file1[0]){
-            fd.append("files", file1[0]);
+        var img1 = document.getElementById("img1").files;
+        var img2 = document.getElementById("img2").files;
+        var img3 = document.getElementById("img3").files;
+        if(img1[0]){
+            fd.append("files", img1[0]);
         }
-        if(file2[0]) {
-            fd.append("files", file2[0]);
+        if(img2[0]) {
+            fd.append("files", img2[0]);
         }
-        if(file3[0]) {
-            fd.append("files", file3[0]);
+        if(img3[0]) {
+            fd.append("files", img3[0]);
         }
         $.ajax({
             //几个参数需要注意一下
@@ -200,7 +203,7 @@
     }
 
     $('.picture1').click(function () {
-        $("#file1").click();
+        $("#img1").click();
     });
 
     function imgChange2(e) {
@@ -216,7 +219,7 @@
     }
 
     $('.picture2').click(function () {
-        $("#file2").click();
+        $("#img2").click();
     });
 
     function imgChange3(e) {
@@ -232,8 +235,24 @@
     }
 
     $('.picture3').click(function () {
-        $("#file3").click();
+        $("#img3").click();
     });
+
+    function delete1() {
+        document.getElementById("img1").value="";
+        document.getElementById("picture1").setAttribute("src", "");
+    }
+
+    function delete2() {
+        document.getElementById("img2").value="";
+        document.getElementById("picture2").setAttribute("src", "");
+    }
+
+    function delete3() {
+        document.getElementById("img3").value="";
+        document.getElementById("picture3").setAttribute("src", "");
+    }
+
 
 
 </script>

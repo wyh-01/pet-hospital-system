@@ -41,6 +41,7 @@
             <form id="f1">
                 <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete1()">删除图片</button>
         </div>
         <div>
             <br>
@@ -51,6 +52,7 @@
             <form id="f2">
                 <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete2()">删除图片</button>
         </div>
         <div>
             <br>
@@ -61,11 +63,12 @@
             <form id="f3">
                 <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete3()">删除图片</button>
         </div>
         <div>
             <br>
             <p >
-                <video class="videos" width="320" height="240" controls="autoplay" >
+                <video id="video1" class="videos" width="320" height="240" controls="autoplay" >
                     <source id="video" class="videos" type="video/mp4" th:src="${case.video}" />
                 </video>
             </p>
@@ -73,6 +76,7 @@
             <form id="f4">
                 <input type="file" name="videos" onchange="imgChange4(event)" id="videos" multiple="multiple" style="display: none"/>
             </form>
+            <button type="button" onclick="delete4()">删除视频</button>
         </div>
 
         <div class="row">
@@ -120,7 +124,7 @@
         if(videos[0]){
             fd.append("videos", videos[0]);
         }else{
-            fd.append("videoUrlArr", document.getElementById("video").getAttribute("src"));
+            fd.append("videoUrlArr", document.getElementById("video1").getAttribute("src"));
         }
         fd.append("imgUrlArr", "");
         fd.append("videoUrlArr", "");
@@ -217,6 +221,26 @@
     $('.videos').click(function () {
         $("#videos").click();
     });
+
+    function delete1() {
+        document.getElementById("img1").value="";
+        document.getElementById("picture1").setAttribute("src", "");
+    }
+
+    function delete2() {
+        document.getElementById("img2").value="";
+        document.getElementById("picture2").setAttribute("src", "");
+    }
+
+    function delete3() {
+        document.getElementById("img3").value="";
+        document.getElementById("picture3").setAttribute("src", "");
+    }
+
+    function delete4() {
+        document.getElementById("videos").value="";
+        document.getElementById("video1").setAttribute("src", "");
+    }
 
 </script>
 </body>
