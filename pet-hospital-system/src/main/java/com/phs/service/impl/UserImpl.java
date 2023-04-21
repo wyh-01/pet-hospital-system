@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -21,9 +22,11 @@ public class UserImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public ResponseEntity getVerifyResult(String userName, String password){
+    public ResponseEntity getVerifyResult(String userName, String password, HttpServletRequest request){
         if(isNotBlank(userName) && checkUserNameExist(userName)){
             if(isNotBlank(password) && verifyPassword(userName, password)){
+                //验证成功，记录Session信息
+                request.getSession().setAttribute("userName", userName);
                 return new ResponseEntity("登录成功", HttpStatus.OK);
             }
             else{

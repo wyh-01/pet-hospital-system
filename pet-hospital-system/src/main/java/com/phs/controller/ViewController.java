@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -27,10 +28,11 @@ public class ViewController {
     CaseMapper caseMapper;
 
 
-    @RequestMapping("/")
+    @RequestMapping("/login")
     public String login(){
         return "login";
     }
+
 
     @RequestMapping("/signup")
     public String signUp(){
@@ -38,7 +40,8 @@ public class ViewController {
     }
 
     @RequestMapping("/index")
-    public String index(){
+    public String index(ModelMap modelMap, HttpServletRequest request){
+        modelMap.put("userName", request.getSession().getAttribute("userName"));
         return "index";
     }
 

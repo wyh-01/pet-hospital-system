@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -167,7 +167,17 @@
                 <div class="menu-item">
                     <label>
                         <i class="menu-item-icon iconfont icon-a-08-Setting"></i>
-                        <span style=" font-size: 25px;">欢迎：<a style="color: orangered;">chris</a></span>
+                        <span style=" font-size: 25px;">欢迎：
+                            <a th:text="${userName}" style="color: orangered;"></a>
+                        </span>
+                    </label>
+                </div>
+                <div class="menu-item">
+                    <label>
+                        <i class="menu-item-icon iconfont icon-a-08-Setting"></i>
+                        <span style=" font-size: 25px;">
+                            <button onclick="logout()">登出</button>
+                        </span>
                     </label>
                 </div>
 
@@ -215,6 +225,7 @@
             </div>
             <script type="text/javascript" src="../js/modernizr.custom.js"></script>
             <script type="text/javascript" src="../js/canvas-particle.js"></script>
+            <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
             <script type="text/javascript">
                 window.onload = function () {
                     var config = {
@@ -230,6 +241,24 @@
                         max_conn: 10
                     }
                     CanvasParticle(config);
+                }
+
+                function logout() {
+                    $.ajax({
+                        //几个参数需要注意一下
+                        type: "POST",//方法类型
+                        dataType: "json",//预期服务器返回的数据类型
+                        url: "/api/logout" ,//url
+                        statusCode : {
+                            200: function(result){
+                                alert(result.responseText);
+                                window.location.href='/login';
+                            },
+                            401: function(result){
+                                alert(result.responseText);
+                            }
+                        }
+                    });
                 }
             </script>
 </body>
