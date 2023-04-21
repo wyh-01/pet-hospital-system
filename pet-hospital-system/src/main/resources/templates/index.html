@@ -143,17 +143,15 @@
 
                 </div>
 
-                <div class="menu-item">
-                    <input type="checkbox" id="menu-item5"/>
-                    <label for="menu-item2">
-                        <i class="menu-item-icom iconfont icon-a-02-course_management"></i>
-                        <a href="../uploadFile" style="color: #fdb095 ;  font-size: 25px;"> 上传文件</a>
-                    </label>
+<!--                <div class="menu-item">-->
+<!--                    <input type="checkbox" id="menu-item5"/>-->
+<!--                    <label for="menu-item2">-->
+<!--                        <i class="menu-item-icom iconfont icon-a-02-course_management"></i>-->
+<!--                        <a href="../uploadFile" style="color: #fdb095 ;  font-size: 25px;"> 上传文件</a>-->
+<!--                    </label>-->
+<!--                </div>-->
 
-
-                </div>
-
-                <div class="menu-item">
+                <div id="systemManage" class="menu-item">
                     <input type="checkbox" id="menu-item6"/>
                     <label for="menu-item2">
                         <i class="menu-item-icom iconfont icon-a-02-course_management"></i>
@@ -168,7 +166,7 @@
                     <label>
                         <i class="menu-item-icon iconfont icon-a-08-Setting"></i>
                         <span style=" font-size: 25px;">欢迎：
-                            <a th:text="${userName}" style="color: orangered;"></a>
+                            <a th:text="${user.userName}" style="color: orangered;"></a>
                         </span>
                     </label>
                 </div>
@@ -226,7 +224,7 @@
             <script type="text/javascript" src="../js/modernizr.custom.js"></script>
             <script type="text/javascript" src="../js/canvas-particle.js"></script>
             <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
-            <script type="text/javascript">
+            <script type="text/javascript" th:inline="javascript">
                 window.onload = function () {
                     var config = {
                         vx: 4,
@@ -239,6 +237,10 @@
                         dist: 6000,
                         e_dist: 20000,
                         max_conn: 10
+                    }
+                    var role = [[${user.role}]];
+                    if(role == 2){
+                        document.getElementById("systemManage").remove();
                     }
                     CanvasParticle(config);
                 }

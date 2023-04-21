@@ -3,8 +3,10 @@ package com.phs.controller;
 import com.phs.entity.CaseEntity;
 import com.phs.entity.DiseaseEntity;
 import com.phs.entity.DiseaseKindEntity;
+import com.phs.entity.UserEntity;
 import com.phs.mapper.CaseMapper;
 import com.phs.mapper.DiseaseMapper;
+import com.phs.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +29,9 @@ public class ViewController {
     @Autowired
     CaseMapper caseMapper;
 
+    @Autowired
+    UserMapper userMapper;
+
 
     @RequestMapping("/login")
     public String login(){
@@ -41,7 +46,9 @@ public class ViewController {
 
     @RequestMapping("/index")
     public String index(ModelMap modelMap, HttpServletRequest request){
-        modelMap.put("userName", request.getSession().getAttribute("userName"));
+        String userName = request.getSession().getAttribute("userName").toString();
+        UserEntity userEntity = userMapper.getUserByUserName(userName);
+        modelMap.put("user", userEntity);
         return "index";
     }
 
