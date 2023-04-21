@@ -5,6 +5,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 登录拦截器
@@ -29,6 +32,18 @@ public class LoginInterceptor implements HandlerInterceptor
             if(request.getSession().getAttribute("userName")!=null)
             {
                 //说明已经登录，放行
+                ArrayList<String> urlList = new ArrayList<>();
+                List list = Arrays.asList("manegeSystem", "Manage", "add", "update", "add", "delete", "update");
+                urlList.addAll(list);
+                for(String url : urlList){
+                    boolean a = uri.contains(url);
+                    Integer i = Integer.parseInt(request.getSession().getAttribute("role").toString());
+                    boolean b = i.equals(2);
+                    if(uri.contains(url) && request.getSession().getAttribute("role").equals(2)){
+                        response.sendRedirect(request.getContextPath() + "/index");
+                        return false;
+                    }
+                }
                 return true;
             }
             else

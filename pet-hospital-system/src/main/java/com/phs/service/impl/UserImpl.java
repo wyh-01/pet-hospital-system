@@ -27,6 +27,7 @@ public class UserImpl implements UserService {
             if(isNotBlank(password) && verifyPassword(userName, password)){
                 //验证成功，记录Session信息
                 request.getSession().setAttribute("userName", userName);
+                request.getSession().setAttribute("role", userMapper.getUserByUserName(userName).getRole());
                 return new ResponseEntity("登录成功", HttpStatus.OK);
             }
             else{
