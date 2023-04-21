@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Web MVC 配置类
- * @author pan_junbiao
+ * @author wyh
  **/
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer
