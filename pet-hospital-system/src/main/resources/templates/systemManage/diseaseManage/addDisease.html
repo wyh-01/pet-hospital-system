@@ -109,7 +109,7 @@
             </br>
             <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple"
                    style="display: none" />
-            <button type="button" onclick="delete1()">删除图片</button>
+            <button type="button" onclick="delete1()" id="d1" style="display:none;">删除图片</button>
         </div>
         <div class="col-sm-3">
             <br>
@@ -120,7 +120,7 @@
             </br>
             <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple"
                    style="display: none"/>
-            <button type="button" onclick="delete2()">删除图片</button>
+            <button type="button" onclick="delete2()" id="d2" style="display:none;">删除图片</button>
         </div>
         <div class="col-sm-3">
             <br>
@@ -131,7 +131,7 @@
             </br>
             <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple"
                    style="display: none"/>
-            <button type="button" onclick="delete3()">删除图片</button>
+            <button type="button" onclick="delete3()" id="d3" style="display:none;">删除图片</button>
         </div>
 
         <div class="row">
@@ -197,6 +197,7 @@
         reader.onload = (function (file) {
             return function (e) {
                 $('.picture1').attr('src', this.result);
+                document.getElementById("d1").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -213,6 +214,7 @@
         reader.onload = (function (file) {
             return function (e) {
                 $('.picture2').attr('src', this.result);
+                document.getElementById("d2").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -229,6 +231,7 @@
         reader.onload = (function (file) {
             return function (e) {
                 $('.picture3').attr('src', this.result);
+                document.getElementById("d3").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -241,16 +244,19 @@
     function delete1() {
         document.getElementById("img1").value = "";
         document.getElementById("picture1").setAttribute("src", "");
+        document.getElementById("d1").setAttribute("style", "display:none;");
     }
 
     function delete2() {
         document.getElementById("img2").value = "";
         document.getElementById("picture2").setAttribute("src", "");
+        document.getElementById("d2").setAttribute("style", "display:none;");
     }
 
     function delete3() {
         document.getElementById("img3").value = "";
         document.getElementById("picture3").setAttribute("src", "");
+        document.getElementById("d3").setAttribute("style", "display:none;");
     }
 
 
