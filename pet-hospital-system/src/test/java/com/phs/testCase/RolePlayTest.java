@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class QuizTest {
+public class RolePlayTest {
     public WebDriver webDriver;
     @BeforeTest
     public void userLogin(){
@@ -26,11 +26,11 @@ public class QuizTest {
         WebElement buttonLogin = webDriver.findElement(By.id("button-login"));
         buttonLogin.click();
     }
+
     @Test
-    public void quizTest(){
-//      犬瘟热试题测试
-        webDriver.get("http://localhost:8080/quiz/1");
-        WebElement submit = webDriver.findElement(By.id("button-submit"));
-        submit.click();
+    public void rolePlayTest(){
+        webDriver.get("http://localhost:8080/rolePlay/doctor");
+        WebElement enterRoomButton = webDriver.findElement(By.xpath("/html/body/div/div/ul/li[1]/a"));
+        enterRoomButton.click();
     }
 }
