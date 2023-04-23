@@ -11,7 +11,7 @@
  Target Server Version : 50740
  File Encoding         : 65001
 
- Date: 21/04/2023 08:20:15
+ Date: 22/04/2023 16:17:07
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `phs_case`  (
 -- ----------------------------
 -- Records of phs_case
 -- ----------------------------
-INSERT INTO `phs_case` VALUES (4, 1, '病例A', '贵宾十五，2岁，雌性。该犬平时主要饲喂犬粮，偶尔吃少量零食。今年未免疫，驱虫。今日食欲下降，精神尚可，最初出现黄色脓性眼分泌物，鼻头干燥。两天前开始频繁的咳嗽，偶有少量白色粘液咳出，粪便软。体温39.5℃，体重3.5kg，心率128次/min、呼吸28次/min。睑结膜潮红，水润度下降，鼻头干燥，有少量黄色鼻液，诱咳反应阳性。目前临床上对于犬瘟热是采用特异性的抗病毒与对症支持疗法相结合的治疗方法。由于未按时免疫的动物以及母源抗体消耗殆尽的幼年动物体内缺少可以抵抗病毒的抗体，或者由于自身免疫力的下降，不足以产生足够的抗体来对抗体内的病毒，所以外源性的抗体补给在治疗过程中显得尤为重要。同时，干扰素，胸腺肽等生物制剂在抗病毒治疗过程中也起到积极的作用。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/14/1f19e3fa-9acf-4403-83f2-413309fabec1.mp4');
+INSERT INTO `phs_case` VALUES (4, 1, '病例A', '贵宾十五，2岁，雌性。该犬平时主要饲喂犬粮，偶尔吃少量零食。今年未免疫，驱虫。今日食欲下降，精神尚可，最初出现黄色脓性眼分泌物，鼻头干燥。两天前开始频繁的咳嗽，偶有少量白色粘液咳出，粪便软。体温39.5℃，体重3.5kg，心率128次/min、呼吸28次/min。睑结膜潮红，水润度下降，鼻头干燥，有少量黄色鼻液，诱咳反应阳性。目前临床上对于犬瘟热是采用特异性的抗病毒与对症支持疗法相结合的治疗方法。由于未按时免疫的动物以及母源抗体消耗殆尽的幼年动物体内缺少可以抵抗病毒的抗体，或者由于自身免疫力的下降，不足以产生足够的抗体来对抗体内的病毒，所以外源性的抗体补给在治疗过程中显得尤为重要。同时，干扰素，胸腺肽等生物制剂在抗病毒治疗过程中也起到积极的作用。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/21/b8da183f-1b7f-4371-9095-39c9c7e615b6.jpg', '');
 INSERT INTO `phs_case` VALUES (5, 1, '病例B', '德牧MAX，2月龄，雄性。该犬从外地购买，一周前运回、免疫一针，未驱虫。室内饲养，近日出现频繁的腹泻，颜色暗红，精神不振，食欲尚可。体温38.9℃，体重4.7kg，心率142次/min、呼吸32次/min。睑结膜潮红，听诊呼吸音粗粝，心音整齐。为了控制继发的呼吸道或胃肠道炎症，在未进行药敏实验的前提下，治疗的过程中需加入两种或两种以上的抗生素以增加抗菌谱，进而积极有效的控制炎症发展。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/703f2a74-92ab-4263-a041-b1916591a13a.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/1f5709f9-86bc-4ae2-afcb-d2b368c81d87.mp4');
 INSERT INTO `phs_case` VALUES (6, 1, 'test', 'test', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/0e8b0ddf-24f6-4ebf-a73c-b0b4293e17ba.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/39b90462-b1f1-4099-a4f7-6c3a3b79198a.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/81837017-b0c9-4c44-b0a7-3d029a2be037.jpg', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/b0093c0b-f878-4f96-bea1-3accd324d454.mp4');
 
@@ -49,12 +49,12 @@ CREATE TABLE `phs_disease`  (
   `image` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_disease
 -- ----------------------------
-INSERT INTO `phs_disease` VALUES (1, 1, '犬瘟热', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '犬热病一种犬科动物的疾病，根据国家农业部于2008年12月11日公布的动物疫病名录统计，犬瘟热属三类动物疫病，主要感染犬科动物，传染渠道主要是通过与病兽直接接触');
+INSERT INTO `phs_disease` VALUES (1, 1, '犬瘟热', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/21/951900ae-003f-417b-ad2a-951078a8e490.jpg', '犬热病一种犬科动物的疾病，根据国家农业部于2008年12月11日公布的动物疫病名录统计，犬瘟热属三类动物疫病，主要感染犬科动物，传染渠道主要是通过与病兽直接接触');
 INSERT INTO `phs_disease` VALUES (2, 3, '口炎', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '口炎是口腔黏膜的炎症，可波及颊黏膜、舌、齿龈、上腭等处。在小儿时期较多见，尤其是婴幼儿，可单纯发病也可继发于腹泻、营养不良、急性感染、久病体弱等全身性疾病时。引起口炎的主要有细菌、病毒及真菌');
 INSERT INTO `phs_disease` VALUES (3, 2, '蛔虫病', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '似蚓蛔线虫简称蛔虫，是人体内最常见的寄生虫之一。成虫寄生于小肠，可引起蛔虫病。此外，犬弓首线虫（简称犬蛔虫）是犬类常见的肠道寄生虫，其幼虫能在人体内移行，引起内脏幼虫移行症。');
 INSERT INTO `phs_disease` VALUES (4, 4, '脱毛症', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '脱毛症，又称秃毛症、无毛症或稀毛症，是指局部或全身被毛脱落的总称。该病的皮肤病变较轻，以脱毛为主要特征。脱毛症分为先天性和后天性两种。先天性见于遗传；后天性脱毛症多继发于全身性疾病。');
@@ -62,10 +62,8 @@ INSERT INTO `phs_disease` VALUES (5, 1, '犬细小病毒', 'http://pet-hospital-
 INSERT INTO `phs_disease` VALUES (6, 1, '犬传染性肝炎', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '犬传染性肝炎主要发生在1岁以内的幼犬，成年犬很少发生且多为隐性感染，即使发病也多能耐过。病犬和带毒犬是主要传染源。病犬的分泌物、排泄物均含有病毒，康复带毒犬可自尿中长时间排毒。');
 INSERT INTO `phs_disease` VALUES (7, 1, '犬冠状病毒', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '犬冠状病毒为单胜RNA病毒，有6～7种多肽，其中4种是糖肽，不含RNA聚合酶及神经氨酸酶。可使犬发生程度不同的胃肠炎症状，特征有频繁呕吐、腹泻、沉郁、厌食等症状。');
 INSERT INTO `phs_disease` VALUES (8, 3, '肠炎', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', 'update测试');
-INSERT INTO `phs_disease` VALUES (13, 1, '测试4', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '测试');
-INSERT INTO `phs_disease` VALUES (15, 1, '测试', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '测试');
-INSERT INTO `phs_disease` VALUES (16, 1, '测试1', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/15/3a4b44dc-8d64-40a9-98c7-b6e666a05f41.png', '测试');
 INSERT INTO `phs_disease` VALUES (20, 1, 'test', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/19/75d2b893-03c3-4cd3-aff3-a2d28b89a491.jpg&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/96dd3892-8cc0-42da-b1c3-0ac05b7fd6f1.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/20/a2c948e4-4226-44e3-9796-aa2a97fbaab0.png', 'test');
+INSERT INTO `phs_disease` VALUES (21, 1, 'test2', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/21/7774cb2e-0670-4889-919c-56761ef19902.png', 'test2');
 
 -- ----------------------------
 -- Table structure for phs_disease_kind
@@ -129,23 +127,24 @@ DROP TABLE IF EXISTS `phs_user`;
 CREATE TABLE `phs_user`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `password` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `password` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `role` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_user
 -- ----------------------------
-INSERT INTO `phs_user` VALUES (1, 'chris', '123', 1);
-INSERT INTO `phs_user` VALUES (2, 'liu', '234', 1);
-INSERT INTO `phs_user` VALUES (3, 'zhang', '456', 2);
-INSERT INTO `phs_user` VALUES (4, 'Sherry', 'qwe', 2);
-INSERT INTO `phs_user` VALUES (5, 'coco', 'qaz', 2);
-INSERT INTO `phs_user` VALUES (6, 'wang', '123', 2);
-INSERT INTO `phs_user` VALUES (7, 'chen', '123', 2);
-INSERT INTO `phs_user` VALUES (8, 'fu', '123', 2);
-INSERT INTO `phs_user` VALUES (9, 'jiang', '123', 2);
+INSERT INTO `phs_user` VALUES (1, 'chris', 'xQvE78Z90e/vh0+2ALXmzA==', 1);
+INSERT INTO `phs_user` VALUES (2, 'liu', 'zVknBgvQcYuXihYtR+U2og==', 1);
+INSERT INTO `phs_user` VALUES (3, 'zhang', 'XLk37pbszdp+wS1CFDCOgw==', 2);
+INSERT INTO `phs_user` VALUES (4, 'Sherry', 'zVknBgvQcYuXihYtR+U2og==', 2);
+INSERT INTO `phs_user` VALUES (5, 'coco', 'f6AWmcWW7raqa6C3yvbIyw==', 2);
+INSERT INTO `phs_user` VALUES (6, 'wang', 'xQvE78Z90e/vh0+2ALXmzA==', 2);
+INSERT INTO `phs_user` VALUES (7, 'chen', 'xQvE78Z90e/vh0+2ALXmzA==', 2);
+INSERT INTO `phs_user` VALUES (8, 'fu', 'xQvE78Z90e/vh0+2ALXmzA==', 2);
+INSERT INTO `phs_user` VALUES (9, 'jiang', 'xQvE78Z90e/vh0+2ALXmzA==', 2);
+INSERT INTO `phs_user` VALUES (10, 'test', 'FfolVLBcoZeXjW2GVpKwsg==', 2);
 
 -- ----------------------------
 -- Table structure for phs_work

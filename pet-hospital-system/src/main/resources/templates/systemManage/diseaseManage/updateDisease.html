@@ -1,7 +1,73 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>CaseStudy</title>
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/tabs.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/tabstyles.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" id="templatecss" type="text/css" href="../css/style.css"/>
+    <style>
+        .module-btn p {
+            width: 30%;
+        }
 
+        .codrops-header a {
+            border-bottom: 1px dashed;
+            padding-bottom: 0.3em;
+        }
+
+        section {
+            max-width: 100%;
+            min-height: 500px;
+            overflow: auto;
+        }
+
+        section p {
+            font-size: 1em;
+        }
+
+        .case-submenu > div {
+            float: left;
+            width: 18%;
+            height: 200px;
+            font-size: 1.2em;
+            text-align: center;
+            vertical-align: top;
+            padding: 0.5em;
+            margin: 1.5em;
+            border: 1px solid #553445;
+            border-radius: 1em 0 1em 0;
+        }
+
+        .case-submenu > div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column
+        }
+
+        .case-submenu > div:hover {
+            padding: 0.5em;
+            color: #67c2d4;
+            background: rgba(103, 194, 212, .2);
+            border: 1px dashed #67c2d4;
+            cursor: pointer;
+        }
+
+        .case-submenu > div > div {
+            display: flex;
+            justify-content: center;
+            font-size: 1.5rem;
+            /*padding: 1rem;*/
+        }
+
+
+    </style>
 </head>
 <body class="white-bg">
 <header class="codrops-header">
@@ -10,64 +76,76 @@
     <a href="../diseaseManage" style="text-align: center ">返回病种管理</a>
 </header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-    <form id="form-disease-add" action="/api/disease/add" method="POST" >
+    <form id="form-disease-add" action="/api/disease/add" method="POST" class="smart-green">
 
         <div class="form-group">
-            <label class="col-sm-4 control-label">病种类型：</label>
-            <div class="col-sm-8">
+            <label class="col-sm-3 control-label">病种类型：</label>
+            <div class="col-sm-8" style="text-align: left">
                 <select id="kind" class="form-control select2-multiple">
-                    <option th:name="kindId" th:each="diseaseKind:${diseaseKinds}" th:value="${diseaseKind.id}" th:text="${diseaseKind.kindName}" th:selected="${diseaseKind.flag}"></option>
+                    <option th:name="kindId" th:each="diseaseKind:${diseaseKinds}" th:value="${diseaseKind.id}"
+                            th:text="${diseaseKind.kindName}" th:selected="${diseaseKind.flag}"></option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">病种名称：</label>
             <div class="col-sm-8">
-                <input class="form-control" id="name" name="name" type="text" placeholder="请输入病种名称" th:field="*{disease.name}"/>
+                <input class="form-control" id="name" name="name" type="text" placeholder="请输入病种名称"
+                       th:field="*{disease.name}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">病种描述：</label>
             <div class="col-sm-8">
-                <input class="form-control" id="description" name="description" type="text" placeholder="请输入病种描述" th:field="*{disease.description}"/>
+                <textarea class="form-control" id="description" name="description" type="text" placeholder="请输入病种描述"
+                          th:value="*{disease.description}"></textarea>
             </div>
         </div>
-        <div>
+        <div class="col-sm-3">
             <br>
-            <p >
-                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" th:src="${#arrays.length(imgUrls) >= 1?imgUrls[0]:''}"/>
+            <p>
+                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1"
+                     th:src="${#arrays.length(imgUrls) >= 1?imgUrls[0]:''}"/>
             </p>
             </br>
-            <form id="f1">
-                <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
-            </form>
-            <button type="button" onclick="delete1()">删除图片</button>
+
+            <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple"
+                   style="display: none"/>
+
+            <button type="button" onclick="delete1()" id="d1" th:style="${#arrays.length(imgUrls) >= 1?'display:block;':'display:none;'}">删除图片</button>
         </div>
-        <div>
+        <div class="col-sm-3">
             <br>
-            <p >
-                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" th:src="${#arrays.length(imgUrls) >= 2?imgUrls[1]:''}" />
+            <p>
+                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2"
+                     th:src="${#arrays.length(imgUrls) >= 2?imgUrls[1]:''}"/>
             </p>
             </br>
-            <form id="f2">
-                <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
-            </form>
-            <button type="button" onclick="delete2()">删除图片</button>
+
+            <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple"
+                   style="display: none"/>
+
+            <button type="button" onclick="delete2()" id="d2" th:style="${#arrays.length(imgUrls) >=2?'display:block;':'display:none;'}">删除图片</button>
         </div>
-        <div>
+        <div class="col-sm-3">
             <br>
-            <p >
-                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" th:src="${#arrays.length(imgUrls) >= 3?imgUrls[2]:''}" />
+            <p>
+                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3"
+                     th:src="${#arrays.length(imgUrls) >= 3?imgUrls[2]:''}"/>
             </p>
             </br>
-            <form id="f3">
-                <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
-            </form>
-            <button type="button" onclick="delete3()">删除图片</button>
+
+            <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple"
+                   style="display: none"/>
+
+            <button type="button" onclick="delete3()" id="d3" th:style="${#arrays.length(imgUrls) >=3?'display:block;':'display:none;'}">删除图片</button>
         </div>
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
-                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
+                <button type="button" class="btn btn-lg btn-primary" onclick="submitHandler()"
+                        style="margin-top: 100px"><i
+                        class="fa fa-check"></i>保 存
+                </button>&nbsp;
             </div>
         </div>
     </form>
@@ -83,44 +161,44 @@
         fd.append("name", $("#name").val())
         fd.append("description", $("#description").val())
         console.log(fd);
-        var myselect=document.getElementById("kind");
-        var index=myselect.selectedIndex ;
+        var myselect = document.getElementById("kind");
+        var index = myselect.selectedIndex;
         var diseaseKind = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
         fd.append("kindId", diseaseKind);
         var img1 = document.getElementById("img1").files;
         var img2 = document.getElementById("img2").files;
         var img3 = document.getElementById("img3").files;
-        if(img1[0]){
+        if (img1[0]) {
             fd.append("imgs", img1[0]);
-        }else{
+        } else {
             fd.append("imgUrlArr", document.getElementById("picture1").getAttribute("src"));
         }
-        if(img2[0]) {
+        if (img2[0]) {
             fd.append("imgs", img2[0]);
-        }else{
+        } else {
             fd.append("imgUrlArr", document.getElementById("picture2").getAttribute("src"));
         }
-        if(img3[0]) {
+        if (img3[0]) {
             fd.append("imgs", img3[0]);
-        }else{
+        } else {
             fd.append("imgUrlArr", document.getElementById("picture3").getAttribute("src"));
         }
         fd.append("imgUrlArr", "");
         $.ajax({
             //几个参数需要注意一下
-            contentType : false,
+            contentType: false,
             type: "POST",//方法类型
             processData: false,
             // dataType: "multipart/form-data",//预期服务器返回的数据类型
-            url: "/api/disease/update" ,//url
-            data:fd,
-            statusCode : {
-                200: function(result){
+            url: "/api/disease/update",//url
+            data: fd,
+            statusCode: {
+                200: function (result) {
                     alert(result);
                     window.location.href = "../diseaseManage";
                 },
-                400: function(result){
+                400: function (result) {
                     alert(result.responseText);
                     window.location.href = "../diseaseManage";
                 }
@@ -134,7 +212,8 @@
         var reader = new FileReader();
         reader.onload = (function (file) {
             return function (e) {
-                $('.picture1').attr('src',this.result);
+                $('.picture1').attr('src', this.result);
+                document.getElementById("d1").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -150,7 +229,8 @@
         var reader = new FileReader();
         reader.onload = (function (file) {
             return function (e) {
-                $('.picture2').attr('src',this.result);
+                $('.picture2').attr('src', this.result);
+                document.getElementById("d2").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -166,7 +246,8 @@
         var reader = new FileReader();
         reader.onload = (function (file) {
             return function (e) {
-                $('.picture3').attr('src',this.result);
+                $('.picture3').attr('src', this.result);
+                document.getElementById("d3").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -177,20 +258,42 @@
     });
 
     function delete1() {
-        document.getElementById("img1").value="";
+        document.getElementById("img1").value = "";
         document.getElementById("picture1").setAttribute("src", "");
+        document.getElementById("d1").setAttribute("style", "display:none;");
     }
 
     function delete2() {
-        document.getElementById("img2").value="";
+        document.getElementById("img2").value = "";
         document.getElementById("picture2").setAttribute("src", "");
+        document.getElementById("d2").setAttribute("style", "display:none;");
     }
 
     function delete3() {
-        document.getElementById("img3").value="";
+        document.getElementById("img3").value = "";
         document.getElementById("picture3").setAttribute("src", "");
+        document.getElementById("d3").setAttribute("style", "display:none;");
     }
 
+</script>
+<script type="text/javascript" src="../js/modernizr.custom.js"></script>
+<script type="text/javascript" src="../js/canvas-particle.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var config = {
+            vx: 4,
+            vy: 4,
+            height: 3,
+            width: 3,
+            count: 150,
+            color: "121, 162, 185",
+            stroke: "100,200,180",
+            dist: 6000,
+            e_dist: 20000,
+            max_conn: 10
+        }
+        CanvasParticle(config);
+    }
 </script>
 </body>
 </html>

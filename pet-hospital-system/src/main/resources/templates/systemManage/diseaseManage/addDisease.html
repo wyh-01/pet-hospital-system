@@ -100,43 +100,43 @@
                           placeholder="请输入文本"></textarea>
             </div>
         </div>
-        <div>
+        <div class="col-sm-3">
             <br>
-            <p >
-                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" />
+            <p>
+                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;"
+                     alt="点击选择新图片1"/>
             </p>
             </br>
-            <form id="f1">
-                <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
-            </form>
-            <button type="button" onclick="delete1()">删除图片</button>
+            <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple"
+                   style="display: none" />
+            <button type="button" onclick="delete1()" id="d1" style="display:none;">删除图片</button>
         </div>
-        <div>
+        <div class="col-sm-3">
             <br>
-            <p >
-                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" />
+            <p>
+                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;"
+                     alt="点击选择新图片2"/>
             </p>
             </br>
-            <form id="f2">
-                <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
-            </form>
-            <button type="button" onclick="delete2()">删除图片</button>
+            <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple"
+                   style="display: none"/>
+            <button type="button" onclick="delete2()" id="d2" style="display:none;">删除图片</button>
         </div>
-        <div>
+        <div class="col-sm-3">
             <br>
-            <p >
-                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" />
+            <p>
+                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;"
+                     alt="点击选择新图片3"/>
             </p>
             </br>
-            <form id="f3">
-                <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
-            </form>
-            <button type="button" onclick="delete3()">删除图片</button>
+            <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple"
+                   style="display: none"/>
+            <button type="button" onclick="delete3()" id="d3" style="display:none;">删除图片</button>
         </div>
 
         <div class="row">
             <div class="col-sm-offset-5 col-sm-10">
-                <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i
+                <button type="button" class="btn btn-lg btn-primary" onclick="submitHandler()" style="margin-top: 100px"><i
                         class="fa fa-check"></i>保 存
                 </button>&nbsp;
             </div>
@@ -160,13 +160,13 @@
         var img1 = document.getElementById("img1").files;
         var img2 = document.getElementById("img2").files;
         var img3 = document.getElementById("img3").files;
-        if(img1[0]){
+        if (img1[0]) {
             fd.append("files", img1[0]);
         }
-        if(img2[0]) {
+        if (img2[0]) {
             fd.append("files", img2[0]);
         }
-        if(img3[0]) {
+        if (img3[0]) {
             fd.append("files", img3[0]);
         }
         $.ajax({
@@ -196,7 +196,8 @@
         var reader = new FileReader();
         reader.onload = (function (file) {
             return function (e) {
-                $('.picture1').attr('src',this.result);
+                $('.picture1').attr('src', this.result);
+                document.getElementById("d1").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -212,7 +213,8 @@
         var reader = new FileReader();
         reader.onload = (function (file) {
             return function (e) {
-                $('.picture2').attr('src',this.result);
+                $('.picture2').attr('src', this.result);
+                document.getElementById("d2").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -228,7 +230,8 @@
         var reader = new FileReader();
         reader.onload = (function (file) {
             return function (e) {
-                $('.picture3').attr('src',this.result);
+                $('.picture3').attr('src', this.result);
+                document.getElementById("d3").setAttribute("style", "display:block;");
             };
         })(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
@@ -239,20 +242,22 @@
     });
 
     function delete1() {
-        document.getElementById("img1").value="";
+        document.getElementById("img1").value = "";
         document.getElementById("picture1").setAttribute("src", "");
+        document.getElementById("d1").setAttribute("style", "display:none;");
     }
 
     function delete2() {
-        document.getElementById("img2").value="";
+        document.getElementById("img2").value = "";
         document.getElementById("picture2").setAttribute("src", "");
+        document.getElementById("d2").setAttribute("style", "display:none;");
     }
 
     function delete3() {
-        document.getElementById("img3").value="";
+        document.getElementById("img3").value = "";
         document.getElementById("picture3").setAttribute("src", "");
+        document.getElementById("d3").setAttribute("style", "display:none;");
     }
-
 
 
 </script>

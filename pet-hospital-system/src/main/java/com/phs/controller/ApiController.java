@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -47,9 +48,22 @@ public class ApiController {
     private CaseMapper caseMapper;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity login(String userName, String password){
-        return userService.getVerifyResult(userName,password);
+    public ResponseEntity login(String userName, String password, HttpServletRequest request){
+        return userService.getVerifyResult(userName,password, request);
     }
+
+    /**
+     * 登出
+     */
+    @RequestMapping(value = "/logout")
+    public ResponseEntity logout(HttpServletRequest request)
+    {
+        //销毁session对象
+        request.getSession().invalidate();
+
+        return new ResponseEntity("登出成功", HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/signup", method =  RequestMethod.POST)
     public ResponseEntity signup(String userName, String password){

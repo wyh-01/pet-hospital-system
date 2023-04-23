@@ -10,6 +10,12 @@
         <result column="role" property="role"/>
     </resultMap>
 
+    <select id = "getUserByUserName" resultMap="UserVo">
+        select *
+        from phs_user
+        where user_name=#{userName}
+    </select>
+
     <select id = "getAllUser" resultMap="UserVo">
         select *
         from phs_user

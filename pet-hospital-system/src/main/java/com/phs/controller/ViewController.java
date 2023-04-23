@@ -3,14 +3,17 @@ package com.phs.controller;
 import com.phs.entity.CaseEntity;
 import com.phs.entity.DiseaseEntity;
 import com.phs.entity.DiseaseKindEntity;
+import com.phs.entity.UserEntity;
 import com.phs.mapper.CaseMapper;
 import com.phs.mapper.DiseaseMapper;
+import com.phs.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -26,11 +29,15 @@ public class ViewController {
     @Autowired
     CaseMapper caseMapper;
 
+    @Autowired
+    UserMapper userMapper;
 
-    @RequestMapping("/")
+
+    @RequestMapping("/login")
     public String login(){
         return "login";
     }
+
 
     @RequestMapping("/signup")
     public String signUp(){
@@ -38,7 +45,10 @@ public class ViewController {
     }
 
     @RequestMapping("/index")
-    public String index(){
+    public String index(ModelMap modelMap, HttpServletRequest request){
+        String userName = request.getSession().getAttribute("userName").toString();
+        UserEntity userEntity = userMapper.getUserByUserName(userName);
+        modelMap.put("user", userEntity);
         return "index";
     }
 
@@ -67,24 +77,6 @@ public class ViewController {
         List<DiseaseKindEntity> diseaseKinds = diseaseMapper.getAllDiseaseKind();
         modelMap.put("diseaseKinds", diseaseKinds);
         return "systemManage/diseaseManage/addDisease";
-    }
-
-    @RequestMapping("/test/{id}")
-    public String test(@PathVariable("id") int id, ModelMap modelMap){
-        List<DiseaseEntity> diseases = diseaseMapper.getAllDisease();
-        CaseEntity caseEntity = caseMapper.getCaseByCaseId(id);
-        DiseaseEntity disease = diseaseMapper.getDiseaseById(caseEntity.getDisease_id());
-        for(DiseaseEntity d : diseases){
-            if(d.getId() == disease.getId()){
-                d.setFlag(true);
-                break;
-            }
-        }
-        String[] imgUrls = caseEntity.getImage_list().split("&&");
-        modelMap.put("diseases", diseases);
-        modelMap.put("case", caseEntity);
-        modelMap.put("imgUrls", imgUrls);
-        return "systemManage/diseaseManage/test";
     }
 
     @RequestMapping("/updateDisease/{id}")

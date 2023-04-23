@@ -15,4 +15,6 @@ public interface UserMapper {
 
     void insertUser(UserEntity user);
 
+    UserEntity getUserByUserName(String userName);
+
 }

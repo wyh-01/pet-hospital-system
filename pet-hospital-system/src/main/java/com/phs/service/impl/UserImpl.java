@@ -9,7 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import com.phs.utils.JasyptUtil;
+
 
 /**
  * Created by wyh on 2023/3/23
@@ -21,9 +24,12 @@ public class UserImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public ResponseEntity getVerifyResult(String userName, String password){
+    public ResponseEntity getVerifyResult(String userName, String password, HttpServletRequest request){
         if(isNotBlank(userName) && checkUserNameExist(userName)){
             if(isNotBlank(password) && verifyPassword(userName, password)){
+                //验证成功，记录Session信息
+                request.getSession().setAttribute("userName", userName);
+                request.getSession().setAttribute("role", userMapper.getUserByUserName(userName).getRole());
                 return new ResponseEntity("登录成功", HttpStatus.OK);
             }
             else{
@@ -40,6 +46,7 @@ public class UserImpl implements UserService {
         if(isNotBlank(userName)){
             if(!checkUserNameExist(userName)) {
                 if (isNotBlank(password)) {
+                    password = JasyptUtil.encyptPwd("phs", password);
                     userMapper.insertUser(new UserEntity(userName, password, 2));
                     return new ResponseEntity("注册成功", HttpStatus.OK);
                 } else {
@@ -69,7 +76,7 @@ public class UserImpl implements UserService {
         boolean flag = false;
         for(UserEntity user:users){
             if(user.getUserName().equals(userName)){
-                if(user.getPassword().equals(password)){
+                if(JasyptUtil.decyptPwd("phs", user.getPassword()).equals(password)){
                     flag = true;
                     break;
                 }

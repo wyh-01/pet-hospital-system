@@ -52,10 +52,10 @@ updateDisease.delete = function (id){
         data:fd,
         statusCode : {
             200: function(){
-                window.location.href = "../diseaseChoose";
+                window.location.href = "../diseaseManage";
             },
             400: function(){
-                window.location.href = "../diseaseChoose";
+                window.location.href = "../diseaseManage";
             }
         }
     });
