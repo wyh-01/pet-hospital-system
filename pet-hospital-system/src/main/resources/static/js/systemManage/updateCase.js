@@ -57,10 +57,12 @@ updateCase.delete = function (caseId, diseaseId){
         url: "/api/caseManage/caseDelete" ,//url
         data:fd,
         statusCode : {
-            200: function(){
+            200: function(result){
+                alert(result);
                 window.location.href = "../caseManage/" + diseaseId;
             },
-            400: function(){
+            400: function(result){
+                alert(result.responseText);
                 window.location.href = "../caseManage/" + diseaseId;
             }
         }

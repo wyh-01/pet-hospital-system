@@ -51,10 +51,12 @@ updateDisease.delete = function (id){
         url: "/api/disease/delete" ,//url
         data:fd,
         statusCode : {
-            200: function(){
+            200: function(result){
+                alert(result);
                 window.location.href = "../diseaseManage";
             },
-            400: function(){
+            400: function(result){
+                alert(result.responseText);
                 window.location.href = "../diseaseManage";
             }
         }
