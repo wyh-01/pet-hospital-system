@@ -12,7 +12,6 @@ updateWork.generateWork = function (res) {
         for(var i=0;i<res.length;i++){
             html =  html +
                 "<li> " +
-                "<a href='../html/map/3Dmap.html'>进入科室</a> " +
                 "<p>" + res[i].name + "</p> " +
                 "<div> <button onclick=\"updateWork.update(" + res[i].id + ")\" type=\"button\" class=\"btn btn-primary btn-xs\">编辑</button>" +
                 "<button onclick=\"updateWork.delete(" + res[i].id +"," + res[i].job_id + ")\" type=\"button\" class=\"btn btn-danger btn-xs\">删除</button></div>" +
