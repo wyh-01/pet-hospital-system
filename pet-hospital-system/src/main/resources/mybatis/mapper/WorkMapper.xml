@@ -18,4 +18,43 @@
         where job_id=#{job_id}
     </select>
 
+    <select id = "getWorkById" resultMap="RM_WorkVo">
+        select *
+        from phs_work
+        where id=#{id}
+    </select>
+
+    <insert id="insertWork" parameterType="WorkEntity">
+        insert into phs_work(
+            job_id,
+            name,
+            description,
+            room,
+            video_url
+        )values (
+                    #{job_id},
+                    #{name},
+                    #{description},
+                    #{room},
+                    #{video_url}
+                )
+    </insert>
+    
+    <delete id="deleteWork" parameterType="int">
+        delete from phs_work
+        where id = #{id}
+    </delete>
+
+    <update id="updateWork" parameterType="WorkEntity">
+        update phs_work
+        <set>
+            job_id = #{job_id},
+            name = #{name},
+            description = #{description},
+            room = #{room},
+            video_url = #{video_url}
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>

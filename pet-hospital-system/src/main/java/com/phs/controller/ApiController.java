@@ -137,9 +137,64 @@ public class ApiController {
         return quizService.getRandomQuiz(diseaseId);
     }
 
+
+
     @RequestMapping(value = "/work/detail", method = RequestMethod.POST)
     public List<WorkEntity> getWork(Integer jobId){
         return workService.getWorksByJobId(jobId);
+    }
+
+    @RequestMapping(value = "/work/add", method = RequestMethod.POST)
+    public ResponseEntity addWork(WorkEntity workEntity, @RequestParam("videos") MultipartFile[] videos){
+        StringBuffer videoUrls = new StringBuffer("");
+        if(!isEmpty(videos)) {
+            int count = 0;
+            for (MultipartFile video : videos) {
+                if(count > 0){
+                    videoUrls.append("&&");
+                }
+                videoUrls.append(fileUploadService.upload(video));
+                count++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为视频文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        workEntity.setVideo_url(videoUrls.toString());
+        return workService.addWork(workEntity);
+    }
+
+    @RequestMapping(value = "/work/delete", method = RequestMethod.POST)
+    public ResponseEntity deleteWork(int id){
+        return workService.deleteWork(id);
+    }
+
+    @RequestMapping(value = "/work/update", method = RequestMethod.POST)
+    public ResponseEntity updatewORK(WorkEntity workEntity,  @RequestParam("videos") MultipartFile[] videos,
+                                     @RequestParam("videoUrlArr") String[] videoUrlArr){
+        StringBuffer videoUrls = new StringBuffer("");
+        int videoCount = 0;
+        for(String  videoUrl : videoUrlArr) {
+            if (!"".equals(videoUrl)) {
+                if(videoCount > 0){
+                    videoUrls.append("&&");
+                }
+                videoUrls.append(videoUrl);
+                videoCount++;
+            }
+        }
+        if(!isEmpty(videos)) {
+            for (MultipartFile video : videos) {
+                if(videoCount > 0){
+                    videoUrls.append("&&");
+                }
+                videoUrls.append(fileUploadService.upload(video));
+                videoCount++;
+            }
+        }else{
+            return new ResponseEntity("上传失败，因为视频文件是空的.", HttpStatus.BAD_REQUEST);
+        }
+        workEntity.setVideo_url(videoUrls.toString());
+        return workService.updateWork(workEntity);
     }
 
     @RequestMapping(value = "/caseManage/caseAdd", method = RequestMethod.POST)
@@ -162,7 +217,7 @@ public class ApiController {
             int count = 0;
             for (MultipartFile video : videos) {
                 if(count > 0){
-                    imgUrls.append("&&");
+                    videoUrls.append("&&");
                 }
                 videoUrls.append(fileUploadService.upload(video));
                 count++;
@@ -219,7 +274,7 @@ public class ApiController {
         if(!isEmpty(videos)) {
             for (MultipartFile video : videos) {
                 if(videoCount > 0){
-                    imgUrls.append("&&");
+                    videoUrls.append("&&");
                 }
                 videoUrls.append(fileUploadService.upload(video));
                 videoCount++;

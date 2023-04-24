@@ -1,12 +1,10 @@
 package com.phs.controller;
 
-import com.phs.entity.CaseEntity;
-import com.phs.entity.DiseaseEntity;
-import com.phs.entity.DiseaseKindEntity;
-import com.phs.entity.UserEntity;
+import com.phs.entity.*;
 import com.phs.mapper.CaseMapper;
 import com.phs.mapper.DiseaseMapper;
 import com.phs.mapper.UserMapper;
+import com.phs.mapper.WorkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +30,9 @@ public class ViewController {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    WorkMapper workMapper;
 
 
     @RequestMapping("/login")
@@ -96,6 +98,57 @@ public class ViewController {
         modelMap.put("imgUrls", imgUrls);
         return "systemManage/diseaseManage/updateDisease";
     }
+
+    @RequestMapping("/workChoose")
+    public String workChoose(){
+        return "systemManage/workManage/roleChoose";
+    }
+
+    @RequestMapping("/workManage/doctor")
+    public String doctorManage(){
+        return "systemManage/workManage/doctor";
+    }
+
+    @RequestMapping("/workManage/assistant")
+    public String assistantManage(){
+        return "systemManage/workManage/assistant";
+    }
+
+    @RequestMapping("/workManage/receptionist")
+    public String receptionistManage(){
+        return "systemManage/workManage/receptionist";
+    }
+
+
+    @RequestMapping("/addWork")
+    public String addWork(ModelMap modelMap){
+        List<JobEntity> jobs = new ArrayList<JobEntity>();
+        jobs.add(new JobEntity(1, "医师"));
+        jobs.add(new JobEntity(2, "助理"));
+        jobs.add(new JobEntity(3, "前台"));
+        modelMap.put("jobs", jobs);
+        return "systemManage/workManage/addWork";
+    }
+
+    @RequestMapping("/updateWork/{id}")
+    public String updateWork(@PathVariable("id") int id,ModelMap modelMap){
+        WorkEntity workEntity = workMapper.getWorkById(id);
+        List<JobEntity> jobs = new ArrayList<JobEntity>();
+        jobs.add(new JobEntity(1, "医师"));
+        jobs.add(new JobEntity(2, "助理"));
+        jobs.add(new JobEntity(3, "前台"));
+        for(JobEntity jobEntity : jobs){
+            if(jobEntity.getId() == workEntity.getJob_id()){
+                jobEntity.setFlag(true);
+                break;
+            }
+        }
+        modelMap.put("jobs", jobs);
+        modelMap.put("work", workEntity);
+        return "systemManage/workManage/updateWork";
+    }
+
+
 
     @RequestMapping("/caseManage/{id}")
     public String caseManage(){

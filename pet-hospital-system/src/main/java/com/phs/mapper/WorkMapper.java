@@ -11,4 +11,12 @@ public interface WorkMapper {
 
     List<WorkEntity> getWorkByJobId(int jobId);
 
+    WorkEntity getWorkById(int id);
+
+    void insertWork(WorkEntity workEntity);
+
+    void deleteWork(int id);
+
+    void updateWork(WorkEntity workEntity);
+
 }

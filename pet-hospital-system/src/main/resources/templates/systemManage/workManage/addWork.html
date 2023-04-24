@@ -72,67 +72,40 @@
 </head>
 <body class="white-bg">
 <header class="codrops-header">
-    <h1>新增病例</h1>
-    <p>Add Case</p>
-    <a href="../caseManageChoose"  style="text-align: center ">返回病例管理</a>
+    <h1>新增工作流程</h1>
+    <p>Add Work</p>
+    <a href="../workChoose"  style="text-align: center ">返回角色扮演管理</a>
 </header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-    <form id="form-disease-add" action="/api/disease/add" method="POST" class="smart-green">
+    <form id="form-disease-add"  method="POST" class="smart-green">
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">病种类型：</label>
+            <label class="col-sm-3 control-label">角色：</label>
             <div class="col-sm-8" style="text-align: left">
-                <select id="disease" class="form-control select2-multiple">
-                    <option th:name="disease" th:each="disease:${diseases}" th:value="${disease.id}"
-                            th:text="${disease.name}"></option>
+                <select id="job" class="form-control select2-multiple">
+                    <option th:name="job" th:each="job:${jobs}" th:value="${job.id}"
+                            th:text="${job.name}"></option>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">病例名称：</label>
+            <label class="col-sm-3 control-label">工作流程名称：</label>
             <div class="col-sm-8">
-                <textarea type="text" id="name" name="name" class="form-control" placeholder="请输入病例名称"></textarea>
+                <textarea type="text" id="name" name="name" class="form-control" placeholder="请输入工作流程名称"></textarea>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">病例描述：</label>
+            <label class="col-sm-3 control-label">工作流程描述：</label>
             <div class="col-sm-8">
                 <textarea type="text" id="description" name="description" class="form-control"
-                          placeholder="请输入病例描述"></textarea>
+                          placeholder="请输入工作流程描述"></textarea>
             </div>
         </div>
-        <div class="col-sm-3">
-            <br>
-            <p >
-                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" />
-            </p>
-            </br>
-
-                <input type="file" name="files" onchange="imgChange1(event)" id="img1" multiple="multiple" style="display: none"/>
-
-            <button type="button" onclick="delete1()" id="d1" style="display:none;">删除图片</button>
-        </div>
-        <div class="col-sm-3">
-            <br>
-            <p >
-                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" />
-            </p>
-            </br>
-
-                <input type="file" name="files" onchange="imgChange2(event)" id="img2" multiple="multiple" style="display: none"/>
-
-            <button type="button" onclick="delete2()" id="d2" style="display:none;">删除图片</button>
-        </div>
-        <div class="col-sm-3">
-            <br>
-            <p >
-                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" />
-            </p>
-            </br>
-
-                <input type="file" name="files" onchange="imgChange3(event)" id="img3" multiple="multiple" style="display: none"/>
-
-            <button type="button" onclick="delete3()" id="d3" style="display:none;">删除图片</button>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">工作地点：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="room" name="room" class="form-control" placeholder="请输入工作地点"></textarea>
+            </div>
         </div>
         <div class="col-sm-3">
             <br>
@@ -164,25 +137,14 @@
         // var data = $("#form-disease-add").serializeArray();
         var fd = new FormData();
         fd.append("name", $("#name").val())
-        fd.append("description", $("#description").val())
+        fd.append("description", $("#description").val());
+        fd.append("room", $("#room").val());
         console.log(fd);
-        var myselect = document.getElementById("disease");
+        var myselect = document.getElementById("job");
         var index = myselect.selectedIndex;
-        var disease = myselect.options[index].value;
+        var job = myselect.options[index].value;
         // data.push({"name": "kindId", "value": diseaseKind});
-        fd.append("disease_id", disease);
-        var img1 = document.getElementById("img1").files;
-        var img2 = document.getElementById("img2").files;
-        var img3 = document.getElementById("img3").files;
-        if(img1[0]){
-            fd.append("imgs", img1[0]);
-        }
-        if(img2[0]) {
-            fd.append("imgs", img2[0]);
-        }
-        if(img3[0]) {
-            fd.append("imgs", img3[0]);
-        }
+        fd.append("job_id", job);
         var videos = document.getElementById("videos").files;
         for (var j in videos) {
             fd.append("videos", videos[j]);
@@ -195,16 +157,16 @@
             type: "POST",//方法类型
             processData: false,
             // dataType: "multipart/form-data",//预期服务器返回的数据类型
-            url: "/api/caseManage/caseAdd",//url
+            url: "/api//work/add",//url
             data: fd,
             statusCode: {
                 200: function (result) {
                     alert(result);
-                    window.location.href = "../caseManage/" + disease;
+                    window.location.href = "../workChoose";
                 },
                 400: function (result) {
                     alert(result.responseText);
-                    window.location.href = "../caseManage/" + disease;
+                    window.location.href = "../workChoose";
                 }
             }
         });
@@ -216,57 +178,6 @@
         var disease = myselect.options[index].value;
         window.location.href = "../caseManage/" + disease;
     }
-
-    function imgChange1(e) {
-        console.info(e.target.files[0]);//图片文件
-        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
-        var reader = new FileReader();
-        reader.onload = (function (file) {
-            return function (e) {
-                $('.picture1').attr('src',this.result);
-                document.getElementById("d1").setAttribute("style", "display:block;");
-            };
-        })(e.target.files[0]);
-        reader.readAsDataURL(e.target.files[0]);
-    }
-
-    $('.picture1').click(function () {
-        $("#img1").click();
-    });
-
-    function imgChange2(e) {
-        console.info(e.target.files[0]);//图片文件
-        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
-        var reader = new FileReader();
-        reader.onload = (function (file) {
-            return function (e) {
-                $('.picture2').attr('src',this.result);
-                document.getElementById("d2").setAttribute("style", "display:block;");
-            };
-        })(e.target.files[0]);
-        reader.readAsDataURL(e.target.files[0]);
-    }
-
-    $('.picture2').click(function () {
-        $("#img2").click();
-    });
-
-    function imgChange3(e) {
-        console.info(e.target.files[0]);//图片文件
-        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
-        var reader = new FileReader();
-        reader.onload = (function (file) {
-            return function (e) {
-                $('.picture3').attr('src',this.result);
-                document.getElementById("d3").setAttribute("style", "display:block;");
-            };
-        })(e.target.files[0]);
-        reader.readAsDataURL(e.target.files[0]);
-    }
-
-    $('.picture3').click(function () {
-        $("#img3").click();
-    });
 
     function imgChange4(e) {
         console.info(e.target.files[0]);//视频文件
@@ -285,23 +196,6 @@
         $("#videos").click();
     });
 
-    function delete1() {
-        document.getElementById("img1").value="";
-        document.getElementById("picture1").setAttribute("src", "");
-        document.getElementById("d1").setAttribute("style", "display:none;");
-    }
-
-    function delete2() {
-        document.getElementById("img2").value="";
-        document.getElementById("picture2").setAttribute("src", "");
-        document.getElementById("d2").setAttribute("style", "display:none;");
-    }
-
-    function delete3() {
-        document.getElementById("img3").value="";
-        document.getElementById("picture3").setAttribute("src", "");
-        document.getElementById("d3").setAttribute("style", "display:none;");
-    }
 
     function delete4() {
         document.getElementById("videos").value="";
