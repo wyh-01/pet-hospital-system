@@ -13,8 +13,8 @@ work.generateWork = function (res) {
             html =  html +
                 "<li> " +
                 "<a href='../html/map/3Dmap.html'>进入科室</a> " +
-                "<p>" + res[i].name + "</p> " +
-                "<p>" + res[i].description + "</p>" +
+                "<div style='font-size: 1.5em;'>" + res[i].name + "</div> " +
+                "<div style='font-size: 1.5em; margin-top: 30px'>" + res[i].description + "</div>" +
                 "<video width=\"960\" height=\"600\" controls=\"autoplay\">" +
                 "<source src=\"" + res[i].video_url +
                 "\" type=\"video/mp4\"/> </video>" +

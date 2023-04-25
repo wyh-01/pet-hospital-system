@@ -101,10 +101,10 @@
                           placeholder="请输入病例描述"></textarea>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <br>
             <p >
-                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1" />
+                <img id="picture1" class="picture1" style="width: 200px;height: 200px;object-fit: cover;" alt="点击选择新图片1" />
             </p>
             </br>
 
@@ -112,10 +112,10 @@
 
             <button type="button" onclick="delete1()" id="d1" style="display:none;">删除图片</button>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <br>
             <p >
-                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2" />
+                <img id="picture2" class="picture2" style="width: 200px;height: 200px;object-fit: cover;" alt="点击选择新图片2" />
             </p>
             </br>
 
@@ -123,10 +123,10 @@
 
             <button type="button" onclick="delete2()" id="d2" style="display:none;">删除图片</button>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <br>
             <p >
-                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3" />
+                <img id="picture3" class="picture3" style="width: 200px;height: 200px;object-fit: cover;" alt="点击选择新图片3" />
             </p>
             </br>
 
@@ -134,10 +134,10 @@
 
             <button type="button" onclick="delete3()" id="d3" style="display:none;">删除图片</button>
         </div>
-        <div class="col-sm-3">
+        <div>
             <br>
             <p >
-                <video id="video1" class="videos" width="320" height="240" controls="autoplay" >
+                <video style="margin-top: 50px" id="video1" class="videos" width="600" height="400" controls="autoplay" >
                     <source class="videos" type="video/mp4" />
                 </video>
             </p>
@@ -147,15 +147,14 @@
 
             <button type="button" onclick="delete4()" id="d4" style="display:none;">删除视频</button>
         </div>
-    </form>
-
-    <div class="row">
-        <div class="col-sm-offset-5 col-sm-10">
-            <button type="button" class="btn btn-lg btn-primary" onclick="submitHandler()"><i
-                    class="fa fa-check"></i>保 存
-            </button>&nbsp;
+        <div class="row">
+            <div class="col-sm-offset-5 col-sm-10">
+                <button type="button" class="btn btn-lg btn-primary" style="margin-top: 100px" onclick="submitHandler()"><i
+                        class="fa fa-check"></i>保 存
+                </button>&nbsp;
+            </div>
         </div>
-    </div>
+    </form>
 
 </div>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>

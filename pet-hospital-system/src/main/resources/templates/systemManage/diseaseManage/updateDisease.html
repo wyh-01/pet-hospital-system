@@ -101,10 +101,10 @@
                           th:value="*{disease.description}"></textarea>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <br>
             <p>
-                <img id="picture1" class="picture1" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片1"
+                <img id="picture1" class="picture1" style="width: 200px;height: 200px;object-fit: cover;" alt="点击选择新图片1"
                      th:src="${#arrays.length(imgUrls) >= 1?imgUrls[0]:''}"/>
             </p>
             </br>
@@ -114,10 +114,10 @@
 
             <button type="button" onclick="delete1()" id="d1" th:style="${#arrays.length(imgUrls) >= 1?'display:block;':'display:none;'}">删除图片</button>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <br>
             <p>
-                <img id="picture2" class="picture2" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片2"
+                <img id="picture2" class="picture2" style="width: 200px;height: 200px;object-fit: cover;" alt="点击选择新图片2"
                      th:src="${#arrays.length(imgUrls) >= 2?imgUrls[1]:''}"/>
             </p>
             </br>
@@ -127,10 +127,10 @@
 
             <button type="button" onclick="delete2()" id="d2" th:style="${#arrays.length(imgUrls) >=2?'display:block;':'display:none;'}">删除图片</button>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <br>
             <p>
-                <img id="picture3" class="picture3" style="width: 100px;height: 100px;object-fit: cover;" alt="点击选择新图片3"
+                <img id="picture3" class="picture3" style="width: 200px;height: 200px;object-fit: cover;" alt="点击选择新图片3"
                      th:src="${#arrays.length(imgUrls) >= 3?imgUrls[2]:''}"/>
             </p>
             </br>
