@@ -137,7 +137,25 @@ public class ApiController {
         return quizService.getRandomQuiz(diseaseId);
     }
 
+    @RequestMapping(value = "/quiz/all", method = RequestMethod.POST)
+    public List<QuizEntity> getAllQuiz(Integer diseaseId){
+        return quizService.getAllQuiz(diseaseId);
+    }
 
+    @RequestMapping(value = "/quiz/add", method = RequestMethod.POST)
+    public ResponseEntity addQuiz(QuizEntity quizEntity){
+        return quizService.addQuiz(quizEntity);
+    }
+
+    @RequestMapping(value = "/quiz/delete", method = RequestMethod.POST)
+    public ResponseEntity deleteQuiz(int id){
+        return quizService.deleteQuiz(id);
+    }
+
+    @RequestMapping(value = "/quiz/update", method = RequestMethod.POST)
+    public ResponseEntity updateQuiz(QuizEntity quizEntity){
+        return quizService.updateQuiz(quizEntity);
+    }
 
     @RequestMapping(value = "/work/detail", method = RequestMethod.POST)
     public List<WorkEntity> getWork(Integer jobId){

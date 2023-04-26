@@ -1,10 +1,7 @@
 package com.phs.controller;
 
 import com.phs.entity.*;
-import com.phs.mapper.CaseMapper;
-import com.phs.mapper.DiseaseMapper;
-import com.phs.mapper.UserMapper;
-import com.phs.mapper.WorkMapper;
+import com.phs.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,6 +31,9 @@ public class ViewController {
 
     @Autowired
     WorkMapper workMapper;
+
+    @Autowired
+    QuizMapper quizMapper;
 
 
     @RequestMapping("/login")
@@ -230,5 +231,40 @@ public class ViewController {
     public String quizTest(){
         return  "quiz/quizTest";
     }
+
+    @RequestMapping("/manage/quizChoose")
+    public String quizManageChoose(){
+        return  "systemManage/quizManage/quizChoose";
+    }
+
+    @RequestMapping("/quizManage/{diseaseId}")
+    public String quizManage(){
+        return  "systemManage/quizManage/quizManage";
+    }
+
+    @RequestMapping("/addQuiz")
+    public String addQuiz(ModelMap modelMap){
+        List<DiseaseEntity> diseases = diseaseMapper.getAllDisease();
+        modelMap.put("diseases", diseases);
+        return "systemManage/quizManage/addQuiz";
+    }
+
+    @RequestMapping("/updateQuiz/{id}")
+    public String updateQuiz(@PathVariable("id") int id,ModelMap modelMap){
+        List<DiseaseEntity> diseases = diseaseMapper.getAllDisease();
+        QuizEntity quizEntity = quizMapper.getQuizById(id);
+        DiseaseEntity disease = diseaseMapper.getDiseaseById(quizEntity.getDisease_id());
+        for(DiseaseEntity d : diseases){
+            if(d.getId() == disease.getId()){
+                d.setFlag(true);
+                break;
+            }
+        }
+        quizEntity.setChoiceList(Arrays.asList(quizEntity.getChoice_list().split("&&")));
+        modelMap.put("diseases", disease);
+        modelMap.put("quiz", quizEntity);
+        return "systemManage/quizManage/updateQuiz";
+    }
+
 
 }

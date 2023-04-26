@@ -72,138 +72,114 @@
 </head>
 <body class="white-bg">
 <header class="codrops-header">
-    <h1>新增工作流程</h1>
-    <p>Add Work</p>
-    <a href="../workChoose"  style="text-align: center ">返回角色扮演管理</a>
+    <h1>新增试题</h1>
+    <p>Add Quiz</p>
+    <a href="../manage/quizChoose"  style="text-align: center ">返回测评管理</a>
 </header>
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form id="form-disease-add"  method="POST" class="smart-green">
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">角色：</label>
+            <label class="col-sm-3 control-label">病种类型：</label>
             <div class="col-sm-8" style="text-align: left">
-                <select id="job" class="form-control select2-multiple">
-                    <option th:name="job" th:each="job:${jobs}" th:value="${job.id}"
-                            th:text="${job.name}"></option>
+                <select id="disease" class="form-control select2-multiple">
+                    <option th:name="disease" th:each="disease:${diseases}" th:value="${disease.id}"
+                            th:text="${disease.name}"></option>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">工作流程名称：</label>
+            <label class="col-sm-3 control-label">题目：</label>
             <div class="col-sm-8">
-                <textarea type="text" id="name" name="name" class="form-control" placeholder="请输入工作流程名称"></textarea>
+                <textarea type="text" id="question" name="question" class="form-control" placeholder="请输入题目"></textarea>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">工作流程描述：</label>
+            <label class="col-sm-3 control-label">选项A：</label>
             <div class="col-sm-8">
-                <textarea type="text" id="description" name="description" class="form-control"
-                          placeholder="请输入工作流程描述"></textarea>
+                <textarea type="text" id="A" name="A" class="form-control" placeholder="请输入选项A"></textarea>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">工作地点：</label>
+            <label class="col-sm-3 control-label">选项B：</label>
             <div class="col-sm-8">
-                <textarea type="text" id="room" name="room" class="form-control" placeholder="请输入工作地点"></textarea>
+                <textarea type="text" id="B" name="B" class="form-control" placeholder="请输入选项B"></textarea>
             </div>
         </div>
-        <div class="col-sm-3">
-            <br>
-            <p >
-                <video id="video1" class="videos" width="320" height="240" controls="autoplay" >
-                    <source class="videos" type="video/mp4" />
-                </video>
-            </p>
-            </br>
-
-                <input type="file" name="videos" onchange="imgChange4(event)" id="videos" multiple="multiple" style="display: none"/>
-
-            <button type="button" onclick="delete4()" id="d4" style="display:none;">删除视频</button>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-offset-5 col-sm-10">
-                <button type="button" class="btn btn-lg btn-primary" onclick="submitHandler()"><i
-                        class="fa fa-check"></i>保 存
-                </button>&nbsp;
+        <div class="form-group">
+            <label class="col-sm-3 control-label">选项C：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="C" name="C" class="form-control" placeholder="请输入选项C"></textarea>
             </div>
         </div>
-
+        <div class="form-group">
+            <label class="col-sm-3 control-label">选项D：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="D" name="D" class="form-control" placeholder="请输入选项D"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">答案：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="answer" name="answer" class="form-control" placeholder="请输入答案"></textarea>
+            </div>
+        </div>
     </form>
 
+    <div class="row">
+        <div class="col-sm-offset-5 col-sm-10">
+            <button type="button" class="btn btn-lg btn-primary" onclick="submitHandler()"><i
+                    class="fa fa-check"></i>保 存
+            </button>&nbsp;
+        </div>
+    </div>
 
 </div>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
     function submitHandler() {
-        // var data = $("#form-disease-add").serializeArray();
         var fd = new FormData();
-        fd.append("name", $("#name").val())
-        fd.append("description", $("#description").val());
-        fd.append("room", $("#room").val());
-        console.log(fd);
-        var myselect = document.getElementById("job");
-        var index = myselect.selectedIndex;
-        var job = myselect.options[index].value;
-        // data.push({"name": "kindId", "value": diseaseKind});
-        fd.append("job_id", job);
-        var videos = document.getElementById("videos").files;
-        for (var j in videos) {
-            fd.append("videos", videos[j]);
+        fd.append("question", $("#question").val())
+        fd.append("answer", $("#answer").val())
+        if($("#A").val() != ""){
+            fd.append("choiceList", $("#A").val());
         }
-
+        if($("#B").val() != ""){
+            fd.append("choiceList", $("#B").val());
+        }
+        if($("#C").val() != ""){
+            fd.append("choiceList", $("#C").val());
+        }
+        if($("#D").val() != ""){
+            fd.append("choiceList", $("#D").val());
+        }
         console.log(fd);
+        var myselect = document.getElementById("disease");
+        var index = myselect.selectedIndex;
+        var disease = myselect.options[index].value;
+        // data.push({"name": "kindId", "value": diseaseKind});
+        fd.append("disease_id", disease);
         $.ajax({
             //几个参数需要注意一下
             contentType: false,
             type: "POST",//方法类型
             processData: false,
             // dataType: "multipart/form-data",//预期服务器返回的数据类型
-            url: "/api/work/add",//url
+            url: "/api/quiz/add",//url
             data: fd,
             statusCode: {
                 200: function (result) {
                     alert(result);
-                    window.location.href = "../workChoose";
+                    window.location.href = "../manage/quizChoose";
                 },
                 400: function (result) {
                     alert(result.responseText);
-                    window.location.href = "../workChoose";
+                    window.location.href = "../addQuiz";
                 }
             }
         });
     }
 
-    goBack = function(){
-        var myselect = document.getElementById("disease");
-        var index = myselect.selectedIndex;
-        var disease = myselect.options[index].value;
-        window.location.href = "../caseManage/" + disease;
-    }
-
-    function imgChange4(e) {
-        console.info(e.target.files[0]);//视频文件
-        console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
-        var reader = new FileReader();
-        reader.onload = (function (file) {
-            return function (e) {
-                $('.videos').attr('src',this.result);
-                document.getElementById("d4").setAttribute("style", "display:block;");
-            };
-        })(e.target.files[0]);
-        reader.readAsDataURL(e.target.files[0]);
-    }
-
-    $('.videos').click(function () {
-        $("#videos").click();
-    });
-
-
-    function delete4() {
-        document.getElementById("videos").value="";
-        document.getElementById("video1").setAttribute("src", "");
-        document.getElementById("d4").setAttribute("style", "display:none;");
-    }
 
 </script>
 

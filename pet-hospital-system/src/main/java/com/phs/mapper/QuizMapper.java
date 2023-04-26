@@ -11,4 +11,12 @@ public interface QuizMapper {
 
     List<QuizEntity> getQuizByDiseaseId(int diseaseId);
 
+    QuizEntity getQuizById(int id);
+
+    void insertQuiz(QuizEntity quizEntity);
+
+    void updateQuiz(QuizEntity quizEntity);
+
+    void deleteQuiz(int id);
+
 }

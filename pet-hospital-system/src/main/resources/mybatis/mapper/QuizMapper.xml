@@ -17,4 +17,40 @@
         where disease_id=#{disease_id}
     </select>
 
+    <select id = "getQuizById" resultMap="RM_QuizVo">
+        select *
+        from phs_quiz
+        where id=#{id}
+    </select>
+
+    <insert id="insertQuiz" parameterType="QuizEntity">
+        insert into phs_quiz(
+            disease_id,
+            question,
+            choice_list,
+            answer
+        )values(
+            #{disease_id},
+            #{question},
+            #{choice_list},
+            #{answer}
+               )
+    </insert>
+
+    <update id="updateQuiz" parameterType="QuizEntity">
+        update phs_quiz
+        <set>
+            disease_id = #{disease_id},
+            question = #{question},
+            choice_list = #{choice_list},
+            answer = #{answer}
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteQuiz" parameterType="int">
+        delete from phs_quiz
+        where id = #{id}
+    </delete>
+
 </mapper>

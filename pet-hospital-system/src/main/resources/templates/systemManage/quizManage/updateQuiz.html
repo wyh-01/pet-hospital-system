@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>CaseStudy</title>
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/tabs.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/tabstyles.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" id="templatecss" type="text/css" href="../css/style.css"/>
+    <style>
+        .module-btn p {
+            width: 30%;
+        }
+
+        .codrops-header a {
+            border-bottom: 1px dashed;
+            padding-bottom: 0.3em;
+        }
+
+        section {
+            max-width: 100%;
+            min-height: 500px;
+            overflow: auto;
+        }
+
+        section p {
+            font-size: 1em;
+        }
+
+        .case-submenu > div {
+            float: left;
+            width: 18%;
+            height: 200px;
+            font-size: 1.2em;
+            text-align: center;
+            vertical-align: top;
+            padding: 0.5em;
+            margin: 1.5em;
+            border: 1px solid #553445;
+            border-radius: 1em 0 1em 0;
+        }
+
+        .case-submenu > div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column
+        }
+
+        .case-submenu > div:hover {
+            padding: 0.5em;
+            color: #67c2d4;
+            background: rgba(103, 194, 212, .2);
+            border: 1px dashed #67c2d4;
+            cursor: pointer;
+        }
+
+        .case-submenu > div > div {
+            display: flex;
+            justify-content: center;
+            font-size: 1.5rem;
+            /*padding: 1rem;*/
+        }
+
+
+    </style>
+
+</head>
+<body class="white-bg">
+<header class="codrops-header">
+    <h1>新增试题</h1>
+    <p>Add Quiz</p>
+    <a href="../manage/quizChoose"  style="text-align: center ">返回测评管理</a>
+</header>
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form id="form-disease-add"  method="POST" class="smart-green">
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">病种类型：</label>
+            <div class="col-sm-8" style="text-align: left">
+                <select id="disease" class="form-control select2-multiple">
+                    <option th:name="disease" th:each="disease:${diseases}" th:value="${disease.id}"
+                            th:text="${disease.name}" th:selected="${disease.flag}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">题目：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="question" name="question" class="form-control" placeholder="请输入题目" th:field="*{quiz.question}"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">选项A：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="A" name="A" class="form-control" placeholder="请输入选项A" th:field="*{quiz.choiceList[0]}"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">选项B：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="B" name="B" class="form-control" placeholder="请输入选项B" th:field="*{quiz.choiceList[1]}"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">选项C：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="C" name="C" class="form-control" placeholder="请输入选项C" th:field="*{quiz.choiceList[2]}"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">选项D：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="D" name="D" class="form-control" placeholder="请输入选项D" th:field="*{quiz.choiceList[3]}"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">答案：</label>
+            <div class="col-sm-8">
+                <textarea type="text" id="answer" name="answer" class="form-control" placeholder="请输入答案" th:field="*{quiz.answer}"></textarea>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-sm-offset-5 col-sm-10">
+            <button type="button" class="btn btn-lg btn-primary" onclick="submitHandler()"><i
+                    class="fa fa-check"></i>保 存
+            </button>&nbsp;
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    function submitHandler() {
+        var fd = new FormData();
+        var id = [[${quiz.id}]];
+        fd.append("id", id);
+        fd.append("question", $("#question").val())
+        fd.append("answer", $("#answer").val())
+        if($("#A").val() != ""){
+            fd.append("choiceList", $("#A").val());
+        }
+        if($("#B").val() != ""){
+            fd.append("choiceList", $("#B").val());
+        }
+        if($("#C").val() != ""){
+            fd.append("choiceList", $("#C").val());
+        }
+        if($("#D").val() != ""){
+            fd.append("choiceList", $("#D").val());
+        }
+        console.log(fd);
+        var myselect = document.getElementById("disease");
+        var index = myselect.selectedIndex;
+        var disease = myselect.options[index].value;
+        fd.append("disease_id", disease);
+        console.log(fd);
+        $.ajax({
+            //几个参数需要注意一下
+            contentType: false,
+            type: "POST",//方法类型
+            processData: false,
+            // dataType: "multipart/form-data",//预期服务器返回的数据类型
+            url: "/api/quiz/update",//url
+            data: fd,
+            statusCode: {
+                200: function (result) {
+                    alert(result);
+                    window.location.href = "../quizManage/" + disease;
+                },
+                400: function (result) {
+                    alert(result.responseText);
+                    window.location.href = "../updateQuiz";
+                }
+            }
+        });
+    }
+
+
+</script>
+
+<script type="text/javascript" src="../js/modernizr.custom.js"></script>
+<script type="text/javascript" src="../js/canvas-particle.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var config = {
+            vx: 4,
+            vy: 4,
+            height: 3,
+            width: 3,
+            count: 150,
+            color: "121, 162, 185",
+            stroke: "100,200,180",
+            dist: 6000,
+            e_dist: 20000,
+            max_conn: 10
+        }
+        CanvasParticle(config);
+    }
+</script>
+</body>
+</html>

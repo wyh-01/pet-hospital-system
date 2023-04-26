@@ -1,6 +1,8 @@
 package com.phs.service.facade;
 
 import com.phs.entity.QuizEntity;
+import com.phs.entity.WorkEntity;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -10,5 +12,13 @@ import java.util.List;
 public interface QuizService {
 
     List<QuizEntity> getRandomQuiz(int diseaseId);
+
+    List<QuizEntity> getAllQuiz(int diseaseId);
+
+    ResponseEntity addQuiz(QuizEntity quizEntity);
+
+    ResponseEntity deleteQuiz(int id);
+
+    ResponseEntity updateQuiz(QuizEntity quizEntity);
 
 }

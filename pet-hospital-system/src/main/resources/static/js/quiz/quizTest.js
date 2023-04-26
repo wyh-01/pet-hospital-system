@@ -11,22 +11,22 @@ quizTest.initQuiz = function(index,quizEntity){
     var title = "<label>" + index + ". " + quizEntity.question + "</label>";
 
     var one = "<label class='radio-inline'>" +
-        "            <input type='radio' name='"+quizEntity.id+"' value='A' answer='"+quizEntity.answer+"'>" + quizEntity.choiceList[0] +
+        "            <input type='radio' name='"+quizEntity.id+"' value='A' answer='"+quizEntity.answer+"'>" + "A." +  quizEntity.choiceList[0] +
         "            </input>" +
         "     </label>";
 
     var two = "<label class='radio-inline'>" +
-        "            <input type='radio' name='"+quizEntity.id+"' value='B' answer='"+quizEntity.answer+"'>" + quizEntity.choiceList[1] +
+        "            <input type='radio' name='"+quizEntity.id+"' value='B' answer='"+quizEntity.answer+"'>" + "B." +  quizEntity.choiceList[1] +
         "            </input>" +
         "     </label>";
 
     var three = "<label class='radio-inline'>" +
-        "            <input type='radio' name='"+quizEntity.id+"' value='C' answer='"+quizEntity.answer+"'>" + quizEntity.choiceList[2] +
+        "            <input type='radio' name='"+quizEntity.id+"' value='C' answer='"+quizEntity.answer+"'>" + "C." +  quizEntity.choiceList[2] +
         "            </input>" +
         "     </label>";
 
     var four = "<label class='radio-inline'>" +
-        "            <input type='radio' name='"+quizEntity.id+"' value='D' answer='"+quizEntity.answer+"'>" + quizEntity.choiceList[3] +
+        "            <input type='radio' name='"+quizEntity.id+"' value='D' answer='"+quizEntity.answer+"'>" + "D." +  quizEntity.choiceList[3] +
         "            </input>" +
         "     </label>";
 

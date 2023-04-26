@@ -12,7 +12,7 @@ work.generateWork = function (res) {
         for(var i=0;i<res.length;i++){
             html =  html +
                 "<li> " +
-                "<a href='../html/map/3Dmap.html'>进入科室</a> " +
+                "<a href='../html/output/index.html'>进入科室</a> " +
                 "<div style='font-size: 1.5em;'>" + res[i].name + "</div> " +
                 "<div style='font-size: 1.5em; margin-top: 30px'>" + res[i].description + "</div>" +
                 "<video width=\"960\" height=\"600\" controls=\"autoplay\">" +
