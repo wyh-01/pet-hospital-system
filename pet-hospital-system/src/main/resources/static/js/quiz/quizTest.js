@@ -68,7 +68,7 @@ quizTest.initOutcome = function(index,quizEntity, item){
     }else{
         ans = "你选择的答案：" + item;
     }
-    return title + choices + ans + "            正确答案：" + quizEntity.answer + "<hr/>";
+    return title + choices + "<p style='margin-top: 20px;'>" + ans + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp正确答案：" + quizEntity.answer +"</p>" + "<hr/>";
 
 };
 

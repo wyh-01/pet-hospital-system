@@ -32,8 +32,8 @@ quizUpdate.initQuiz = function(index,quizEntity){
 
     var choices = "<div>" + one + two + three + four + "</div>";
 
-    var button = "<div> <button onclick=\"quizUpdate.update(" + quizEntity.id + ")\" type=\"button\" class=\"btn btn-primary btn-xs\">编辑</button>" +
-        "<button onclick=\"quizUpdate.delete(" + quizEntity.id +"," + quizEntity.disease_id + ")\" type=\"button\" class=\"btn btn-danger btn-xs\">删除</button></div>";
+    var button = "<div style='margin-top: 20px;'> <button onclick=\"quizUpdate.update(" + quizEntity.id + ")\" type=\"button\" class=\"btn btn-primary btn-lg\">编辑</button>" +
+        "<button onclick=\"quizUpdate.delete(" + quizEntity.id +"," + quizEntity.disease_id + ")\" type=\"button\" class=\"btn btn-danger btn-lg\">删除</button></div>";
 
 
     return title + choices + button + "<hr/>";
