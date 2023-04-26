@@ -6,6 +6,7 @@
 var quizTest = {};
 var quizList = "";
 var quizans="";
+var outcome="";
 quizTest.initQuiz = function(index,quizEntity){
     quizans=quizans+quizEntity.id+quizEntity.answer+" ";
     var title = "<label>" + index + ". " + quizEntity.question + "</label>";
@@ -36,9 +37,62 @@ quizTest.initQuiz = function(index,quizEntity){
 
 };
 
+quizTest.initOutcome = function(index,quizEntity, item){
+    quizans=quizans+quizEntity.id+quizEntity.answer+" ";
+    var title = "<label>" + index + ". " + quizEntity.question + "</label>";
+
+    var one = "<label class='radio-inline'>" +
+        "            <input type='radio' name='"+quizEntity.id+"' value='A' answer='"+quizEntity.answer+"'>" + "A." +  quizEntity.choiceList[0] +
+        "            </input>" +
+        "     </label>";
+
+    var two = "<label class='radio-inline'>" +
+        "            <input type='radio' name='"+quizEntity.id+"' value='B' answer='"+quizEntity.answer+"'>" + "B." +  quizEntity.choiceList[1] +
+        "            </input>" +
+        "     </label>";
+
+    var three = "<label class='radio-inline'>" +
+        "            <input type='radio' name='"+quizEntity.id+"' value='C' answer='"+quizEntity.answer+"'>" + "C." +  quizEntity.choiceList[2] +
+        "            </input>" +
+        "     </label>";
+
+    var four = "<label class='radio-inline'>" +
+        "            <input type='radio' name='"+quizEntity.id+"' value='D' answer='"+quizEntity.answer+"'>" + "D." +  quizEntity.choiceList[3] +
+        "            </input>" +
+        "     </label>";
+
+    var choices = "<div>" + one + two + three + four + "</div>";
+    var ans = "";
+    if(item == ""){
+        ans = "你未选择答案";
+    }else{
+        ans = "你选择的答案：" + item;
+    }
+    return title + choices + ans + "            正确答案：" + quizEntity.answer + "<hr/>";
+
+};
+
+
 quizTest.initQuizList = function (res) {
+    outcome = res;
     for(var i=0;i<res.length;i++){
         quizList = quizList + quizTest.initQuiz(i+1,res[i]);
+    }
+    $("#quizList").html(quizList);
+};
+
+quizTest.initOutcomeList = function () {
+    quizList = "";
+    for(var i=0;i<outcome.length;i++){
+        var radio = document.getElementsByName(outcome[i].id.toString());
+        var item = "";
+        for (var j=0; j<radio.length; j++) {
+            if (radio[j].checked) {
+                item = radio[j].value;
+            }
+        }
+
+        quizList = quizList + quizTest.initOutcome(i+1,outcome[i], item);
     }
     $("#quizList").html(quizList);
 };
@@ -49,11 +103,13 @@ quizTest.bindModal = function () {
     var score = so;
     //$("#modalText").html(score+"分");
     $('#modalBtn').click(function() {
-        location.reload();
+        // location.reload();
     });
 }
 quizTest.set = function () {
 
+    var i = 0;
+    quizList = "";
     $("input[type=radio]:checked").each(function() {
        var item = $(this).val();
        var ans=this.name+item;
@@ -61,11 +117,13 @@ quizTest.set = function () {
        {
            so+=10
        }
-
     }
     )
+    quizTest.initOutcomeList();
+    document.getElementById("header1").innerText = "测评结果";
+    document.getElementById("header2").innerText = "Quiz Outcome";
+    document.getElementById("button-submit").remove();
     $("#modalText").html(so+"分");
-
 }
 quizTest.init = function () {
     var diseaseId = $.getUrlLastParam();
