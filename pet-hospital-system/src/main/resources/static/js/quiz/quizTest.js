@@ -64,9 +64,9 @@ quizTest.initOutcome = function(index,quizEntity, item){
     var choices = "<div>" + one + two + three + four + "</div>";
     var ans = "";
     if(item == ""){
-        ans = "你未选择答案";
+        ans = "您未选择答案";
     }else{
-        ans = "你选择的答案：" + item;
+        ans = "您选择的答案：" + item;
     }
     return title + choices + "<p style='margin-top: 20px;'>" + ans + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp正确答案：" + quizEntity.answer +"</p>" + "<hr/>";
 
