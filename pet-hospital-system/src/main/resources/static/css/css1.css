@@ -37,7 +37,7 @@
     box-sizing: border-box;
     /*border-box是指将边框border和内边距padding在现有元素的宽度和高度内设置*/
     /*background-color: var(--color-menu-bg);*/
-    background-color:#65C0BB;
+    background-color: #9a9c9b;
 }
 
 .menu-box input[type='checkbox'] {
