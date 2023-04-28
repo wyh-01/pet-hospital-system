@@ -11,7 +11,7 @@
  Target Server Version : 50740
  File Encoding         : 65001
 
- Date: 28/04/2023 00:06:50
+ Date: 28/04/2023 08:27:02
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `phs_case`  (
   `image_list` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `video` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_case
@@ -43,6 +43,7 @@ INSERT INTO `phs_case` VALUES (10, 6, '病例A', '一只1岁的哈士奇被主�
 INSERT INTO `phs_case` VALUES (11, 6, '病例B', '一只3岁的比格犬被主人带到兽医诊所，因为它最近出现了呕吐、腹泻和食欲不振的症状。狗狗还表现出非常懒散和疲倦。在体检时，兽医发现狗狗的体温升高，腹部有压痛。血液检查结果显示白细胞计数低于正常值，这提示免疫系统已经被某种病原体攻击。\r\n\r\n考虑到这些症状可能是由犬细小病毒引起的，兽医进行了相关检测。检测结果证实了狗狗感染了犬细小病毒。为了治疗狗狗，兽医给予了抗生素和输液以保持其体液平衡。狗狗逐渐恢复了食欲和活力，最终成功地战胜了疾病。\r\n\r\n这些病例强调了犬细小病毒的常见症状，如呕吐、腹泻、食欲不振等，以及有效的治疗方法，如输液、抗生素和支持性治疗。如果您的宠物出现', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/bc7996ac-4ee1-42d4-b7ef-6d53584115a3.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/c7ff90ee-80b5-47a2-a312-614bd726bfee.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/cdb6809d-cc91-4354-9d32-dfb795a39c6a.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/4d78168f-5b7d-47fd-b613-4c062d9d3f29.mp4');
 INSERT INTO `phs_case` VALUES (12, 7, '病例A', '一只2岁的贵宾被主人带到兽医诊所，因为它最近出现了咳嗽、打喷嚏和食欲不振的症状。狗狗还表现出非常懒散和疲倦。在体检时，兽医发现狗狗的体温轻微升高，但其他生理指标正常。检查狗狗的喉咙和肺部，发现它的喉咙红肿，肺部也有轻微的炎症。\r\n\r\n考虑到这些症状可能是由犬冠状病毒引起的，兽医进行了相关检测。检测结果证实了狗狗感染了犬冠状病毒。为了治疗狗狗，兽医给予了支持性治疗，包括保持其体液平衡，给予镇痛药和抗生素以预防继发感染。经过几天的治疗，狗狗逐渐恢复了健康。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/90de0bea-b49e-4cb6-8b96-ad8026906aa6.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/e92db635-d56a-410d-b1ba-31a861a31703.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/cc30b2a9-f3ba-4506-b5bc-6820fdeba02d.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/4c9027d6-5f4b-4742-8187-af11fe119186.mp4');
 INSERT INTO `phs_case` VALUES (13, 7, '病例B', '一只4岁的黄金猎犬被主人带到兽医诊所，因为它出现了咳嗽、打喷嚏和流鼻涕的症状。狗狗还表现出食欲不振和口干舌燥的症状。在体检时，兽医发现狗狗的体温略微升高，肺部有轻微的炎症。血液检查结果显示白细胞计数正常。\r\n\r\n考虑到这些症状可能是由犬冠状病毒引起的，兽医进行了相关检测。检测结果证实了狗狗感染了犬冠状病毒。为了治疗狗狗，兽医给予了支持性治疗，包括输液以保持其体液平衡和抗生素以预防继发感染。狗狗逐渐恢复了健康，咳嗽和打喷嚏的症状也得到了缓解。', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/074c3057-9f57-4593-b06a-6e9009e719ea.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/3fd56079-35ca-4267-bcd7-7996cb240862.png&&http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/33c1ebdf-81f2-4d17-90c1-7c4dc3b997eb.png', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/657c4059-48c3-4069-8878-4bb419a5be97.mp4');
+INSERT INTO `phs_case` VALUES (14, 13, 'test1', 'test1', '', '');
 
 -- ----------------------------
 -- Table structure for phs_disease
@@ -55,7 +56,7 @@ CREATE TABLE `phs_disease`  (
   `image` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_disease
@@ -120,7 +121,7 @@ CREATE TABLE `phs_quiz`  (
   `choice_list` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `answer` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_quiz
@@ -145,6 +146,36 @@ INSERT INTO `phs_quiz` VALUES (17, 1, '犬猫的螨虫病包括（）种。（�
 INSERT INTO `phs_quiz` VALUES (18, 1, '狗蠕形螨主要寄生在（）', '2&&3&&4&&5', 'A');
 INSERT INTO `phs_quiz` VALUES (19, 1, '根据骨折部位可划分（）种骨折。', '2&&3&&4&&5', 'A');
 INSERT INTO `phs_quiz` VALUES (20, 1, '难产的病因不包括（）', '母兽产道狭窄&&母兽分娩不足&&医师技术&&胎儿异常', 'A');
+INSERT INTO `phs_quiz` VALUES (21, 2, '下列不属于《中华人民共和国动物防疫法》所称动物疫病的是（）', '禽霍乱&&白肌病&&禽结合病&&犬瘟热', 'A');
+INSERT INTO `phs_quiz` VALUES (22, 2, '病犬在康复期出现角膜混浊的常见传染病是（）', '犬瘟热&&犬传染性肝炎&&犬冠状病毒性腹泻&&禽霍乱', 'B');
+INSERT INTO `phs_quiz` VALUES (23, 2, '犬猫可视黏膜检查的主要部位是（）', '眼结膜&&鼻腔黏膜&&口腔黏膜&&直肠黏膜', 'C');
+INSERT INTO `phs_quiz` VALUES (24, 2, '口炎的症状不包括（）', '大量流涎&&咀嚼障碍&&吞咽障碍&&采食缓慢', 'C');
+INSERT INTO `phs_quiz` VALUES (25, 2, '测量犬猫体温的主要部位是（）', '皮肤&&口腔&&腋下&&直肠', 'D');
+INSERT INTO `phs_quiz` VALUES (26, 2, '腊肠犬，10岁，头颈僵直，耳竖起，鼻尖抵地，运步小心，触诊颈部敏感。该犬最可能患有（）', '肱骨骨折&&肘关节炎&&犬瘟热&&桡神经麻痹', 'D');
+INSERT INTO `phs_quiz` VALUES (27, 2, '母犬，10岁，多食、多饮、多尿，体重减轻，血糖浓度为10mmol/L.有效的治疗药物是（）', '肌苷&&犬瘟热&&胰岛素&&干扰素', 'C');
+INSERT INTO `phs_quiz` VALUES (28, 2, '犬，排粪困难，里急后重，甩尾，擦舔肛门，挤压其肛门疼痛并流出黑灰色恶臭物。该病是（）', '肛门囊炎&&犬瘟热&&犬传染性肝&&犬冠状病毒性腹泻', 'A');
+INSERT INTO `phs_quiz` VALUES (29, 2, '北京犬，发病1周，包皮肿胀，包皮口污秽不洁、流出脓样腥臭液体；翻开包皮囊，见红肿、溃疡病变。该病是（）', '包皮囊炎&&犬瘟热&&前列腺炎&&犬传染性肝', 'A');
+INSERT INTO `phs_quiz` VALUES (30, 2, '犬，饮水量增加，皮肤增厚，弹性降低，色素沉着，躯干部对称性脱毛。X线检查显示骨质疏松。该犬内分泌异常的激素最可能是（）', '甲状腺素&&糖皮质素&&胰岛素&&干扰素', 'A');
+INSERT INTO `phs_quiz` VALUES (31, 2, '从猫粪中排出的弓形虫发育阶段是（）', '包囊&&卵囊&&劣殖子&&配子体', 'D');
+INSERT INTO `phs_quiz` VALUES (32, 2, '预防伊氏锥虫病最实用的措施为（）', '疫苗免疫&&药物预防&&淘汰病畜&&消灭媒介昆虫', 'C');
+INSERT INTO `phs_quiz` VALUES (33, 2, '狗蠕形螨主要寄生在（）', '毛囊和皮脂腺&&表皮&&咬肌&&肝脏', 'A');
+INSERT INTO `phs_quiz` VALUES (34, 2, '复孔绦虫病是由于犬、猫类舔被毛时含有跳（）蚤或虱类而被感染。', '囊尾蚴&&尾蚴&&似囊尾蚴&&雷蚴', 'A');
+INSERT INTO `phs_quiz` VALUES (35, 2, '犬传染性肝炎根据临床症状和进过可分为（）种。', '两种&&三种&&四种&&五种', 'A');
+INSERT INTO `phs_quiz` VALUES (36, 2, '螨虫属于不完全变态。发育过程包括（）个阶段。', '2&&3&&4&&5', 'D');
+INSERT INTO `phs_quiz` VALUES (37, 2, '犬猫的螨虫病包括（）种。（）', '2&&3&&4&&5', 'C');
+INSERT INTO `phs_quiz` VALUES (38, 2, '狗蠕形螨主要寄生在（）', '2&&3&&4&&5', 'A');
+INSERT INTO `phs_quiz` VALUES (39, 2, '根据骨折部位可划分（）种骨折。', '2&&3&&4&&5', 'A');
+INSERT INTO `phs_quiz` VALUES (40, 2, '难产的病因不包括（）', '母兽产道狭窄&&母兽分娩不足&&医师技术&&胎儿异常', 'A');
+INSERT INTO `phs_quiz` VALUES (41, 5, '下列不属于《中华人民共和国动物防疫法》所称动物疫病的是（）', '禽霍乱&&白肌病&&禽结合病&&犬瘟热', 'A');
+INSERT INTO `phs_quiz` VALUES (42, 5, '病犬在康复期出现角膜混浊的常见传染病是（）', '犬瘟热&&犬传染性肝炎&&犬冠状病毒性腹泻&&禽霍乱', 'B');
+INSERT INTO `phs_quiz` VALUES (43, 5, '犬猫可视黏膜检查的主要部位是（）', '眼结膜&&鼻腔黏膜&&口腔黏膜&&直肠黏膜', 'C');
+INSERT INTO `phs_quiz` VALUES (44, 5, '口炎的症状不包括（）', '大量流涎&&咀嚼障碍&&吞咽障碍&&采食缓慢', 'C');
+INSERT INTO `phs_quiz` VALUES (45, 5, '测量犬猫体温的主要部位是（）', '皮肤&&口腔&&腋下&&直肠', 'D');
+INSERT INTO `phs_quiz` VALUES (46, 5, '腊肠犬，10岁，头颈僵直，耳竖4，鼻尖抵地，运步小心，触诊颈部敏感。该犬最可能患有（）', '肱骨骨折&&肘关节炎&&犬瘟热&&桡神经麻痹', 'D');
+INSERT INTO `phs_quiz` VALUES (47, 5, '母犬，10岁，多食、多饮、多尿4体重减轻，血糖浓度为10mmol/L.有效的治疗药物是（）', '肌苷&&犬瘟热&&胰岛素&&干扰素', 'C');
+INSERT INTO `phs_quiz` VALUES (48, 5, '犬，排粪困难，里急后重，甩尾4擦舔肛门，挤压其肛门疼痛并流出黑灰色恶臭物。该病是（）', '肛门囊炎&&犬瘟热&&犬传染性肝&&犬冠状病毒性腹泻', 'A');
+INSERT INTO `phs_quiz` VALUES (49, 5, '北京犬，发病1周，包皮肿胀，5皮口污秽不洁、流出脓样腥臭液体；翻开包皮囊，见红肿、溃疡病变。该病是（）', '包皮囊炎&&犬瘟热&&前列腺炎&&犬传染性肝', 'A');
+INSERT INTO `phs_quiz` VALUES (50, 5, '犬，饮水量增加，皮肤增厚，弹性降低，色素沉着，躯干部对称性脱毛。X线检查显示骨质疏松。该犬内分泌异常的激5最可能是（）', '甲状腺素&&糖皮质素&&胰岛素&&干扰素', 'A');
 
 -- ----------------------------
 -- Table structure for phs_user
@@ -185,7 +216,7 @@ CREATE TABLE `phs_work`  (
   `video_url` varchar(400) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phs_work
@@ -196,5 +227,7 @@ INSERT INTO `phs_work` VALUES (3, 2, '抢救宠物', '参加科室内的抢救�
 INSERT INTO `phs_work` VALUES (9, 3, '接待', '接待顾客引导服务。', '前台', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/d862d031-44bc-4b89-bd12-dc0adfbc55a7.mp4');
 INSERT INTO `phs_work` VALUES (10, 2, '外科检查', '检查宠物五官及口腔内部、被毛健康状况、皮肤健康状况。', '检查室', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/27/324be6de-67d7-4a75-aea5-229e5d6a462b.mp4');
 INSERT INTO `phs_work` VALUES (11, 3, '结账', '清算宠物就医的相关费用。', '前台', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/28/6df02239-8631-4011-83b6-4cbd0f6aae59.mp4');
+INSERT INTO `phs_work` VALUES (12, 3, '导医咨询', '应按宠物疾病的轻、重、缓、急及病种有序地挂号分诊。', '前台', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/28/1176408b-a005-4826-97e8-b1fb5447349b.mp4');
+INSERT INTO `phs_work` VALUES (13, 1, '开药', '医师根据宠物患病情况开具相关治疗药物。', '诊室', 'http://pet-hospital-system.oss-cn-shanghai.aliyuncs.com/files/2023/04/28/d14c750a-366e-4662-9534-86812873cb6a.mp4');
 
 SET FOREIGN_KEY_CHECKS = 1;
